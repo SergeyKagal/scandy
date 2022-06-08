@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PATH } from '../../constants/path';
+import CartButton from './CartButton';
+import CurrencySelect from './CurrencySelect';
+import './Header.css';
 export default class Header extends React.Component {
   render() {
     return (
@@ -23,31 +26,12 @@ export default class Header extends React.Component {
               </Link>
             </li>
           </ul>
-          <Link to={PATH.CATEGORY} className="header__nav-link" />
+          <Link to={PATH.MAIN} className="header__nav-link">
+            <img src="./images/a-logo.svg" alt="a-logo" />
+          </Link>
           <div className="header__nav-controls">
-            <select name="" id="" className="header__nav-currensy-select">
-              <option value="" defaultValue="usd">
-                $
-              </option>
-              <option value="usd" className="header__nav-currensy-option">
-                $ usd
-              </option>
-              <option value="gbp" className="header__nav-currensy-option">
-                gbp
-              </option>
-              <option value="aud" className="header__nav-currensy-option">
-                aud
-              </option>
-              <option value="jpy" className="header__nav-currensy-option">
-                jpy
-              </option>
-              <option value="rub" className="header__nav-currensy-option">
-                rub
-              </option>
-            </select>
-            <button className="header__nav-cart">
-              <img src="./images/cart-icon.svg" alt="cart-icon" />
-            </button>
+            <CurrencySelect />
+            <CartButton />
           </div>
         </nav>
       </header>
