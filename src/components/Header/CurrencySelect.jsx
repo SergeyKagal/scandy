@@ -5,10 +5,19 @@ export default class CurrencySelect extends Component {
     isShowCurrencyList: false,
   };
 
+  clickHandler = () => {
+    this.setState({ isShowCurrencyList: !this.state.isShowCurrencyList });
+  };
+
   render() {
     return (
       <>
-        <button className="header__nav-currensy-select">$</button>
+        <button
+          onClick={this.clickHandler}
+          className="header__nav-currensy-select"
+        >
+          $
+        </button>
         {this.state.isShowCurrencyList && (
           <ul className="header__nav-currensy-list">
             <li value="usd" className="header__nav-currensy-option">
