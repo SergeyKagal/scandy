@@ -9,8 +9,12 @@ export default class CurrencySelect extends Component {
   clickHandler = () => {
     this.setState({ isShowCurrencyList: !this.state.isShowCurrencyList });
     this.state.isShowCurrencyList
-      ? this.setState({ buttonClass: 'header__nav-currensy-select' })
-      : this.setState({ buttonClass: 'header__nav-currensy-select-Off' });
+      ? this.setState({
+          buttonClass: 'header__nav-currensy-select currency-arrow-down',
+        })
+      : this.setState({
+          buttonClass: 'header__nav-currensy-select currency-arrow-up',
+        });
   };
 
   render() {
