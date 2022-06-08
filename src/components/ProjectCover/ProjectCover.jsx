@@ -4,9 +4,6 @@ import './ProjectCover.css';
 import { Link } from 'react-router-dom';
 
 export class ProjectCover extends React.Component {
-  clickHandler = () => {
-    console.log('Click');
-  };
   render() {
     return (
       <>
@@ -15,7 +12,7 @@ export class ProjectCover extends React.Component {
 
           <Link to={PATH.CATEGORY}>
             {' '}
-            <button onClick={this.clickHandler}>run</button>
+            <button>run</button>
           </Link>
         </div>
       </>
