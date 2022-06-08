@@ -1,16 +1,18 @@
 .cover__wrapper {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: #141414;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 30px;
 }
 .cover__title {
   color: #ffffff;
   width: 1400px;
   height: 402px;
-  font-family: 'Roboto';
+  font-family: 'RobotoBold';
   font-style: normal;
   font-weight: 700;
   font-size: 124px;
@@ -20,4 +22,19 @@
   text-align: center;
   padding: 0 123px 0 123px;
   box-sizing: border-box;
+}
+.cover__wrapper button {
+  width: 150px;
+  height: 65px;
+  background-color: transparent;
+  border: 1px solid #888888;
+  color: #888888;
+  font-size: 35px;
+  text-transform: capitalize;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Roboto';
+}
+.cover__wrapper button:hover {
+  background-color: rgb(136, 136, 136, 0.2);
 }
