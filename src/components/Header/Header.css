@@ -12,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  position: relative;
 }
 .header__nav-list {
   font-family: 'Raleway';
@@ -26,15 +27,17 @@
 .header__nav-link {
   text-decoration: none;
   padding: 26px 16px;
-
+  border: none;
   cursor: pointer;
 }
-li > .header__nav-link:hover {
+.header__nav-link:hover,
+.active {
   font-weight: 600;
   color: #5ece7b;
+}
+.active {
   border-bottom: 2px solid #5ece7b;
 }
-
 .a-logo {
   margin-right: 13.2%;
   padding-top: 10px;

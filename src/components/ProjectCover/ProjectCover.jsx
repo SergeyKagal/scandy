@@ -10,7 +10,7 @@ export class ProjectCover extends React.Component {
         <div className="cover__wrapper">
           <h1 className="cover__title">Junior Frontend Test Designs</h1>
 
-          <Link to={PATH.CATEGORY}>
+          <Link to={PATH.ALL}>
             {' '}
             <button>run</button>
           </Link>

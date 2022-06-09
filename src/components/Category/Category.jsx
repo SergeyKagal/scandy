@@ -5,8 +5,8 @@ export default class Category extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <h2>Category</h2>
+        <Header activeTitle={this.props.categoryName} />
+        <h2>{this.props.categoryName}</h2>
       </div>
     );
   }

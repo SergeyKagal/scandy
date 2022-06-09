@@ -11,7 +11,12 @@ class App extends React.Component {
       <BrowserRouter>
         <Routes>
           <Route path={PATH.MAIN} element={<ProjectCover />} />
-          <Route path={PATH.CATEGORY} element={<Category />} />
+          <Route
+            path={PATH.CLOTHES}
+            element={<Category categoryName="clothes" />}
+          />
+          <Route path={PATH.TECH} element={<Category categoryName="tech" />} />
+          <Route path={PATH.ALL} element={<Category categoryName="all" />} />
         </Routes>
       </BrowserRouter>
     );

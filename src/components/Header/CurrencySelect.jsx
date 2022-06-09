@@ -62,9 +62,7 @@ export default class CurrencySelect extends Component {
       this.clickHandler();
     });
   };
-  componentDidUpdate = () => {
-    console.log(this.state.currencyList);
-  };
+
   render() {
     return (
       <>
