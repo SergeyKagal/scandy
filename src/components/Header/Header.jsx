@@ -63,7 +63,7 @@ export default class Header extends React.Component {
             <img src="./images/a-logo.svg" alt="a-logo" />
           </Link>
           <div className="header__nav-controls">
-            <CurrencySelect />
+            <CurrencySelect switchCurrency={this.props.switchCurrency} />
             <CartButton />
           </div>
         </nav>

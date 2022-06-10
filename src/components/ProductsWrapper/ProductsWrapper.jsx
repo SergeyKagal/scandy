@@ -3,7 +3,6 @@ import { currency } from '../../constants/currency';
 import './ProductsWrapper.css';
 export default class ProductsWrapper extends Component {
   state = {
-    currentCurrency: 0,
     cardsList: [
       {
         id: 1,
@@ -82,10 +81,10 @@ export default class ProductsWrapper extends Component {
                 <h3 className="product__title">{card.productName}</h3>
                 <div className="product__price">
                   <span className="product__price-currency">
-                    {currency.currencySign[this.state.currentCurrency]}
+                    {currency.currencySign[this.props.currentCurrency]}
                   </span>
                   <span className="product__price-amont">
-                    {card.price.amont[this.state.currentCurrency].toFixed(2)}
+                    {card.price.amont[this.props.currentCurrency].toFixed(2)}
                   </span>
                 </div>
               </li>

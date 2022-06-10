@@ -54,6 +54,7 @@ export default class CurrencySelect extends Component {
       if (id === currency.id) {
         currency.isChecked = true;
         currency.labelClass = 'header__nav-currensy-option label-checked';
+        this.props.switchCurrency(id);
       } else {
         currency.isChecked = false;
         currency.labelClass = 'header__nav-currensy-option';
@@ -62,7 +63,7 @@ export default class CurrencySelect extends Component {
       this.clickHandler();
     });
   };
-
+  componentDidUpdate = () => {};
   render() {
     return (
       <>
