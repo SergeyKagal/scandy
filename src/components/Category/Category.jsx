@@ -4,10 +4,6 @@ import ProductsWrapper from '../ProductsWrapper/ProductsWrapper';
 import PropTypes from 'prop-types';
 import './Category.css';
 
-Category.propTypes = {
-  categoryName: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
-};
 export default class Category extends React.Component {
   state = { currentCurrency: 0 };
 
@@ -40,3 +36,7 @@ export default class Category extends React.Component {
     );
   }
 }
+Category.propTypes = {
+  categoryName: PropTypes.string.isRequired,
+  currentCurrency: PropTypes.number,
+};

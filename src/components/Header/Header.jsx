@@ -6,10 +6,6 @@ import CurrencySelect from './CurrencySelect';
 import PropTypes from 'prop-types';
 import './Header.css';
 
-Header.propTypes = {
-  activeTitle: PropTypes.string.isRequired,
-  switchCurrency: PropTypes.func.isRequired,
-};
 export default class Header extends React.Component {
   state = {
     navList: [
@@ -77,3 +73,7 @@ export default class Header extends React.Component {
     );
   }
 }
+Header.propTypes = {
+  activeTitle: PropTypes.string.isRequired,
+  switchCurrency: PropTypes.func.isRequired,
+};

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-CurrencySelect.propTypes = {
-  switchCurrency: PropTypes.func.isRequired,
-};
 export default class CurrencySelect extends Component {
   state = {
     isShowCurrencyList: false,
@@ -101,3 +98,6 @@ export default class CurrencySelect extends Component {
     );
   }
 }
+CurrencySelect.propTypes = {
+  switchCurrency: PropTypes.func.isRequired,
+};
