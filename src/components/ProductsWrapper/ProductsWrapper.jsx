@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { currency } from '../../constants/currency';
+import PropTypes from 'prop-types';
 import './ProductsWrapper.css';
+
+ProductsWrapper.propTypes = {
+  currentCurrency: PropTypes.string.isRequired,
+};
+
 export default class ProductsWrapper extends Component {
   state = {
     cardsList: [

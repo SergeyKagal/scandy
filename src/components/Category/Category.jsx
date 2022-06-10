@@ -1,8 +1,13 @@
 import React from 'react';
 import Header from '../Header/Header';
 import ProductsWrapper from '../ProductsWrapper/ProductsWrapper';
+import PropTypes from 'prop-types';
 import './Category.css';
 
+Category.propTypes = {
+  categoryName: PropTypes.string.isRequired,
+  currentCurrency: PropTypes.number.isRequired,
+};
 export default class Category extends React.Component {
   state = { currentCurrency: 0 };
 
@@ -10,15 +15,12 @@ export default class Category extends React.Component {
     switch (currency) {
       case 'currency-usd':
         this.setState({ currentCurrency: 0 });
-        console.log('switch usd');
         break;
       case 'currency-gbp':
         this.setState({ currentCurrency: 1 });
-        console.log('switch gbp');
         break;
       default:
         this.setState({ currentCurrency: 0 });
-        console.log('switch default');
         break;
     }
   };

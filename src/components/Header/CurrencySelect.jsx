@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+CurrencySelect.propTypes = {
+  switchCurrency: PropTypes.func.isRequired,
+};
 export default class CurrencySelect extends Component {
   state = {
     isShowCurrencyList: false,
@@ -50,7 +54,7 @@ export default class CurrencySelect extends Component {
   };
   changeHandler = (id) => {
     let resultList = [...this.state.currencyList];
-    resultList.forEach((currency, index) => {
+    resultList.forEach((currency) => {
       if (id === currency.id) {
         currency.isChecked = true;
         currency.labelClass = 'header__nav-currensy-option label-checked';

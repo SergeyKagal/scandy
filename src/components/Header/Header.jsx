@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 import { PATH } from '../../constants/path';
 import CartButton from './CartButton';
 import CurrencySelect from './CurrencySelect';
+import PropTypes from 'prop-types';
 import './Header.css';
+
+Header.propTypes = {
+  activeTitle: PropTypes.string.isRequired,
+  switchCurrency: PropTypes.func.isRequired,
+};
 export default class Header extends React.Component {
   state = {
     navList: [
