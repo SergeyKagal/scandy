@@ -29,6 +29,12 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Raleway';
+  src: url('../public/fonts/Raleway-Light.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
 * {
   padding: 0;
   margin: 0;

@@ -1,0 +1,29 @@
+.products__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product__card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin-top: 103px;
+}
+.product__card:hover {
+  box-shadow: 0 4px 35px 0 rgb(171, 172, 176, 0.4);
+}
+.product__title,
+.product__price {
+  font-family: 'Raleway';
+  font-size: 18px;
+  line-height: 28.8px;
+  color: #1d1f22;
+}
+.product__title {
+  font-weight: 300;
+  margin-top: 24px;
+}
+.product__price {
+  font-weight: 500;
+}
