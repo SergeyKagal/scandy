@@ -61,6 +61,14 @@ export default class ProductsWrapper extends Component {
           amont: [75, 110],
         },
       },
+      {
+        id: 8,
+        productName: 'Jupiter Wayfarer',
+        imageUrl: './images/cards/Image2.png',
+        price: {
+          amont: [75, 110],
+        },
+      },
     ],
   };
   render() {
