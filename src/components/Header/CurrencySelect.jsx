@@ -1,42 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { getData } from '../../utils/getData';
 
 export default class CurrencySelect extends Component {
   state = {
     isShowCurrencyList: false,
     buttonClass: 'header__nav-currensy-select currency-arrow-down',
-    currencyList: [
-      {
-        id: 'currency-usd',
-        title: '$ usd',
-        isChecked: true,
-        labelClass: 'header__nav-currensy-option label-checked',
-      },
-      {
-        id: 'currency-gbp',
-        title: '£ gbp',
-        isChecked: false,
-        labelClass: 'header__nav-currensy-option',
-      },
-      {
-        id: 'currency-aud',
-        title: '$ aud',
-        isChecked: false,
-        labelClass: 'header__nav-currensy-option',
-      },
-      {
-        id: 'currency-jpy',
-        title: '¥ jpy',
-        isChecked: false,
-        labelClass: 'header__nav-currensy-option',
-      },
-      {
-        id: 'currency-rub',
-        title: '₽ rub',
-        isChecked: false,
-        labelClass: 'header__nav-currensy-option',
-      },
-    ],
+  };
+
+  getCurrencies = async () => {
+    const { currencies } = await getData('query {currencies {label,symbol}}');
+    this.setState({
+      currencyList: currencies.map((currency, i) => {
+        if (i) {
+          return {
+            id: `currency-${currency.label}`,
+            title: `${currency.symbol} ${currency.label}`,
+            isChecked: false,
+            labelClass: 'header__nav-currensy-option',
+          };
+        } else {
+          return {
+            id: `currency-${currency.label}`,
+            title: `${currency.symbol} ${currency.label}`,
+            isChecked: true,
+            labelClass: 'header__nav-currensy-option label-checked',
+          };
+        }
+      }),
+    });
   };
 
   clickHandler = () => {
@@ -64,7 +56,10 @@ export default class CurrencySelect extends Component {
       this.clickHandler();
     });
   };
-  componentDidUpdate = () => {};
+
+  componentDidMount = () => {
+    this.getCurrencies();
+  };
   render() {
     return (
       <>
@@ -88,6 +83,7 @@ export default class CurrencySelect extends Component {
                     id={currency.id}
                     defaultChecked={currency.isChecked}
                     onChange={() => this.changeHandler(currency.id)}
+                    onClick={this.clickHandler}
                   />
                 </label>
               );

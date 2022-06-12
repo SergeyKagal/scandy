@@ -9,10 +9,10 @@ export default class Category extends React.Component {
 
   setCurrentCurrency = (currency) => {
     switch (currency) {
-      case 'currency-usd':
+      case 'currency-USD':
         this.setState({ currentCurrency: 0 });
         break;
-      case 'currency-gbp':
+      case 'currency-GBP':
         this.setState({ currentCurrency: 1 });
         break;
       default:
@@ -41,6 +41,6 @@ export default class Category extends React.Component {
 }
 Category.propTypes = {
   categoryName: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
+  currentCurrency: PropTypes.number,
   setPdpId: PropTypes.func.isRequired,
 };

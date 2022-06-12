@@ -34,7 +34,10 @@ class App extends React.Component {
             path={PATH.ALL}
             element={<Category categoryName="all" setPdpId={this.setPdpId} />}
           />
-          <Route path={PATH.PDP} element={<Pdp pdpId={this.state.pdpId} />} />
+          <Route
+            path={PATH.PDP}
+            element={<Pdp pdpId={this.state.pdpId.toString()} />}
+          />
         </Routes>
       </BrowserRouter>
     );

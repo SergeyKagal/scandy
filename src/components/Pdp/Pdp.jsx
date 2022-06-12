@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Pdp extends Component {
-  state = { pdpId: this.props.pdpId || localStorage.getItem('pdpId') };
+  state = {
+    pdpId: this.props.pdpId || localStorage.getItem('pdpId'),
+  };
 
   componentDidMount = () => {
     localStorage.setItem('pdpId', this.state.pdpId);
