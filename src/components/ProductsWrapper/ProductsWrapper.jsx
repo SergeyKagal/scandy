@@ -8,52 +8,55 @@ import { getData } from '../../utils/getData';
 import { queries } from '../../constants/queries';
 export default class ProductsWrapper extends Component {
   state = {
-    cardsList: [],
-  };
-  getCategoriesData = async () => {
-    const { categories } = await getData(queries.categories);
-    // console.log(
-    //   categories.filter((item) => item.name === this.props.categoryName)
-    // );
-    const { products } = categories.filter(
-      (item) => item.name === this.props.categoryName
-    )[0];
-    console.log(products[0].prices[0]);
-    this.setState({ cardsList: products });
+    categoryList: [],
   };
 
-  componentDidMount = () => this.getCategoriesData();
-  // componentDidUpdate = () => this.getCategoriesData();
+  getCategories = async () => {
+    const { categories } = await getData(queries.categories);
+    this.setState({ categoryList: categories });
+  };
+
+  componentDidMount = async () => {
+    await this.getCategories();
+  };
+
   render() {
     return (
       <section className="products__wrapper">
         <ul className="products__list">
-          {this.state.cardsList.map((card) => {
-            return (
-              <li className="product__card" key={card.id}>
-                {card.id}
-                <Link
-                  to={PATH.PDP}
-                  onClick={() => {
-                    this.props.setPdpId(card.id);
-                  }}
-                >
-                  <img src={card.gallery[0]} alt={card.id} />
-                  <h3 className="product__title">{card.name}</h3>
-                  <div className="product__price">
-                    <span className="product__price-currency">
-                      {card.prices[this.props.currentCurrency].symbol}
-                    </span>
-                    <span className="product__price-amont">
-                      {card.prices[this.props.currentCurrency].amount.toFixed(
-                        2
-                      )}
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
+          {this.state.categoryList.length &&
+            this.state.categoryList
+              .filter(
+                (category) => category.name === this.props.categoryName
+              )[0]
+              .products.map((card) => {
+                return (
+                  <li className="product__card" key={card.id}>
+                    <Link
+                      to={PATH.PDP}
+                      onClick={() => {
+                        this.props.setPdpId(card.id);
+                      }}
+                    >
+                      <img src={card.gallery[0]} alt={card.id} />
+                      <h3 className="product__title">{card.name}</h3>
+                      <div className="product__price">
+                        <span className="product__price-currency">
+                          {
+                            card.prices[this.props.currentCurrency].currency
+                              .symbol
+                          }
+                        </span>
+                        <span className="product__price-amont">
+                          {card.prices[
+                            this.props.currentCurrency
+                          ].amount.toFixed(2)}
+                        </span>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
         </ul>
       </section>
     );

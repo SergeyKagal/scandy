@@ -10,6 +10,12 @@
   padding: 16px;
   margin-top: 103px;
 }
+.product__card img {
+  height: 330px;
+}
+.product__card a {
+  text-decoration: none;
+}
 .product__card:hover {
   box-shadow: 0 4px 35px 0 rgb(171, 172, 176, 0.4);
 }
@@ -19,6 +25,7 @@
   font-size: 18px;
   line-height: 28.8px;
   color: #1d1f22;
+  text-decoration: none;
 }
 .product__title {
   font-weight: 300;
