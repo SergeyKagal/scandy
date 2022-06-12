@@ -4,8 +4,17 @@ import { ProjectCover } from '../ProjectCover/ProjectCover';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PATH } from '../../constants/path';
 import Category from '../Category/Category';
+import Pdp from '../Pdp/Pdp';
 
 class App extends React.Component {
+  state = {
+    pdpId: '',
+  };
+
+  setPdpId = (id) => {
+    this.setState({ pdpId: id });
+  };
+
   render() {
     return (
       <BrowserRouter>
@@ -13,10 +22,19 @@ class App extends React.Component {
           <Route path={PATH.MAIN} element={<ProjectCover />} />
           <Route
             path={PATH.CLOTHES}
-            element={<Category categoryName="clothes" />}
+            element={
+              <Category categoryName="clothes" setPdpId={this.setPdpId} />
+            }
           />
-          <Route path={PATH.TECH} element={<Category categoryName="tech" />} />
-          <Route path={PATH.ALL} element={<Category categoryName="all" />} />
+          <Route
+            path={PATH.TECH}
+            element={<Category categoryName="tech" setPdpId={this.setPdpId} />}
+          />
+          <Route
+            path={PATH.ALL}
+            element={<Category categoryName="all" setPdpId={this.setPdpId} />}
+          />
+          <Route path={PATH.PDP} element={<Pdp pdpId={this.state.pdpId} />} />
         </Routes>
       </BrowserRouter>
     );

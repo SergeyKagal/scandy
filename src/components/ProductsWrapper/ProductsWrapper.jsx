@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { currency } from '../../constants/currency';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './ProductsWrapper.css';
-
+import { PATH } from '../../constants/path';
 export default class ProductsWrapper extends Component {
   state = {
     cardsList: [
@@ -72,6 +73,7 @@ export default class ProductsWrapper extends Component {
       },
     ],
   };
+
   render() {
     return (
       <section className="products__wrapper">
@@ -79,16 +81,23 @@ export default class ProductsWrapper extends Component {
           {this.state.cardsList.map((card) => {
             return (
               <li className="product__card" key={card.id}>
-                <img src={card.imageUrl} alt={card.productName} />
-                <h3 className="product__title">{card.productName}</h3>
-                <div className="product__price">
-                  <span className="product__price-currency">
-                    {currency.currencySign[this.props.currentCurrency]}
-                  </span>
-                  <span className="product__price-amont">
-                    {card.price.amont[this.props.currentCurrency].toFixed(2)}
-                  </span>
-                </div>
+                <Link
+                  to={PATH.PDP}
+                  onClick={() => {
+                    this.props.setPdpId(card.id);
+                  }}
+                >
+                  <img src={card.imageUrl} alt={card.productName} />
+                  <h3 className="product__title">{card.productName}</h3>
+                  <div className="product__price">
+                    <span className="product__price-currency">
+                      {currency.currencySign[this.props.currentCurrency]}
+                    </span>
+                    <span className="product__price-amont">
+                      {card.price.amont[this.props.currentCurrency].toFixed(2)}
+                    </span>
+                  </div>
+                </Link>
               </li>
             );
           })}
@@ -99,4 +108,5 @@ export default class ProductsWrapper extends Component {
 }
 ProductsWrapper.propTypes = {
   currentCurrency: PropTypes.number.isRequired,
+  setPdpId: PropTypes.func.isRequired,
 };

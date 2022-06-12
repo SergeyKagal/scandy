@@ -30,7 +30,10 @@ export default class Category extends React.Component {
         />
         <main className="category__wrapper">
           <h2 className="category__title">{this.props.categoryName} </h2>
-          <ProductsWrapper currentCurrency={this.state.currentCurrency} />
+          <ProductsWrapper
+            currentCurrency={this.state.currentCurrency}
+            setPdpId={this.props.setPdpId}
+          />
         </main>
       </div>
     );
@@ -38,5 +41,6 @@ export default class Category extends React.Component {
 }
 Category.propTypes = {
   categoryName: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.number,
+  currentCurrency: PropTypes.number.isRequired,
+  setPdpId: PropTypes.func.isRequired,
 };
