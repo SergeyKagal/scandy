@@ -12,6 +12,8 @@
 }
 .product__card img {
   height: 330px;
+  width: 330px;
+  object-fit: contain;
 }
 .product__card a {
   text-decoration: none;
