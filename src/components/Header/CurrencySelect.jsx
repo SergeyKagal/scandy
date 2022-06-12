@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getData } from '../../utils/getData';
+import { queries } from '../../constants/queries';
 
 export default class CurrencySelect extends Component {
   state = {
@@ -9,7 +10,7 @@ export default class CurrencySelect extends Component {
   };
 
   getCurrencies = async () => {
-    const { currencies } = await getData('query {currencies {label,symbol}}');
+    const { currencies } = await getData(queries.currensy);
     this.setState({
       currencyList: currencies.map((currency, i) => {
         if (i) {

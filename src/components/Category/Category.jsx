@@ -31,6 +31,7 @@ export default class Category extends React.Component {
         <main className="category__wrapper">
           <h2 className="category__title">{this.props.categoryName} </h2>
           <ProductsWrapper
+            categoryName={this.props.categoryName}
             currentCurrency={this.state.currentCurrency}
             setPdpId={this.props.setPdpId}
           />

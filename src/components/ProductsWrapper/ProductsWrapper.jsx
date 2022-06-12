@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './ProductsWrapper.css';
 import { PATH } from '../../constants/path';
+import { getData } from '../../utils/getData';
+import { queries } from '../../constants/queries';
 export default class ProductsWrapper extends Component {
   state = {
     cardsList: [
@@ -73,7 +75,19 @@ export default class ProductsWrapper extends Component {
       },
     ],
   };
+  getCategoriesData = async () => {
+    const { categories } = await getData(queries.categories);
+    // console.log(
+    //   categories.filter((item) => item.name === this.props.categoryName)
+    // );
+    const { products } = categories.filter(
+      (item) => item.name === this.props.categoryName
+    )[0];
+    console.log(products);
+  };
 
+  componentDidMount = () => this.getCategoriesData();
+  componentDidUpdate = () => this.getCategoriesData();
   render() {
     return (
       <section className="products__wrapper">
@@ -107,6 +121,7 @@ export default class ProductsWrapper extends Component {
   }
 }
 ProductsWrapper.propTypes = {
+  categoryName: PropTypes.string.isRequired,
   currentCurrency: PropTypes.number.isRequired,
   setPdpId: PropTypes.func.isRequired,
 };
