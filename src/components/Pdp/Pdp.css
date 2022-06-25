@@ -1,0 +1,74 @@
+.pdp__wrapper {
+  max-width: 1440px;
+  height: 500px;
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: 80px 219px 0 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.pdp__images {
+  display: flex;
+  gap: 40px;
+}
+.pdp__previews {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.pdp__previews img {
+  width: 79px;
+  height: 80px;
+  object-fit: contain;
+}
+.pdp__image {
+  width: 611px;
+  height: 511px;
+  object-fit: contain;
+}
+.pdp__main {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Raleway';
+  width: 292px;
+}
+.pdp__brand-name,
+.pdp__product-name {
+  font-size: 27px;
+}
+.pdp__brand-name {
+  font-weight: 600;
+}
+.pdp__product-name {
+  font-weight: 400;
+  padding-top: 11px;
+}
+.add-cart {
+  height: 52px;
+  color: #ffffff;
+  background-color: #5ece7b;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.add-cart:hover {
+  background-color: #71cf8a;
+  transition: 0.2s;
+}
+.add-cart:active {
+  background-color: #4ba864;
+}
+.pdp__about {
+  font-family: 'Roboto';
+  padding-top: 40px;
+}
+.pdp__props {
+  padding-top: 43px;
+}
+.pdp__prop-wrapper span {
+  font-size: 18px;
+  font-family: 'RobotoBold';
+  text-transform: uppercase;
+}

@@ -5,20 +5,12 @@ import PropTypes from 'prop-types';
 import './Category.css';
 
 export default class Category extends React.Component {
-  state = { currentCurrency: 0 };
-
-  setCurrentCurrency = (currency) => {
-    switch (currency) {
-      case 'currency-USD':
-        this.setState({ currentCurrency: 0 });
-        break;
-      case 'currency-GBP':
-        this.setState({ currentCurrency: 1 });
-        break;
-      default:
-        this.setState({ currentCurrency: 0 });
-        break;
-    }
+  state = { currentCurrency: this.props.currentCurrency };
+  componentDidUpdate = () => {
+    localStorage.setItem('categoryName', this.props.categoryName);
+  };
+  componentDidMount = () => {
+    localStorage.setItem('categoryName', this.props.categoryName);
   };
 
   render() {
@@ -26,7 +18,7 @@ export default class Category extends React.Component {
       <div>
         <Header
           activeTitle={this.props.categoryName}
-          switchCurrency={this.setCurrentCurrency}
+          switchCurrency={this.props.setCurrentCurrency}
         />
         <main className="category__wrapper">
           <h2 className="category__title">{this.props.categoryName} </h2>
@@ -44,4 +36,5 @@ Category.propTypes = {
   categoryName: PropTypes.string.isRequired,
   currentCurrency: PropTypes.number,
   setPdpId: PropTypes.func.isRequired,
+  setCurrentCurrency: PropTypes.func.isRequired,
 };

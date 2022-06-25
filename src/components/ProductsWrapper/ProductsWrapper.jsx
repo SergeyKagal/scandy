@@ -24,7 +24,7 @@ export default class ProductsWrapper extends Component {
     return (
       <section className="products__wrapper">
         <ul className="products__list">
-          {this.state.categoryList.length &&
+          {!!this.state.categoryList.length &&
             this.state.categoryList
               .filter(
                 (category) => category.name === this.props.categoryName

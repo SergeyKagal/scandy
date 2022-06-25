@@ -9,10 +9,25 @@ import Pdp from '../Pdp/Pdp';
 class App extends React.Component {
   state = {
     pdpId: '',
+    currentCurrency: 0,
   };
 
   setPdpId = (id) => {
     this.setState({ pdpId: id });
+  };
+
+  setCurrentCurrency = (currency) => {
+    switch (currency) {
+      case 'currency-USD':
+        this.setState({ currentCurrency: 0 });
+        break;
+      case 'currency-GBP':
+        this.setState({ currentCurrency: 1 });
+        break;
+      default:
+        this.setState({ currentCurrency: 0 });
+        break;
+    }
   };
 
   render() {
@@ -23,20 +38,45 @@ class App extends React.Component {
           <Route
             path={PATH.CLOTHES}
             element={
-              <Category categoryName="clothes" setPdpId={this.setPdpId} />
+              <Category
+                categoryName="clothes"
+                setPdpId={this.setPdpId}
+                currentCurrency={this.state.currentCurrency}
+                setCurrentCurrency={this.setCurrentCurrency}
+              />
             }
           />
           <Route
             path={PATH.TECH}
-            element={<Category categoryName="tech" setPdpId={this.setPdpId} />}
+            element={
+              <Category
+                categoryName="tech"
+                setPdpId={this.setPdpId}
+                currentCurrency={this.state.currentCurrency}
+                setCurrentCurrency={this.setCurrentCurrency}
+              />
+            }
           />
           <Route
             path={PATH.ALL}
-            element={<Category categoryName="all" setPdpId={this.setPdpId} />}
+            element={
+              <Category
+                categoryName="all"
+                setPdpId={this.setPdpId}
+                currentCurrency={this.state.currentCurrency}
+                setCurrentCurrency={this.setCurrentCurrency}
+              />
+            }
           />
           <Route
             path={PATH.PDP}
-            element={<Pdp pdpId={this.state.pdpId.toString()} />}
+            element={
+              <Pdp
+                pdpId={this.state.pdpId.toString()}
+                currentCurrency={this.state.currentCurrency}
+                setCurrentCurrency={this.setCurrentCurrency}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

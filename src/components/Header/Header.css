@@ -47,6 +47,7 @@
   display: flex;
   align-items: center;
   gap: 22px;
+  position: relative;
 }
 
 .header__nav-currensy-select {
@@ -86,6 +87,7 @@
   right: 78px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-weight: 500;
+  background-color: #ffffff;
 }
 
 .header__nav-currensy-option {
@@ -112,4 +114,20 @@
   width: 20px;
   height: 18px;
   cursor: pointer;
+}
+.header__nav-productQty {
+  position: absolute;
+  right: -12px;
+  top: -4px;
+  width: 20px;
+  height: 20px;
+  background-color: #1d1f22;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Roboto';
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+  z-index: -1;
+  /* padding-top: 2px; */
 }
