@@ -1,6 +1,6 @@
 .pdp__wrapper {
   max-width: 1440px;
-  height: 500px;
+
   margin-right: auto;
   margin-left: auto;
 
@@ -71,4 +71,8 @@
   font-size: 18px;
   font-family: 'RobotoBold';
   text-transform: uppercase;
+}
+.cheked {
+  background-color: #000000;
+  color: #ffffff;
 }
