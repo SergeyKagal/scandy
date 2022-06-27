@@ -68,7 +68,8 @@
 .pdp__props {
   padding-top: 43px;
 }
-.pdp__prop-wrapper span {
+.pdp__prop-wrapper span,
+.pdp__price-wrapper > span {
   font-size: 18px;
   font-family: 'RobotoBold';
   text-transform: uppercase;
@@ -76,4 +77,10 @@
 .cheked {
   background-color: #000000;
   color: #ffffff;
+}
+.price-symbol,
+.price-amount {
+  font-family: 'Raleway';
+  font-weight: 700;
+  font-size: 24px;
 }
