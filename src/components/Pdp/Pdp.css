@@ -6,6 +6,7 @@
 
   padding: 80px 219px 0 100px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 .pdp__images {

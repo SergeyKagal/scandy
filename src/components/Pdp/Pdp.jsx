@@ -49,8 +49,8 @@ export default class Pdp extends Component {
       .then((product) => {
         return product.product;
       })
-      .then((r) => {
-        const attributes = r.attributes.map((attribute) => {
+      .then((response) => {
+        const attributes = response.attributes.map((attribute) => {
           return {
             ...attribute,
             items: attribute.items.map((item, i) => {
@@ -59,9 +59,20 @@ export default class Pdp extends Component {
           };
         });
 
+        const images = response.gallery.map((image, i) => {
+          return { id: `${i}`, imageUrl: image, isCurrent: i ? false : true };
+        });
+
+        return { images, attributes, response };
+      })
+      .then(({ images, attributes, response }) => {
         this.setState({
           attributes: attributes,
-          images: r.gallery,
+          images: images,
+          description: response.description,
+          brand: response.brand,
+          name: response.name,
+          defaultImageUrl: response.gallery[0],
         });
       });
   };
@@ -73,10 +84,13 @@ export default class Pdp extends Component {
           switchCurrency={this.props.setCurrentCurrency}
         />
         <section className="pdp__wrapper">
-          <Images images={this.state.images} />
+          <Images
+            images={this.state.images}
+            defaultImageUrl={this.state.defaultImageUrl}
+          />
           <div className="pdp__main">
-            <h3 className="pdp__brand-name">{this.state.product.brand}</h3>
-            <h4 className="pdp__product-name">{this.state.product.name}</h4>
+            <h3 className="pdp__brand-name">{this.state.brand}</h3>
+            <h4 className="pdp__product-name">{this.state.name}</h4>
             {this.state.attributes && (
               <PdpProperties
                 attributes={this.state.attributes}
@@ -87,7 +101,7 @@ export default class Pdp extends Component {
             <p
               className="pdp__about"
               dangerouslySetInnerHTML={{
-                __html: this.state.product.description,
+                __html: this.state.description,
               }}
             ></p>
           </div>
