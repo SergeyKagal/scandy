@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import './Category.css';
 
 export default class Category extends React.Component {
-  state = { currentCurrency: this.props.currentCurrency };
   componentDidUpdate = () => {
     localStorage.setItem('categoryName', this.props.categoryName);
   };
@@ -24,7 +23,7 @@ export default class Category extends React.Component {
           <h2 className="category__title">{this.props.categoryName} </h2>
           <ProductsWrapper
             categoryName={this.props.categoryName}
-            currentCurrency={this.state.currentCurrency}
+            currentCurrency={this.props.currentCurrency}
             setPdpId={this.props.setPdpId}
           />
         </main>

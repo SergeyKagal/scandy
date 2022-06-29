@@ -101,20 +101,22 @@ export default class Pdp extends Component {
               propButtonHandler={this.propButtonHandler}
             />
 
-            <div className="pdp__price-wrapper">
-              <span>PRICE:</span>
-              <div className="pdp__price">
-                <span className="price-symbol">
-                  {this.state.prices.length &&
-                    this.state.prices[this.props.currentCurrency].currency
-                      .symbol}
-                </span>
-                <span className="price-amount">
-                  {this.state.prices.length &&
-                    this.state.prices[this.props.currentCurrency].amount}
-                </span>
+            {this.state.prices.length && (
+              <div className="pdp__price-wrapper">
+                <span>PRICE:</span>
+                <div className="pdp__price">
+                  <span className="price-symbol">
+                    {
+                      this.state.prices[this.props.currentCurrency].currency
+                        .symbol
+                    }
+                  </span>
+                  <span className="price-amount">
+                    {this.state.prices[this.props.currentCurrency].amount}
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
 
             <button className="add-cart">ADD TO CART</button>
             <p

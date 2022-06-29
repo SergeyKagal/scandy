@@ -24,6 +24,15 @@ class App extends React.Component {
       case 'currency-GBP':
         this.setState({ currentCurrency: 1 });
         break;
+      case 'currency-AUD':
+        this.setState({ currentCurrency: 2 });
+        break;
+      case 'currency-JPY':
+        this.setState({ currentCurrency: 3 });
+        break;
+      case 'currency-RUB':
+        this.setState({ currentCurrency: 4 });
+        break;
       default:
         this.setState({ currentCurrency: 0 });
         break;

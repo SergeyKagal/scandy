@@ -58,8 +58,8 @@ export default class CurrencySelect extends Component {
     });
   };
 
-  componentDidMount = () => {
-    this.getCurrencies();
+  componentDidMount = async () => {
+    await this.getCurrencies();
   };
   render() {
     return (
