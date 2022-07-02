@@ -5,6 +5,7 @@ import Images from './Images';
 import './Pdp.css';
 import PdpProperties from './PdpProperties';
 import { getData } from '../../utils/getData';
+import { queries } from '../../constants/queries';
 
 export default class Pdp extends Component {
   state = {
@@ -35,19 +36,8 @@ export default class Pdp extends Component {
   };
   componentDidMount = () => {
     localStorage.setItem('pdpId', this.state.pdpId);
-    const query = `query {
-      product(id:"${this.state.pdpId}"){brand
-        name
-        id
-        gallery
-        description
-        attributes{id,name,type,items{value,id,displayValue}}
-        prices{
-          currency{label,symbol},amount}
-      }
-    }`;
 
-    const product = getData(query);
+    const product = getData(queries.pdp(this.state.pdpId));
     product
       .then((product) => {
         return product.product;
