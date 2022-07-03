@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { makeButtonClass } from '../../utils/makeButtonClass';
 
-const isPropButtonChecked = 'pdp__prop-button cheked';
-const isNotPropButtonChecked = 'pdp__prop-button';
 export default class PdpProperties extends Component {
   render() {
     return (
@@ -14,10 +13,11 @@ export default class PdpProperties extends Component {
               {attribute.items.map((item) => (
                 <button
                   key={item.id}
-                  className={
-                    item.isChecked
-                      ? isPropButtonChecked
-                      : isNotPropButtonChecked
+                  className={makeButtonClass(attribute.name, item.isChecked)}
+                  style={
+                    attribute.name === 'Color'
+                      ? { backgroundColor: item.value }
+                      : null
                   }
                   onClick={() =>
                     this.props.propButtonHandler(item.id, attribute.id)
