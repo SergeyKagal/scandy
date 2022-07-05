@@ -44,11 +44,11 @@ export default class CurrencySelect extends Component {
   };
   changeHandler = (id) => {
     let resultList = [...this.state.currencyList];
-    resultList.forEach((currency) => {
+    resultList.forEach((currency, i) => {
       if (id === currency.id) {
         currency.isChecked = true;
         currency.labelClass = 'header__nav-currensy-option label-checked';
-        this.props.switchCurrency(id);
+        this.props.switchCurrency(i);
       } else {
         currency.isChecked = false;
         currency.labelClass = 'header__nav-currensy-option';

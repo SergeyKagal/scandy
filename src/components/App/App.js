@@ -10,6 +10,7 @@ class App extends React.Component {
   state = {
     pdpId: '',
     currentCurrency: 0,
+    cart: [],
   };
 
   setPdpId = (id) => {
@@ -17,26 +18,7 @@ class App extends React.Component {
   };
 
   setCurrentCurrency = (currency) => {
-    switch (currency) {
-      case 'currency-USD':
-        this.setState({ currentCurrency: 0 });
-        break;
-      case 'currency-GBP':
-        this.setState({ currentCurrency: 1 });
-        break;
-      case 'currency-AUD':
-        this.setState({ currentCurrency: 2 });
-        break;
-      case 'currency-JPY':
-        this.setState({ currentCurrency: 3 });
-        break;
-      case 'currency-RUB':
-        this.setState({ currentCurrency: 4 });
-        break;
-      default:
-        this.setState({ currentCurrency: 0 });
-        break;
-    }
+    this.setState({ currentCurrency: currency });
   };
 
   render() {

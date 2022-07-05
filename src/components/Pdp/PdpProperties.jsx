@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { makeButtonClass } from '../../utils/makeButtonClass';
 
 export default class PdpProperties extends Component {
+  buttonClickHandler = (attribute, item) => {
+    this.props.propButtonHandler(item.id, attribute.id);
+    console.log(item);
+  };
   render() {
     return (
       <div className="pdp__props">
@@ -19,11 +23,9 @@ export default class PdpProperties extends Component {
                       ? { backgroundColor: item.value }
                       : null
                   }
-                  onClick={() =>
-                    this.props.propButtonHandler(item.id, attribute.id)
-                  }
+                  onClick={() => this.buttonClickHandler(attribute, item)}
                 >
-                  {item.displayValue}
+                  {item.value}
                 </button>
               ))}
             </div>
