@@ -15,4 +15,5 @@ export const queries = {
       }
     }`;
   },
+  navList: 'query{categories{name}}',
 };

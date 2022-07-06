@@ -5,12 +5,27 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PATH } from '../../constants/path';
 import Category from '../Category/Category';
 import Pdp from '../Pdp/Pdp';
+import { getData } from '../../utils/getData';
+import { queries } from '../../constants/queries';
 
 class App extends React.Component {
   state = {
     pdpId: '',
     currentCurrency: 0,
     cart: [],
+    navList: JSON.parse(localStorage.getItem('navList') || []),
+  };
+
+  getNavList = async () => {
+    const { categories } = await getData(queries.navList);
+    const res = categories.map((item, i) => {
+      return { ...item, id: `${i}${item.name}`, path: `/${item.name}` };
+    });
+
+    localStorage.setItem('navList', JSON.stringify(res));
+    this.setState({
+      navList: res,
+    });
   };
 
   setPdpId = (id) => {
@@ -21,44 +36,35 @@ class App extends React.Component {
     this.setState({ currentCurrency: currency });
   };
 
+  componentDidMount = () => {
+    if (this.state.navList.length) {
+      this.getNavList();
+    }
+  };
+
   render() {
     return (
       <BrowserRouter>
         <Routes>
           <Route path={PATH.MAIN} element={<ProjectCover />} />
-          <Route
-            path={PATH.CLOTHES}
-            element={
-              <Category
-                categoryName="clothes"
-                setPdpId={this.setPdpId}
-                currentCurrency={this.state.currentCurrency}
-                setCurrentCurrency={this.setCurrentCurrency}
+
+          {!!this.state.navList.length &&
+            this.state.navList.map((item) => (
+              <Route
+                key={item.id}
+                path={item.path}
+                element={
+                  <Category
+                    categoryName={item.name}
+                    setPdpId={this.setPdpId}
+                    currentCurrency={this.state.currentCurrency}
+                    setCurrentCurrency={this.setCurrentCurrency}
+                    navList={this.state.navList}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path={PATH.TECH}
-            element={
-              <Category
-                categoryName="tech"
-                setPdpId={this.setPdpId}
-                currentCurrency={this.state.currentCurrency}
-                setCurrentCurrency={this.setCurrentCurrency}
-              />
-            }
-          />
-          <Route
-            path={PATH.ALL}
-            element={
-              <Category
-                categoryName="all"
-                setPdpId={this.setPdpId}
-                currentCurrency={this.state.currentCurrency}
-                setCurrentCurrency={this.setCurrentCurrency}
-              />
-            }
-          />
+            ))}
+
           <Route
             path={PATH.PDP}
             element={
@@ -66,6 +72,7 @@ class App extends React.Component {
                 pdpId={this.state.pdpId.toString()}
                 currentCurrency={this.state.currentCurrency}
                 setCurrentCurrency={this.setCurrentCurrency}
+                navList={this.state.navList}
               />
             }
           />

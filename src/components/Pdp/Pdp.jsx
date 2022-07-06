@@ -76,6 +76,7 @@ export default class Pdp extends Component {
         <Header
           activeTitle={localStorage.getItem('categoryName')}
           switchCurrency={this.props.setCurrentCurrency}
+          navList={this.props.navList}
         />
         <section className="pdp__wrapper">
           <Images
@@ -125,4 +126,5 @@ Pdp.propTypes = {
   pdpId: PropTypes.string.isRequired,
   currentCurrency: PropTypes.number.isRequired,
   setCurrentCurrency: PropTypes.func.isRequired,
+  navList: PropTypes.array.isRequired,
 };

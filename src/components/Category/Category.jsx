@@ -18,6 +18,7 @@ export default class Category extends React.Component {
         <Header
           activeTitle={this.props.categoryName}
           switchCurrency={this.props.setCurrentCurrency}
+          navList={this.props.navList}
         />
         <main className="category__wrapper">
           <h2 className="category__title">{this.props.categoryName} </h2>
@@ -36,4 +37,5 @@ Category.propTypes = {
   currentCurrency: PropTypes.number,
   setPdpId: PropTypes.func.isRequired,
   setCurrentCurrency: PropTypes.func.isRequired,
+  navList: PropTypes.array.isRequired,
 };
