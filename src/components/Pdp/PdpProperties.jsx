@@ -5,7 +5,6 @@ import { makeButtonClass } from '../../utils/makeButtonClass';
 export default class PdpProperties extends Component {
   buttonClickHandler = (attribute, item) => {
     this.props.propButtonHandler(item.id, attribute.id);
-    console.log(item);
   };
   render() {
     return (

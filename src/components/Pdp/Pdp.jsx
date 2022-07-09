@@ -6,6 +6,7 @@ import './Pdp.css';
 import PdpProperties from './PdpProperties';
 import { getData } from '../../utils/getData';
 import { queries } from '../../constants/queries';
+import { isProductInCart } from '../../utils/isProductInCart';
 
 export default class Pdp extends Component {
   state = {
@@ -14,8 +15,61 @@ export default class Pdp extends Component {
     attributes: [],
     product: { attributes: [] },
     prices: [],
+    currentProductWithAttributes: {},
   };
+  addNewItemToCart = () => {
+    this.props.addProductToCart([
+      ...this.props.cart,
+      {
+        id: `${this.state.pdpId} ${new Date().toLocaleString()}`,
+        product: {
+          pdpId: this.state.pdpId,
+          brand: this.state.brand,
+          name: this.state.name,
+          images: this.state.images,
+          attributes: this.state.attributes,
+          prices: this.state.prices,
+          qty: 1,
+        },
+      },
+    ]);
+  };
+
+  addToCartHandler = () => {
+    if (
+      isProductInCart(this.props.cart, this.state.pdpId, this.state.attributes)
+    ) {
+      this.props.addProductToCart([
+        ...this.props.cart.map((cartItem) => {
+          if (this.state.pdpId === cartItem.product.pdpId) {
+            return {
+              id: cartItem.id,
+              product: { ...cartItem.product, qty: cartItem.product.qty + 1 },
+            };
+          } else {
+            return cartItem;
+          }
+        }),
+      ]);
+    } else {
+      let counter = 0;
+      this.state.attributes.forEach((attribute) => {
+        attribute.items.map((item) => {
+          if (item.isChecked) {
+            counter++;
+          }
+        });
+      });
+      if (counter === this.state.attributes.length) {
+        this.addNewItemToCart();
+      }
+    }
+  };
+
+  setCurrentProductAttrebuters = () => this.setState();
+
   propButtonHandler = (id, attributeId) => {
+    localStorage.setItem('cart', JSON.stringify({}));
     this.setState({
       attributes: this.state.attributes.map((attribute) => {
         if (attributeId !== attribute.id) {
@@ -33,7 +87,15 @@ export default class Pdp extends Component {
           };
       }),
     });
+    this.setState({
+      currentProductWithAttributes: {
+        product: this.state.pdpId,
+        attributes: this.state.attributes,
+        qty: 1,
+      },
+    });
   };
+
   componentDidMount = () => {
     localStorage.setItem('pdpId', this.state.pdpId);
 
@@ -46,8 +108,8 @@ export default class Pdp extends Component {
         const attributes = response.attributes.map((attribute) => {
           return {
             ...attribute,
-            items: attribute.items.map((item, i) => {
-              return { ...item, isChecked: i ? false : true };
+            items: attribute.items.map((item) => {
+              return { ...item, isChecked: false };
             }),
           };
         });
@@ -77,6 +139,7 @@ export default class Pdp extends Component {
           activeTitle={localStorage.getItem('categoryName')}
           switchCurrency={this.props.setCurrentCurrency}
           navList={this.props.navList}
+          cart={this.props.cart}
         />
         <section className="pdp__wrapper">
           <Images
@@ -92,7 +155,7 @@ export default class Pdp extends Component {
               propButtonHandler={this.propButtonHandler}
             />
 
-            {this.state.prices.length && (
+            {!!this.state.prices.length && (
               <div className="pdp__price-wrapper">
                 <span>PRICE:</span>
                 <div className="pdp__price">
@@ -109,7 +172,9 @@ export default class Pdp extends Component {
               </div>
             )}
 
-            <button className="add-cart">ADD TO CART</button>
+            <button className="add-cart" onClick={this.addToCartHandler}>
+              ADD TO CART
+            </button>
             <p
               className="pdp__about"
               dangerouslySetInnerHTML={{
@@ -127,4 +192,6 @@ Pdp.propTypes = {
   currentCurrency: PropTypes.number.isRequired,
   setCurrentCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
+  cart: PropTypes.array.isRequired,
+  addProductToCart: PropTypes.func.isRequired,
 };

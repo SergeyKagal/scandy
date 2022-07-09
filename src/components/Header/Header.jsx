@@ -51,7 +51,7 @@ export default class Header extends React.Component {
           </Link>
           <div className="header__nav-controls">
             <CurrencySelect switchCurrency={this.props.switchCurrency} />
-            <CartButton />
+            <CartButton cart={this.props.cart} />
           </div>
         </nav>
       </header>
@@ -62,4 +62,5 @@ Header.propTypes = {
   activeTitle: PropTypes.string.isRequired,
   switchCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
+  cart: PropTypes.array.isRequired,
 };
