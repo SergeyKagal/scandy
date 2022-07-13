@@ -6,12 +6,12 @@ export default class CartButton extends Component {
   render() {
     return (
       <>
-        <button className="header__nav-cart">
+        <button className="header__nav-cart" onClick={this.props.hideShowBag}>
           <img src="./images/cart-icon.svg" alt="cart-icon" />
         </button>
         {!!this.props.cart.length && (
           <span className="header__nav-productQty">
-            {productQtyInCart(this.props.cart)}
+            {productQtyInCart(this.props.cart).displayValue}
           </span>
         )}
       </>
@@ -20,4 +20,6 @@ export default class CartButton extends Component {
 }
 CartButton.propTypes = {
   cart: PropTypes.array.isRequired,
+  isShowBag: PropTypes.bool.isRequired,
+  hideShowBag: PropTypes.func.isRequired,
 };

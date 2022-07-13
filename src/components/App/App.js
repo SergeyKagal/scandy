@@ -16,7 +16,7 @@ class App extends React.Component {
     navList: JSON.parse(localStorage.getItem('navList') || []),
   };
 
-  addProductToCart = (cart) => this.setState({ cart: cart });
+  cartUpdate = (cart) => this.setState({ cart: cart });
 
   getNavList = async () => {
     const { categories } = await getData(queries.navList);
@@ -63,6 +63,7 @@ class App extends React.Component {
                     setCurrentCurrency={this.setCurrentCurrency}
                     navList={this.state.navList}
                     cart={this.state.cart}
+                    cartUpdate={this.cartUpdate}
                   />
                 }
               />
@@ -77,7 +78,7 @@ class App extends React.Component {
                 setCurrentCurrency={this.setCurrentCurrency}
                 navList={this.state.navList}
                 cart={this.state.cart}
-                addProductToCart={this.addProductToCart}
+                cartUpdate={this.cartUpdate}
               />
             }
           />

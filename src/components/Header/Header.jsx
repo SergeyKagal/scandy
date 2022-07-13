@@ -5,11 +5,15 @@ import CartButton from './CartButton';
 import CurrencySelect from './CurrencySelect';
 import PropTypes from 'prop-types';
 import './Header.css';
+import Bag from './Bag';
 
 export default class Header extends React.Component {
   state = {
     navList: this.props.navList,
+    isShowBag: false,
   };
+
+  hideShowBag = () => this.setState({ isShowBag: !this.state.isShowBag });
 
   setActiveNavListItem = (listItemTitle) => {
     const resultList = [...this.state.navList];
@@ -51,8 +55,19 @@ export default class Header extends React.Component {
           </Link>
           <div className="header__nav-controls">
             <CurrencySelect switchCurrency={this.props.switchCurrency} />
-            <CartButton cart={this.props.cart} />
-          </div>
+            <CartButton
+              cart={this.props.cart}
+              isShowBag={this.state.isShowBag}
+              hideShowBag={this.hideShowBag}
+            />
+          </div>{' '}
+          {this.state.isShowBag && (
+            <Bag
+              cart={this.props.cart}
+              hideShowBag={this.hideShowBag}
+              currentCurrency={this.props.currentCurrency}
+            />
+          )}
         </nav>
       </header>
     );
@@ -63,4 +78,5 @@ Header.propTypes = {
   switchCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
   cart: PropTypes.array.isRequired,
+  currentCurrency: PropTypes.number.isRequired,
 };

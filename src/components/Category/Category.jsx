@@ -20,6 +20,7 @@ export default class Category extends React.Component {
           switchCurrency={this.props.setCurrentCurrency}
           navList={this.props.navList}
           cart={this.props.cart}
+          currentCurrency={this.props.currentCurrency}
         />
         <main className="category__wrapper">
           <h2 className="category__title">{this.props.categoryName} </h2>

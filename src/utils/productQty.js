@@ -3,5 +3,5 @@ export const productQtyInCart = (cart) => {
   cart.forEach((cartItem) => {
     res += cartItem.product.qty;
   });
-  return res > 9 ? '9+' : res;
+  return { value: res, displayValue: res > 9 ? '9+' : `${res}` };
 };

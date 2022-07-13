@@ -18,7 +18,7 @@ export default class Pdp extends Component {
     currentProductWithAttributes: {},
   };
   addNewItemToCart = () => {
-    this.props.addProductToCart([
+    this.props.cartUpdate([
       ...this.props.cart,
       {
         id: `${this.state.pdpId} ${new Date().toLocaleString()}`,
@@ -39,7 +39,7 @@ export default class Pdp extends Component {
     if (
       isProductInCart(this.props.cart, this.state.pdpId, this.state.attributes)
     ) {
-      this.props.addProductToCart([
+      this.props.cartUpdate([
         ...this.props.cart.map((cartItem) => {
           if (this.state.pdpId === cartItem.product.pdpId) {
             return {
@@ -140,6 +140,7 @@ export default class Pdp extends Component {
           switchCurrency={this.props.setCurrentCurrency}
           navList={this.props.navList}
           cart={this.props.cart}
+          currentCurrency={this.props.currentCurrency}
         />
         <section className="pdp__wrapper">
           <Images
@@ -193,5 +194,5 @@ Pdp.propTypes = {
   setCurrentCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
   cart: PropTypes.array.isRequired,
-  addProductToCart: PropTypes.func.isRequired,
+  cartUpdate: PropTypes.func.isRequired,
 };
