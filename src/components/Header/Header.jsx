@@ -61,14 +61,14 @@ export default class Header extends React.Component {
               hideShowBag={this.hideShowBag}
             />
           </div>{' '}
-          {this.state.isShowBag && (
-            <Bag
-              cart={this.props.cart}
-              hideShowBag={this.hideShowBag}
-              currentCurrency={this.props.currentCurrency}
-            />
-          )}
-        </nav>
+        </nav>{' '}
+        {this.state.isShowBag && (
+          <Bag
+            cart={this.props.cart}
+            hideShowBag={this.hideShowBag}
+            currentCurrency={this.props.currentCurrency}
+          />
+        )}
       </header>
     );
   }

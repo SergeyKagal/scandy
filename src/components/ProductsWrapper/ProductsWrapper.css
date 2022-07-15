@@ -36,3 +36,18 @@
 .product__price {
   font-weight: 500;
 }
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.45;
+  position: relative;
+}
+.disabled-link::after {
+  content: 'OUT OF STOCK';
+  font-family: 'Raleway';
+  font-size: 24px;
+  font-weight: 400;
+  color: #070707;
+  position: absolute;
+  top: 146px;
+  left: calc(50% - 86px);
+}

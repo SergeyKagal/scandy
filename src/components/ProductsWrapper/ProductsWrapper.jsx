@@ -21,6 +21,7 @@ export default class ProductsWrapper extends Component {
   };
 
   render() {
+    console.log(this.state.categoryList);
     return (
       <section className="products__wrapper">
         <ul className="products__list">
@@ -37,6 +38,7 @@ export default class ProductsWrapper extends Component {
                       onClick={() => {
                         this.props.setPdpId(card.id);
                       }}
+                      className={card.inStock ? undefined : 'disabled-link'}
                     >
                       <img src={card.gallery[0]} alt={card.id} />
                       <h3 className="product__title">{card.name}</h3>
