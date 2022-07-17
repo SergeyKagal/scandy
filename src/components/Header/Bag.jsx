@@ -6,7 +6,6 @@ import { makeButtonClass } from '../../utils/makeButtonClass';
 
 export default class Bag extends Component {
   render() {
-    console.log(this.props.cart);
     return (
       <>
         <div className="bag__background" onClick={this.props.hideShowBag}>

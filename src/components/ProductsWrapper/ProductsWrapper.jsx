@@ -21,12 +21,10 @@ export default class ProductsWrapper extends Component {
   componentDidMount = () => {
     if (!this.state.categoryList.length) {
       this.getCategories();
-      console.log('ddd');
     }
   };
 
   render() {
-    console.log(this.state);
     return (
       <section className="products__wrapper">
         <ul className="products__list">
