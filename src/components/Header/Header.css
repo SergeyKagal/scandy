@@ -137,7 +137,7 @@
   top: 80px;
 
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100% - 80px);
   background-color: rgb(57, 55, 72, 0.22);
 }
 .bag__wrapper {

@@ -11,5 +11,5 @@ export const isProductInCart = (cart, pdpId, attributes) => {
       res2 = true;
     }
   });
-  return res1 && res2;
+  return attributes === null ? res1 : res1 && res2;
 };
