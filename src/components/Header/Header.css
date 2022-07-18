@@ -133,12 +133,12 @@
   /* padding-top: 2px; */
 }
 .bag__background {
-  position: absolute;
+  position: fixed;
   top: 80px;
-
   width: 100%;
   height: calc(100% - 80px);
   background-color: rgb(57, 55, 72, 0.22);
+  z-index: 1;
 }
 .bag__wrapper {
   width: 325px;
@@ -147,4 +147,5 @@
   position: absolute;
   top: 80px;
   right: 72px;
+  z-index: 2;
 }

@@ -5,6 +5,44 @@ import { itemsInCart } from '../../utils/itemsInCart';
 import { makeButtonClass } from '../../utils/makeButtonClass';
 
 export default class Bag extends Component {
+  buttonClickHandler = (productId, attributeID, id) => {
+    const res = [
+      ...this.props.cart.map((item) => {
+        if (productId === item.id) {
+          return {
+            id: item.id,
+            product: {
+              ...item.product,
+              attributes: [
+                ...item.product.attributes.map((attribute) => {
+                  if (attribute.id === attributeID) {
+                    return {
+                      ...attribute,
+                      items: [
+                        ...attribute.items.map((attributeItem) => {
+                          if (attributeItem.id === id) {
+                            return { ...attributeItem, isChecked: true };
+                          } else {
+                            return { ...attributeItem, isChecked: false };
+                          }
+                        }),
+                      ],
+                    };
+                  } else {
+                    return attribute;
+                  }
+                }),
+              ],
+            },
+          };
+        } else {
+          return item;
+        }
+      }),
+    ];
+    this.props.cartUpdate(res);
+  };
+
   render() {
     return (
       <>
@@ -16,21 +54,21 @@ export default class Bag extends Component {
             My Bag. <span>{itemsInCart(this.props.cart)}</span>
           </h4>
           <ul className="bag__list">
-            {this.props.cart.map((item) => (
-              <li className="bag__list-item" key={item.id}>
+            {this.props.cart.map((cartItem) => (
+              <li className="bag__list-item" key={cartItem.id}>
                 <div className="bag__product">
-                  <h5>{item.product.brand}</h5>
-                  <h5>{item.product.name}</h5>
+                  <h5>{cartItem.product.brand}</h5>
+                  <h5>{cartItem.product.name}</h5>
                   <div className="bag__product-price">
                     {
-                      item.product.prices[this.props.currentCurrency].currency
-                        .symbol
+                      cartItem.product.prices[this.props.currentCurrency]
+                        .currency.symbol
                     }
-                    {item.product.prices[this.props.currentCurrency].amount}
+                    {cartItem.product.prices[this.props.currentCurrency].amount}
                   </div>
                   <div className="bag__product-attributes">
-                    {!!item.product.attributes.length &&
-                      item.product.attributes.map((attribute) => (
+                    {!!cartItem.product.attributes.length &&
+                      cartItem.product.attributes.map((attribute) => (
                         <div key={attribute.id} className="bag__prop-wrapper">
                           <span>{attribute.name}:</span>
                           <div className="bag__prop-buttons">
@@ -47,7 +85,11 @@ export default class Bag extends Component {
                                     : null
                                 }
                                 onClick={() =>
-                                  this.buttonClickHandler(attribute, item)
+                                  this.buttonClickHandler(
+                                    cartItem.id,
+                                    attribute.id,
+                                    item.id
+                                  )
                                 }
                               >
                                 {item.value}
@@ -72,4 +114,5 @@ Bag.propTypes = {
   cart: PropTypes.array.isRequired,
   hideShowBag: PropTypes.func.isRequired,
   currentCurrency: PropTypes.number.isRequired,
+  cartUpdate: PropTypes.func.isRequired,
 };

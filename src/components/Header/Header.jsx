@@ -32,44 +32,51 @@ export default class Header extends React.Component {
   };
   render() {
     return (
-      <header className="header">
-        <nav className="header__nav">
-          <ul className="header__nav-list">
-            {!!this.state.navList.length &&
-              this.state.navList.map((listItem) => {
-                return (
-                  <li
-                    key={listItem.id}
-                    className="header__nav-list-item"
-                    onClick={() => this.setActiveNavListItem(listItem.name)}
-                  >
-                    <Link to={listItem.path} className={listItem.navClassName}>
-                      <span>{listItem.name}</span>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
-          <Link to={PATH.MAIN} className=" a-logo">
-            <img src="./images/a-logo.svg" alt="a-logo" />
-          </Link>
-          <div className="header__nav-controls">
-            <CurrencySelect switchCurrency={this.props.switchCurrency} />
-            <CartButton
-              cart={this.props.cart}
-              isShowBag={this.state.isShowBag}
-              hideShowBag={this.hideShowBag}
-            />
-          </div>{' '}
-        </nav>{' '}
+      <>
+        {' '}
+        <header className="header">
+          <nav className="header__nav">
+            <ul className="header__nav-list">
+              {!!this.state.navList.length &&
+                this.state.navList.map((listItem) => {
+                  return (
+                    <li
+                      key={listItem.id}
+                      className="header__nav-list-item"
+                      onClick={() => this.setActiveNavListItem(listItem.name)}
+                    >
+                      <Link
+                        to={listItem.path}
+                        className={listItem.navClassName}
+                      >
+                        <span>{listItem.name}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+            </ul>
+            <Link to={PATH.MAIN} className=" a-logo">
+              <img src="./images/a-logo.svg" alt="a-logo" />
+            </Link>
+            <div className="header__nav-controls">
+              <CurrencySelect switchCurrency={this.props.switchCurrency} />
+              <CartButton
+                cart={this.props.cart}
+                isShowBag={this.state.isShowBag}
+                hideShowBag={this.hideShowBag}
+              />
+            </div>{' '}
+          </nav>{' '}
+        </header>
         {this.state.isShowBag && (
           <Bag
             cart={this.props.cart}
             hideShowBag={this.hideShowBag}
             currentCurrency={this.props.currentCurrency}
+            cartUpdate={this.props.cartUpdate}
           />
         )}
-      </header>
+      </>
     );
   }
 }
@@ -79,4 +86,5 @@ Header.propTypes = {
   navList: PropTypes.array.isRequired,
   cart: PropTypes.array.isRequired,
   currentCurrency: PropTypes.number.isRequired,
+  cartUpdate: PropTypes.func.isRequired,
 };

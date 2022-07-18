@@ -141,6 +141,7 @@ export default class Pdp extends Component {
           navList={this.props.navList}
           cart={this.props.cart}
           currentCurrency={this.props.currentCurrency}
+          cartUpdate={this.props.cartUpdate}
         />
         <section className="pdp__wrapper">
           <Images
