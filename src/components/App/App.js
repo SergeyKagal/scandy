@@ -7,6 +7,7 @@ import Category from '../Category/Category';
 import Pdp from '../Pdp/Pdp';
 import { getData } from '../../utils/getData';
 import { queries } from '../../constants/queries';
+import Cart from '../Cart/Cart';
 
 class App extends React.Component {
   state = {
@@ -74,6 +75,18 @@ class App extends React.Component {
             element={
               <Pdp
                 pdpId={this.state.pdpId.toString()}
+                currentCurrency={this.state.currentCurrency}
+                setCurrentCurrency={this.setCurrentCurrency}
+                navList={this.state.navList}
+                cart={this.state.cart}
+                cartUpdate={this.cartUpdate}
+              />
+            }
+          />
+          <Route
+            path={PATH.CART}
+            element={
+              <Cart
                 currentCurrency={this.state.currentCurrency}
                 setCurrentCurrency={this.setCurrentCurrency}
                 navList={this.state.navList}

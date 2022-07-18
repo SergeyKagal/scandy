@@ -11,6 +11,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: 'Roboto';
+  src: url('../public/fonts/Roboto-Medium.ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
   font-family: 'Raleway';
   src: url('../public/fonts/Raleway-Regular.ttf');
   font-weight: 400;

@@ -43,5 +43,5 @@ Category.propTypes = {
   setCurrentCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
   cart: PropTypes.array.isRequired,
-  cartUpdate: PropTypes.isRequired,
+  cartUpdate: PropTypes.func.isRequired,
 };

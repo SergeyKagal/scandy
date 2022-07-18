@@ -16,7 +16,11 @@ export default class PdpProperties extends Component {
               {attribute.items.map((item) => (
                 <button
                   key={item.id}
-                  className={makeButtonClass(attribute.name, item.isChecked)}
+                  className={makeButtonClass(
+                    attribute.name,
+                    item.isChecked,
+                    'pdp'
+                  )}
                   style={
                     attribute.name === 'Color'
                       ? { backgroundColor: item.value }
