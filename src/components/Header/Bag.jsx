@@ -3,46 +3,9 @@ import PropTypes from 'prop-types';
 
 import { itemsInCart } from '../../utils/itemsInCart';
 import { makeButtonClass } from '../../utils/makeButtonClass';
+import { attributeChanger } from '../../utils/attribute-change';
 
 export default class Bag extends Component {
-  buttonClickHandler = (productId, attributeID, id) => {
-    const res = [
-      ...this.props.cart.map((item) => {
-        if (productId === item.id) {
-          return {
-            id: item.id,
-            product: {
-              ...item.product,
-              attributes: [
-                ...item.product.attributes.map((attribute) => {
-                  if (attribute.id === attributeID) {
-                    return {
-                      ...attribute,
-                      items: [
-                        ...attribute.items.map((attributeItem) => {
-                          if (attributeItem.id === id) {
-                            return { ...attributeItem, isChecked: true };
-                          } else {
-                            return { ...attributeItem, isChecked: false };
-                          }
-                        }),
-                      ],
-                    };
-                  } else {
-                    return attribute;
-                  }
-                }),
-              ],
-            },
-          };
-        } else {
-          return item;
-        }
-      }),
-    ];
-    this.props.cartUpdate(res);
-  };
-
   render() {
     return (
       <>
@@ -85,10 +48,12 @@ export default class Bag extends Component {
                                     : null
                                 }
                                 onClick={() =>
-                                  this.buttonClickHandler(
+                                  attributeChanger(
+                                    this.props.cart,
                                     cartItem.id,
                                     attribute.id,
-                                    item.id
+                                    item.id,
+                                    this.props.cartUpdate
                                   )
                                 }
                               >
