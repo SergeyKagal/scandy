@@ -1,0 +1,15 @@
+.cart__wrapper {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 100px;
+  font-family: 'Raleway';
+}
+.cart__title {
+  font-size: 32px;
+  font-weight: 700;
+  padding-top: 80px;
+  padding-bottom: 55px;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+}
