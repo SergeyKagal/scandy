@@ -32,7 +32,9 @@ export default class Bag extends Component {
                       cartItem.product.prices[this.props.currentCurrency]
                         .currency.symbol
                     }
-                    {cartItem.product.prices[this.props.currentCurrency].amount}
+                    {cartItem.product.prices[
+                      this.props.currentCurrency
+                    ].amount.toFixed(2)}
                   </div>
                   <div className="bag__product-attributes">
                     {!!cartItem.product.attributes.length &&
@@ -119,7 +121,10 @@ export default class Bag extends Component {
                 {totalCount(this.props.cart, this.props.currentCurrency).symbol}
               </span>
               <span>
-                {totalCount(this.props.cart, this.props.currentCurrency).amount}
+                {totalCount(
+                  this.props.cart,
+                  this.props.currentCurrency
+                ).amount.toFixed(2)}
               </span>
             </div>
           </div>

@@ -168,7 +168,9 @@ export default class Pdp extends Component {
                     }
                   </span>
                   <span className="price-amount">
-                    {this.state.prices[this.props.currentCurrency].amount}
+                    {this.state.prices[
+                      this.props.currentCurrency
+                    ].amount.toFixed(2)}
                   </span>
                 </div>
               </div>
