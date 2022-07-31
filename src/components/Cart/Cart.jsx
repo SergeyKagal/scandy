@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import PropTypes from 'prop-types';
 import './Cart.css';
+import CartList from './CartList';
+import { totalCount } from '../../utils/total-count';
+import { tax } from '../../constants/tax';
+import { taxCount } from '../../utils/tax';
+import { productQtyInCart } from '../../utils/productQty';
 
 export default class Cart extends Component {
   render() {
@@ -20,34 +25,48 @@ export default class Cart extends Component {
           <ul className="cart__list">
             {!!this.props.cart.length &&
               this.props.cart.map((cartItem) => (
-                <li key={cartItem.id} className="cart__list-item">
-                  <div className="cart__list-item-product">
-                    <div className="cart__list-item-title">
-                      <h5 className="cart__list-item-brand">
-                        {cartItem.product.brand}
-                      </h5>
-                      <h5 className="cart__list-item-name">
-                        {cartItem.product.name}
-                      </h5>
-                    </div>
-                  </div>
-                  <div className="cart__list-item-images">
-                    <div className="cart__list-item-qty-buttons">
-                      <button>+</button>
-                      <span>1</span>
-                      <button>-</button>
-                    </div>
-                    <div className="cart__list-item-image-wrapper">
-                      <img src="" alt="" />
-                      <div className="image-switch-buttons">
-                        <button>left</button>
-                        <button>right</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                <CartList
+                  cartClass="cart"
+                  key={cartItem.id}
+                  cartItem={cartItem}
+                  currentCurrency={this.props.currentCurrency}
+                  cart={this.props.cart}
+                  cartUpdate={this.props.cartUpdate}
+                />
               ))}
           </ul>
+          <div className="cart__payment-wrapper">
+            <div className="cart__payment-tax">
+              Tax {`${tax}% `}
+              <span>
+                {totalCount(this.props.cart, this.props.currentCurrency).symbol}
+              </span>
+              <span>
+                {taxCount(
+                  totalCount(this.props.cart, this.props.currentCurrency)
+                    .amount,
+                  tax
+                ).toFixed(2)}
+              </span>
+            </div>
+
+            <div className="cart__payment-qty">
+              Quantity: {productQtyInCart(this.props.cart).value}
+            </div>
+            <div className="cart__payment-money">
+              Total:{' '}
+              <span>
+                {totalCount(this.props.cart, this.props.currentCurrency).symbol}
+              </span>
+              <span>
+                {totalCount(
+                  this.props.cart,
+                  this.props.currentCurrency
+                ).amount.toFixed(2)}
+              </span>
+            </div>
+            <button>ORDER</button>
+          </div>
         </div>
       </>
     );

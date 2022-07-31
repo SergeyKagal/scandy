@@ -2,8 +2,11 @@
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 100px;
+  padding: 0 100px 100px 100px;
   font-family: 'Raleway';
+}
+.cart__wrapper button {
+  cursor: pointer;
 }
 .cart__title {
   font-size: 32px;
@@ -12,4 +15,123 @@
   padding-bottom: 55px;
   width: 100%;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.cart__list-item {
+  display: flex;
+  justify-content: space-between;
+  min-height: 336px;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 24px 0;
+}
+
+.cart__product {
+  width: 292px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cart__product-price {
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 6px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.cart__prop-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.cart__prop-button {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  font-family: Source Sans Pro;
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  border: #1d1f22 1px solid;
+}
+.cheked {
+  background-color: #000;
+  color: #fff;
+}
+.cart__prop-color-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.cart__color-button {
+  width: 18px;
+  height: 18px;
+  padding: 1px;
+  font-size: 0;
+  border: none;
+  position: relative;
+}
+.cart__color-checked {
+  box-shadow: 0 0 0px 1px #5ece7b;
+  border: #fff 1px solid;
+}
+.cart__prop-wrapper span {
+  font-family: 'Roboto Condensed';
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cart__product-qty {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 8px;
+}
+.cart__product-image {
+  width: 121px;
+  height: 190px px;
+  object-fit: contain;
+}
+.cart__product-qty button {
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+}
+.cart__product-brand {
+  font-weight: 600;
+}
+.cart__product h5 {
+  font-size: 30px;
+  line-height: 27px;
+}
+.cart__product-name {
+  font-weight: 400;
+}
+.cart__payment-wrapper {
+  padding-top: 32px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cart__payment-wrapper span {
+  font-weight: 700;
+}
+.cart__payment-money {
+  font-weight: 500;
+}
+.cart__payment-wrapper button {
+  width: 279px;
+  height: 43px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  color: #ffffff;
+  background-color: #5ece7b;
+  margin-top: 8px;
+}
+.cart__payment-wrapper button:hover {
+  background-color: #8bd49f;
 }

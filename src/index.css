@@ -47,6 +47,12 @@
   font-weight: 300;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('../public/fonts/RobotoCondensed-Bold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
 * {
   padding: 0;
   margin: 0;
