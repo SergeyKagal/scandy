@@ -81,15 +81,6 @@ export default class CartList extends Component {
                             ? { backgroundColor: item.value }
                             : null
                         }
-                        // onClick={() =>
-                        //   attributeChanger(
-                        //     this.props.cart,
-                        //     this.props.cartItem.id,
-                        //     attribute.id,
-                        //     item.id,
-                        //     this.props.cartUpdate
-                        //   )
-                        // }
                       >
                         {item.value}
                       </button>
@@ -133,18 +124,19 @@ export default class CartList extends Component {
           }
           alt="product image"
         />
-        {this.props.cartClass === 'cart' && (
-          <div className="image-changer">
-            <button
-              className="image-changer-left"
-              onClick={() => this.imageButtonHandler(actionPayload.decrement)}
-            ></button>
-            <button
-              className="image-changer-right"
-              onClick={() => this.imageButtonHandler(actionPayload.increment)}
-            ></button>
-          </div>
-        )}
+        {this.props.cartClass === 'cart' &&
+          this.props.cartItem.product.images.length > 1 && (
+            <div className="image-changer">
+              <button
+                className="image-changer-left"
+                onClick={() => this.imageButtonHandler(actionPayload.decrement)}
+              ></button>
+              <button
+                className="image-changer-right"
+                onClick={() => this.imageButtonHandler(actionPayload.increment)}
+              ></button>
+            </div>
+          )}
       </li>
     );
   }
