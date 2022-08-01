@@ -5,6 +5,7 @@ import { PATH } from '../../constants/path';
 import { Link } from 'react-router-dom';
 import { totalCount } from '../../utils/total-count';
 import CartList from '../Cart/CartList';
+import store from '../../store';
 export default class Bag extends Component {
   render() {
     return (
@@ -20,7 +21,6 @@ export default class Bag extends Component {
                 cartClass="bag"
                 key={cartItem.id}
                 cartItem={cartItem}
-                currentCurrency={this.props.currentCurrency}
                 cart={this.props.cart}
                 cartUpdate={this.props.cartUpdate}
               />
@@ -30,12 +30,12 @@ export default class Bag extends Component {
             <div className="bag__total-title">Total</div>
             <div className="bag__total-money">
               <span>
-                {totalCount(this.props.cart, this.props.currentCurrency).symbol}
+                {totalCount(this.props.cart, store.currentCurrency).symbol}
               </span>
               <span>
                 {totalCount(
                   this.props.cart,
-                  this.props.currentCurrency
+                  store.currentCurrency
                 ).amount.toFixed(2)}
               </span>
             </div>
@@ -52,6 +52,5 @@ export default class Bag extends Component {
 Bag.propTypes = {
   cart: PropTypes.array.isRequired,
   hideShowBag: PropTypes.func.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
   cartUpdate: PropTypes.func.isRequired,
 };

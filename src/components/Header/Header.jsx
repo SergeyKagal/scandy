@@ -59,7 +59,7 @@ export default class Header extends React.Component {
               <img src="./images/a-logo.svg" alt="a-logo" />
             </Link>
             <div className="header__nav-controls">
-              <CurrencySelect switchCurrency={this.props.switchCurrency} />
+              <CurrencySelect />
               <CartButton
                 cart={this.props.cart}
                 isShowBag={this.state.isShowBag}
@@ -72,7 +72,6 @@ export default class Header extends React.Component {
           <Bag
             cart={this.props.cart}
             hideShowBag={this.hideShowBag}
-            currentCurrency={this.props.currentCurrency}
             cartUpdate={this.props.cartUpdate}
           />
         )}
@@ -82,9 +81,9 @@ export default class Header extends React.Component {
 }
 Header.propTypes = {
   activeTitle: PropTypes.string.isRequired,
-  switchCurrency: PropTypes.func.isRequired,
+
   navList: PropTypes.array.isRequired,
   cart: PropTypes.array.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
+
   cartUpdate: PropTypes.func.isRequired,
 };

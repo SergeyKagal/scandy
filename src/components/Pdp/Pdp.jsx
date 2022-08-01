@@ -7,8 +7,10 @@ import PdpProperties from './PdpProperties';
 import { getData } from '../../utils/getData';
 import { queries } from '../../constants/queries';
 import { isProductInCart } from '../../utils/isProductInCart';
+import store from '../../store';
+import { observer } from 'mobx-react';
 
-export default class Pdp extends Component {
+class Pdp extends Component {
   state = {
     pdpId: this.props.pdpId || localStorage.getItem('pdpId'),
     images: [],
@@ -140,7 +142,6 @@ export default class Pdp extends Component {
           switchCurrency={this.props.setCurrentCurrency}
           navList={this.props.navList}
           cart={this.props.cart}
-          currentCurrency={this.props.currentCurrency}
           cartUpdate={this.props.cartUpdate}
         />
         <section className="pdp__wrapper">
@@ -162,15 +163,10 @@ export default class Pdp extends Component {
                 <span>PRICE:</span>
                 <div className="pdp__price">
                   <span className="price-symbol">
-                    {
-                      this.state.prices[this.props.currentCurrency].currency
-                        .symbol
-                    }
+                    {store.currentCurrencySymbol}
                   </span>
                   <span className="price-amount">
-                    {this.state.prices[
-                      this.props.currentCurrency
-                    ].amount.toFixed(2)}
+                    {this.state.prices[store.currentCurrency].amount.toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -193,9 +189,9 @@ export default class Pdp extends Component {
 }
 Pdp.propTypes = {
   pdpId: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
   setCurrentCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
   cart: PropTypes.array.isRequired,
   cartUpdate: PropTypes.func.isRequired,
 };
+export default observer(Pdp);

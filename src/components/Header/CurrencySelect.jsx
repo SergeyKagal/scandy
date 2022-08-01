@@ -1,38 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { getData } from '../../utils/getData';
-import { queries } from '../../constants/queries';
+import { toJS } from 'mobx';
+import store from '../../store';
+import { observer } from 'mobx-react';
 
-export default class CurrencySelect extends Component {
+class CurrencySelect extends Component {
   state = {
     isShowCurrencyList: false,
     buttonClass: 'header__nav-currensy-select currency-arrow-down',
-    currencySymbol: localStorage.getItem('currencySymbol') || '$',
-  };
-
-  getCurrencies = async () => {
-    const { currencies } = await getData(queries.currensy);
-    this.setState({
-      currencyList: currencies.map((currency, i) => {
-        if (i) {
-          return {
-            id: `currency-${currency.label}`,
-            title: `${currency.symbol} ${currency.label}`,
-            isChecked: false,
-            labelClass: 'header__nav-currensy-option',
-            symbol: `${currency.symbol}`,
-          };
-        } else {
-          return {
-            id: `currency-${currency.label}`,
-            title: `${currency.symbol} ${currency.label}`,
-            isChecked: true,
-            labelClass: 'header__nav-currensy-option label-checked',
-            symbol: `${currency.symbol}`,
-          };
-        }
-      }),
-    });
   };
 
   clickHandler = () => {
@@ -46,40 +20,31 @@ export default class CurrencySelect extends Component {
         });
   };
   changeHandler = (id) => {
-    let resultList = [...this.state.currencyList];
+    let resultList = [...toJS(store.currencyList)];
     resultList.forEach((currency, i) => {
       if (id === currency.id) {
         currency.isChecked = true;
         currency.labelClass = 'header__nav-currensy-option label-checked';
-        this.props.switchCurrency(i);
-        this.setState({ currencySymbol: currency.symbol });
+        store.setCurrentCurrency(i);
+        store.setCurrentCurrencySymbol(currency.symbol);
       } else {
         currency.isChecked = false;
         currency.labelClass = 'header__nav-currensy-option';
       }
-      this.setState({ currencyList: resultList });
+      store.setCurrencyList(resultList);
       this.clickHandler();
     });
   };
 
-  componentDidMount = async () => {
-    await this.getCurrencies();
-  };
-  componentWillUnmount = () => {
-    localStorage.setItem('currencySymbol', this.state.currencySymbol);
-  };
-  componentDidUpdate = () => {
-    localStorage.setItem('currencySymbol', this.state.currencySymbol);
-  };
   render() {
     return (
       <>
         <button onClick={this.clickHandler} className={this.state.buttonClass}>
-          {this.state.currencySymbol}
+          {store.currentCurrencySymbol}
         </button>
         {this.state.isShowCurrencyList && (
           <form className="header__nav-currensy-list">
-            {this.state.currencyList.map((currency) => {
+            {store.currencyList.map((currency) => {
               return (
                 <label
                   key={currency.id}
@@ -105,6 +70,5 @@ export default class CurrencySelect extends Component {
     );
   }
 }
-CurrencySelect.propTypes = {
-  switchCurrency: PropTypes.func.isRequired,
-};
+
+export default observer(CurrencySelect);

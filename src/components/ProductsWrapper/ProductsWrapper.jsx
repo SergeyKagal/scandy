@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-
+import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './ProductsWrapper.css';
 import { PATH } from '../../constants/path';
 import { getData } from '../../utils/getData';
 import { queries } from '../../constants/queries';
+import store from '../../store';
 
-export default class ProductsWrapper extends Component {
+class ProductsWrapper extends Component {
   state = {
     categoryList: [] || JSON.stringify(localStorage.getItem('categoryList')),
   };
@@ -51,26 +52,15 @@ export default class ProductsWrapper extends Component {
                         <button
                           className="in-cart-icon"
                           onClick={(e) => this.cartButtonHandler(e, card.id)}
-                        >
-                          {/* <img
-                            className="in-cart-icon"
-                            src="./images/in-cart-icon.svg"
-                            alt="cart icon"
-                          /> */}
-                        </button>
+                        ></button>
                       )}
                       <h3 className="product__title">{card.name}</h3>
                       <div className="product__price">
                         <span className="product__price-currency">
-                          {
-                            card.prices[this.props.currentCurrency].currency
-                              .symbol
-                          }
+                          {store.currentCurrencySymbol}
                         </span>
                         <span className="product__price-amont">
-                          {card.prices[
-                            this.props.currentCurrency
-                          ].amount.toFixed(2)}
+                          {card.prices[store.currentCurrency].amount.toFixed(2)}
                         </span>
                       </div>
                     </Link>
@@ -84,8 +74,9 @@ export default class ProductsWrapper extends Component {
 }
 ProductsWrapper.propTypes = {
   categoryName: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
+
   setPdpId: PropTypes.func.isRequired,
   cart: PropTypes.array.isRequired,
   cartUpdate: PropTypes.func.isRequired,
 };
+export default observer(ProductsWrapper);

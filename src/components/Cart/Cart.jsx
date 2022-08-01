@@ -7,17 +7,17 @@ import { totalCount } from '../../utils/total-count';
 import { tax } from '../../constants/tax';
 import { taxCount } from '../../utils/tax';
 import { productQtyInCart } from '../../utils/productQty';
+import store from '../../store';
+import { observer } from 'mobx-react';
 
-export default class Cart extends Component {
+class Cart extends Component {
   render() {
     return (
       <>
         <Header
           activeTitle={localStorage.getItem('categoryName')}
-          switchCurrency={this.props.setCurrentCurrency}
           navList={this.props.navList}
           cart={this.props.cart}
-          currentCurrency={this.props.currentCurrency}
           cartUpdate={this.props.cartUpdate}
         />
         <div className="cart__wrapper">
@@ -29,7 +29,6 @@ export default class Cart extends Component {
                   cartClass="cart"
                   key={cartItem.id}
                   cartItem={cartItem}
-                  currentCurrency={this.props.currentCurrency}
                   cart={this.props.cart}
                   cartUpdate={this.props.cartUpdate}
                 />
@@ -39,12 +38,11 @@ export default class Cart extends Component {
             <div className="cart__payment-tax">
               Tax {`${tax}% `}
               <span>
-                {totalCount(this.props.cart, this.props.currentCurrency).symbol}
+                {totalCount(this.props.cart, store.currentCurrency).symbol}
               </span>
               <span>
                 {taxCount(
-                  totalCount(this.props.cart, this.props.currentCurrency)
-                    .amount,
+                  totalCount(this.props.cart, store.currentCurrency).amount,
                   tax
                 ).toFixed(2)}
               </span>
@@ -56,12 +54,12 @@ export default class Cart extends Component {
             <div className="cart__payment-money">
               Total:{' '}
               <span>
-                {totalCount(this.props.cart, this.props.currentCurrency).symbol}
+                {totalCount(this.props.cart, store.currentCurrency).symbol}
               </span>
               <span>
                 {totalCount(
                   this.props.cart,
-                  this.props.currentCurrency
+                  store.currentCurrency
                 ).amount.toFixed(2)}
               </span>
             </div>
@@ -74,9 +72,8 @@ export default class Cart extends Component {
 }
 
 Cart.propTypes = {
-  currentCurrency: PropTypes.number,
-  setCurrentCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
   cart: PropTypes.array.isRequired,
   cartUpdate: PropTypes.func.isRequired,
 };
+export default observer(Cart);

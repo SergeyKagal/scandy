@@ -7,8 +7,10 @@ import { actionPayload } from '../../constants/action-payload';
 import { plusBtn } from '../ButtonBgr/Plus';
 import { minusBtn } from '../ButtonBgr/Minus';
 import { imageChanger } from '../../utils/image-changer';
+import store from '../../store';
+import { observer } from 'mobx-react';
 
-export default class CartList extends Component {
+class CartList extends Component {
   state = {
     imageNumber: 0,
     maxImageNumber: this.props.cartItem.product.images.length - 1,
@@ -46,11 +48,11 @@ export default class CartList extends Component {
           </h5>
           <div className={`${this.props.cartClass}__product-price`}>
             {
-              this.props.cartItem.product.prices[this.props.currentCurrency]
-                .currency.symbol
+              this.props.cartItem.product.prices[store.currentCurrency].currency
+                .symbol
             }
             {this.props.cartItem.product.prices[
-              this.props.currentCurrency
+              store.currentCurrency
             ].amount.toFixed(2)}
           </div>
           <div className={`${this.props.cartClass}__product-attributes`}>
@@ -144,8 +146,9 @@ export default class CartList extends Component {
 
 CartList.propTypes = {
   cartItem: PropTypes.object.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
+
   cart: PropTypes.array.isRequired,
   cartUpdate: PropTypes.func.isRequired,
   cartClass: PropTypes.string.isRequired,
 };
+export default observer(CartList);
