@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { attributeChanger } from '../../utils/attribute-change';
+// import { attributeChanger } from '../../utils/attribute-change';
 import { makeButtonClass } from '../../utils/makeButtonClass';
 import { qtyChanger } from '../../utils/qty-changer';
 import { actionPayload } from '../../constants/action-payload';
-import Plus from '../ButtonBgr/Plus';
-import Minus from '../ButtonBgr/Minus';
+import { plusBtn } from '../ButtonBgr/Plus';
+import { minusBtn } from '../ButtonBgr/Minus';
+import { imageChanger } from '../../utils/image-changer';
 
 export default class CartList extends Component {
+  state = {
+    imageNumber: 0,
+    maxImageNumber: this.props.cartItem.product.images.length - 1,
+  };
+
+  imageButtonHandler = (action) => {
+    this.setState({
+      imageNumber: imageChanger(
+        this.state.imageNumber,
+        this.state.maxImageNumber,
+        action
+      ),
+    });
+  };
+
   render() {
     return (
       <li className={`${this.props.cartClass}__list-item`}>
@@ -65,15 +81,15 @@ export default class CartList extends Component {
                             ? { backgroundColor: item.value }
                             : null
                         }
-                        onClick={() =>
-                          attributeChanger(
-                            this.props.cart,
-                            this.props.cartItem.id,
-                            attribute.id,
-                            item.id,
-                            this.props.cartUpdate
-                          )
-                        }
+                        // onClick={() =>
+                        //   attributeChanger(
+                        //     this.props.cart,
+                        //     this.props.cartItem.id,
+                        //     attribute.id,
+                        //     item.id,
+                        //     this.props.cartUpdate
+                        //   )
+                        // }
                       >
                         {item.value}
                       </button>
@@ -94,7 +110,7 @@ export default class CartList extends Component {
               );
             }}
           >
-            <Plus />
+            {plusBtn(this.props.cartClass)}
           </button>
           <p>{this.props.cartItem.product.qty}</p>
           <button
@@ -107,14 +123,28 @@ export default class CartList extends Component {
               );
             }}
           >
-            <Minus />
+            {minusBtn(this.props.cartClass)}
           </button>
         </div>
         <img
           className={`${this.props.cartClass}__product-image`}
-          src={this.props.cartItem.product.images[0].imageUrl}
+          src={
+            this.props.cartItem.product.images[this.state.imageNumber].imageUrl
+          }
           alt="product image"
         />
+        {this.props.cartClass === 'cart' && (
+          <div className="image-changer">
+            <button
+              className="image-changer-left"
+              onClick={() => this.imageButtonHandler(actionPayload.decrement)}
+            ></button>
+            <button
+              className="image-changer-right"
+              onClick={() => this.imageButtonHandler(actionPayload.increment)}
+            ></button>
+          </div>
+        )}
       </li>
     );
   }

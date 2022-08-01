@@ -5,9 +5,7 @@
   padding: 0 100px 100px 100px;
   font-family: 'Raleway';
 }
-.cart__wrapper button {
-  cursor: pointer;
-}
+
 .cart__title {
   font-size: 32px;
   font-weight: 700;
@@ -19,24 +17,27 @@
 
 .cart__list-item {
   display: flex;
-  justify-content: space-between;
+
   min-height: 336px;
   border-bottom: 1px solid #e5e5e5;
   padding: 24px 0;
+  position: relative;
 }
 
 .cart__product {
   width: 292px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 .cart__product-price {
   font-weight: 500;
   margin-bottom: 8px;
-  margin-top: 6px;
+  margin-top: 20px;
   font-size: 24px;
   font-weight: 700;
+}
+.cart__prop-wrapper {
+  margin-top: 16px;
 }
 .cart__prop-buttons {
   display: flex;
@@ -44,11 +45,11 @@
   margin-top: 8px;
 }
 .cart__prop-button {
-  width: 24px;
-  height: 24px;
+  width: 63px;
+  height: 45px;
   background-color: #fff;
   font-family: Source Sans Pro;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
   overflow: hidden;
   border: #1d1f22 1px solid;
@@ -63,8 +64,8 @@
   margin-top: 8px;
 }
 .cart__color-button {
-  width: 18px;
-  height: 18px;
+  width: 32px;
+  height: 32px;
   padding: 1px;
   font-size: 0;
   border: none;
@@ -84,18 +85,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 8px;
+  padding-right: 24px;
+  margin-left: auto;
+}
+.cart__product-qty p {
+  font-size: 24px;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
 }
 .cart__product-image {
-  width: 121px;
-  height: 190px px;
+  width: 200px;
+  height: 288 px;
   object-fit: contain;
 }
 .cart__product-qty button {
-  width: 24px;
-  height: 24px;
+  width: 45px;
+  height: 45px;
   background: none;
   border: none;
+  cursor: pointer;
 }
 .cart__product-brand {
   font-weight: 600;
@@ -103,6 +112,7 @@
 .cart__product h5 {
   font-size: 30px;
   line-height: 27px;
+  margin-bottom: 16px;
 }
 .cart__product-name {
   font-weight: 400;
@@ -134,4 +144,33 @@
 }
 .cart__payment-wrapper button:hover {
   background-color: #8bd49f;
+}
+.image-changer {
+  width: 56px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 40px;
+  right: 16px;
+}
+.image-changer button {
+  width: 24px;
+  height: 24px;
+  background-color: rgb(0, 0, 0, 0.73);
+  color: #ffffff;
+  background-repeat: no-repeat;
+  border: none;
+}
+.image-changer-left {
+  background-image: url('../../../public/images/arrow-left.svg.svg');
+
+  background-position-y: center;
+  background-position-x: 7px;
+}
+.image-changer-right {
+  background-image: url('../../../public/images/arrow-left.svg.svg');
+  transform: rotate(180deg);
+  background-position-y: center;
+  background-position-x: 7px;
 }

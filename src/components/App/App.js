@@ -14,7 +14,7 @@ class App extends React.Component {
     pdpId: '',
     currentCurrency: 0,
     cart: [],
-    navList: JSON.parse(localStorage.getItem('navList') || []),
+    navList: JSON.parse(localStorage.getItem('navList')) || [],
   };
 
   cartUpdate = (cart) => this.setState({ cart: cart });
@@ -40,7 +40,7 @@ class App extends React.Component {
   };
 
   componentDidMount = () => {
-    if (this.state.navList.length) {
+    if (!this.state.navList.length) {
       this.getNavList();
     }
   };
