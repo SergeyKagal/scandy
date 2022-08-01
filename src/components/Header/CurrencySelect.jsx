@@ -7,6 +7,7 @@ export default class CurrencySelect extends Component {
   state = {
     isShowCurrencyList: false,
     buttonClass: 'header__nav-currensy-select currency-arrow-down',
+    currencySymbol: localStorage.getItem('currencySymbol') || '$',
   };
 
   getCurrencies = async () => {
@@ -19,6 +20,7 @@ export default class CurrencySelect extends Component {
             title: `${currency.symbol} ${currency.label}`,
             isChecked: false,
             labelClass: 'header__nav-currensy-option',
+            symbol: `${currency.symbol}`,
           };
         } else {
           return {
@@ -26,6 +28,7 @@ export default class CurrencySelect extends Component {
             title: `${currency.symbol} ${currency.label}`,
             isChecked: true,
             labelClass: 'header__nav-currensy-option label-checked',
+            symbol: `${currency.symbol}`,
           };
         }
       }),
@@ -46,9 +49,11 @@ export default class CurrencySelect extends Component {
     let resultList = [...this.state.currencyList];
     resultList.forEach((currency, i) => {
       if (id === currency.id) {
+        console.log(currency);
         currency.isChecked = true;
         currency.labelClass = 'header__nav-currensy-option label-checked';
         this.props.switchCurrency(i);
+        this.setState({ currencySymbol: currency.symbol });
       } else {
         currency.isChecked = false;
         currency.labelClass = 'header__nav-currensy-option';
@@ -61,11 +66,17 @@ export default class CurrencySelect extends Component {
   componentDidMount = async () => {
     await this.getCurrencies();
   };
+  componentWillUnmount = () => {
+    localStorage.setItem('currencySymbol', this.state.currencySymbol);
+  };
+  componentDidUpdate = () => {
+    localStorage.setItem('currencySymbol', this.state.currencySymbol);
+  };
   render() {
     return (
       <>
         <button onClick={this.clickHandler} className={this.state.buttonClass}>
-          $
+          {this.state.currencySymbol}
         </button>
         {this.state.isShowCurrencyList && (
           <form className="header__nav-currensy-list">
