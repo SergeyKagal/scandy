@@ -21,7 +21,7 @@ export default class Pdp extends Component {
     this.props.cartUpdate([
       ...this.props.cart,
       {
-        id: `${this.state.pdpId} ${new Date().toLocaleString()}`,
+        id: `${this.state.pdpId} ${new Date().toISOString()}`,
         product: {
           pdpId: this.state.pdpId,
           brand: this.state.brand,

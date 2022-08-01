@@ -53,10 +53,20 @@
   top: 146px;
   left: calc(50% - 86px);
 }
-.product__card .in-cart-icon {
+.in-cart-icon {
   width: 52px;
   height: 52px;
   position: absolute;
   bottom: 72px;
   right: 31px;
+  border-radius: 50%;
+  border: none;
+  background-image: url('../../../public/images/in-cart-icon.svg');
+  background-position-x: center;
+  background-position-y: -7px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.in-cart-icon:hover {
+  box-shadow: 0 0 10px 2px #aaaaaa;
 }

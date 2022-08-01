@@ -30,6 +30,7 @@ export default class Category extends React.Component {
             currentCurrency={this.props.currentCurrency}
             setPdpId={this.props.setPdpId}
             cart={this.props.cart}
+            cartUpdate={this.props.cartUpdate}
           />
         </main>
       </div>

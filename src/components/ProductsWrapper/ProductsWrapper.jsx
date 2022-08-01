@@ -6,7 +6,7 @@ import './ProductsWrapper.css';
 import { PATH } from '../../constants/path';
 import { getData } from '../../utils/getData';
 import { queries } from '../../constants/queries';
-import { isProductInCart } from '../../utils/isProductInCart';
+
 export default class ProductsWrapper extends Component {
   state = {
     categoryList: [] || JSON.stringify(localStorage.getItem('categoryList')),
@@ -17,7 +17,10 @@ export default class ProductsWrapper extends Component {
     this.setState({ categoryList: categories });
     localStorage.setItem('categoryList', JSON.stringify(categories));
   };
-
+  cartButtonHandler = (e, id) => {
+    e.preventDefault();
+    return id;
+  };
   componentDidMount = () => {
     if (!this.state.categoryList.length) {
       this.getCategories();
@@ -44,12 +47,17 @@ export default class ProductsWrapper extends Component {
                       className={card.inStock ? undefined : 'disabled-link'}
                     >
                       <img src={card.gallery[0]} alt={card.id} />{' '}
-                      {isProductInCart(this.props.cart, card.id, null) && (
-                        <img
+                      {card.inStock && (
+                        <button
                           className="in-cart-icon"
-                          src="./images/in-cart-icon.svg"
-                          alt="cart icon"
-                        />
+                          onClick={(e) => this.cartButtonHandler(e, card.id)}
+                        >
+                          {/* <img
+                            className="in-cart-icon"
+                            src="./images/in-cart-icon.svg"
+                            alt="cart icon"
+                          /> */}
+                        </button>
                       )}
                       <h3 className="product__title">{card.name}</h3>
                       <div className="product__price">
@@ -79,4 +87,5 @@ ProductsWrapper.propTypes = {
   currentCurrency: PropTypes.number.isRequired,
   setPdpId: PropTypes.func.isRequired,
   cart: PropTypes.array.isRequired,
+  cartUpdate: PropTypes.func.isRequired,
 };
