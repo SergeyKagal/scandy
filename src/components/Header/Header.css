@@ -17,7 +17,7 @@
 .header__nav-list {
   font-family: 'Raleway';
   font-weight: 400;
-  color: #1d1f22;
+
   list-style-type: none;
   display: flex;
   align-items: center;
@@ -29,6 +29,7 @@
   padding: 26px 16px;
   border: none;
   cursor: pointer;
+  color: #1d1f22;
 }
 .header__nav-link:hover,
 .active {
@@ -130,7 +131,6 @@
   line-height: 20px;
   border-radius: 50%;
   z-index: -1;
-  /* padding-top: 2px; */
 }
 .bag__background {
   position: fixed;

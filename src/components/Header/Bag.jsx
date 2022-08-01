@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { itemsInCart } from '../../utils/itemsInCart';
-import { makeButtonClass } from '../../utils/makeButtonClass';
-import { attributeChanger } from '../../utils/attribute-change';
-import { actionPayload } from '../../constants/action-payload';
-import { qtyChanger } from '../../utils/qty-changer';
-import Plus from '../ButtonBgr/Plus';
-import Minus from '../ButtonBgr/Minus';
 import { PATH } from '../../constants/path';
 import { Link } from 'react-router-dom';
 import { totalCount } from '../../utils/total-count';
-
+import CartList from '../Cart/CartList';
 export default class Bag extends Component {
   render() {
     return (
@@ -23,95 +16,14 @@ export default class Bag extends Component {
           </h4>
           <ul className="bag__list">
             {this.props.cart.map((cartItem) => (
-              <li className="bag__list-item" key={cartItem.id}>
-                <div className="bag__product">
-                  <h5>{cartItem.product.brand}</h5>
-                  <h5>{cartItem.product.name}</h5>
-                  <div className="bag__product-price">
-                    {
-                      cartItem.product.prices[this.props.currentCurrency]
-                        .currency.symbol
-                    }
-                    {cartItem.product.prices[
-                      this.props.currentCurrency
-                    ].amount.toFixed(2)}
-                  </div>
-                  <div className="bag__product-attributes">
-                    {!!cartItem.product.attributes.length &&
-                      cartItem.product.attributes.map((attribute) => (
-                        <div key={attribute.id} className="bag__prop-wrapper">
-                          <span>{attribute.name}:</span>
-                          <div
-                            className={
-                              attribute.name === 'Color'
-                                ? 'bag__prop-color-buttons'
-                                : 'bag__prop-buttons'
-                            }
-                          >
-                            {attribute.items.map((item) => (
-                              <button
-                                key={item.id}
-                                className={makeButtonClass(
-                                  attribute.name,
-                                  item.isChecked,
-                                  'bag'
-                                )}
-                                style={
-                                  attribute.name === 'Color'
-                                    ? { backgroundColor: item.value }
-                                    : null
-                                }
-                                onClick={() =>
-                                  attributeChanger(
-                                    this.props.cart,
-                                    cartItem.id,
-                                    attribute.id,
-                                    item.id,
-                                    this.props.cartUpdate
-                                  )
-                                }
-                              >
-                                {item.value}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-                <div className="bag__product-qty">
-                  <button
-                    onClick={() => {
-                      qtyChanger(
-                        this.props.cart,
-                        cartItem.id,
-                        actionPayload.increment,
-                        this.props.cartUpdate
-                      );
-                    }}
-                  >
-                    <Plus />
-                  </button>
-                  <p>{cartItem.product.qty}</p>
-                  <button
-                    onClick={() => {
-                      qtyChanger(
-                        this.props.cart,
-                        cartItem.id,
-                        actionPayload.decrement,
-                        this.props.cartUpdate
-                      );
-                    }}
-                  >
-                    <Minus />
-                  </button>
-                </div>
-                <img
-                  className="bag__product-image"
-                  src={cartItem.product.images[0].imageUrl}
-                  alt="product image"
-                />
-              </li>
+              <CartList
+                cartClass="bag"
+                key={cartItem.id}
+                cartItem={cartItem}
+                currentCurrency={this.props.currentCurrency}
+                cart={this.props.cart}
+                cartUpdate={this.props.cartUpdate}
+              />
             ))}
           </ul>
           <div className="bag__total">
