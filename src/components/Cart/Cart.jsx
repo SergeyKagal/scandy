@@ -17,20 +17,17 @@ class Cart extends Component {
         <Header
           activeTitle={localStorage.getItem('categoryName')}
           navList={this.props.navList}
-          cart={this.props.cart}
-          cartUpdate={this.props.cartUpdate}
         />
         <div className="cart__wrapper">
           <h3 className="cart__title ">CART</h3>
           <ul className="cart__list">
-            {!!this.props.cart.length &&
-              this.props.cart.map((cartItem) => (
+            {!!store.cart.length &&
+              store.cart.map((cartItem) => (
                 <CartList
                   cartClass="cart"
                   key={cartItem.id}
                   cartItem={cartItem}
-                  cart={this.props.cart}
-                  cartUpdate={this.props.cartUpdate}
+                  cart={store.cart}
                 />
               ))}
           </ul>
@@ -38,29 +35,28 @@ class Cart extends Component {
             <div className="cart__payment-tax">
               Tax {`${tax}% `}
               <span>
-                {totalCount(this.props.cart, store.currentCurrency).symbol}
+                {totalCount(store.cart, store.currentCurrency).symbol}
               </span>
               <span>
                 {taxCount(
-                  totalCount(this.props.cart, store.currentCurrency).amount,
+                  totalCount(store.cart, store.currentCurrency).amount,
                   tax
                 ).toFixed(2)}
               </span>
             </div>
 
             <div className="cart__payment-qty">
-              Quantity: {productQtyInCart(this.props.cart).value}
+              Quantity: {productQtyInCart(store.cart).value}
             </div>
             <div className="cart__payment-money">
               Total:{' '}
               <span>
-                {totalCount(this.props.cart, store.currentCurrency).symbol}
+                {totalCount(store.cart, store.currentCurrency).symbol}
               </span>
               <span>
-                {totalCount(
-                  this.props.cart,
-                  store.currentCurrency
-                ).amount.toFixed(2)}
+                {totalCount(store.cart, store.currentCurrency).amount.toFixed(
+                  2
+                )}
               </span>
             </div>
             <button>ORDER</button>

@@ -3,6 +3,7 @@ import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
 class Store {
+  //--currencies
   currentCurrency = 0;
   currentCurrencySymbol = '$';
   currencyList = [];
@@ -39,8 +40,40 @@ class Store {
     });
   }
 
+  //--cart
+
+  cart = [];
+  cartUpdate(newCart) {
+    this.cart = newCart;
+  }
+  addNewCartItem(newCartItem) {
+    this.cart.push(newCartItem);
+  }
+
+  cartItemQtyChanger(cartItemId, actionPayload) {
+    this.cart = [
+      ...this.cart.map((cartItem) => {
+        if (cartItem.id === cartItemId) {
+          return {
+            ...cartItem,
+            product: {
+              ...cartItem.product,
+              qty:
+                cartItem.product.qty === 1 && actionPayload === -1
+                  ? cartItem.product.qty
+                  : cartItem.product.qty + actionPayload,
+            },
+          };
+        } else {
+          return cartItem;
+        }
+      }),
+    ];
+  }
+  //---------------------------------------------------
   constructor() {
     makeObservable(this, {
+      cart: observable,
       currentCurrency: observable,
       currentCurrencySymbol: observable,
       currencyList: observable,
@@ -48,8 +81,12 @@ class Store {
       setCurrentCurrencySymbol: action,
       getCurrencies: action,
       setCurrencyList: action,
+      cartUpdate: action,
+      addNewCartItem: action,
+      cartItemQtyChanger: action,
     });
   }
+  //-------------------------------------------------
 }
 
 const store = new Store();

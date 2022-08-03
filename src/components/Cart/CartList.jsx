@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { attributeChanger } from '../../utils/attribute-change';
 import { makeButtonClass } from '../../utils/makeButtonClass';
-import { qtyChanger } from '../../utils/qty-changer';
+// import { qtyChanger } from '../../utils/qty-changer';
 import { actionPayload } from '../../constants/action-payload';
 import { plusBtn } from '../ButtonBgr/Plus';
 import { minusBtn } from '../ButtonBgr/Minus';
 import { imageChanger } from '../../utils/image-changer';
 import store from '../../store';
 import { observer } from 'mobx-react';
-
+// import { toJS } from 'mobx';
 class CartList extends Component {
   state = {
     imageNumber: 0,
@@ -95,11 +94,9 @@ class CartList extends Component {
         <div className={`${this.props.cartClass}__product-qty`}>
           <button
             onClick={() => {
-              qtyChanger(
-                this.props.cart,
+              store.cartItemQtyChanger(
                 this.props.cartItem.id,
-                actionPayload.increment,
-                this.props.cartUpdate
+                actionPayload.increment
               );
             }}
           >
@@ -108,11 +105,9 @@ class CartList extends Component {
           <p>{this.props.cartItem.product.qty}</p>
           <button
             onClick={() => {
-              qtyChanger(
-                this.props.cart,
+              store.cartItemQtyChanger(
                 this.props.cartItem.id,
-                actionPayload.decrement,
-                this.props.cartUpdate
+                actionPayload.decrement
               );
             }}
           >
@@ -147,8 +142,6 @@ class CartList extends Component {
 CartList.propTypes = {
   cartItem: PropTypes.object.isRequired,
 
-  cart: PropTypes.array.isRequired,
-  cartUpdate: PropTypes.func.isRequired,
   cartClass: PropTypes.string.isRequired,
 };
 export default observer(CartList);

@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { productQtyInCart } from '../../utils/productQty';
+import store from '../../store';
+import { observer } from 'mobx-react';
 
-export default class CartButton extends Component {
+class CartButton extends Component {
   render() {
     return (
       <>
         <button className="header__nav-cart" onClick={this.props.hideShowBag}>
           <img src="./images/cart-icon.svg" alt="cart-icon" />
         </button>
-        {!!this.props.cart.length && (
+        {!!store.cart.length && (
           <span className="header__nav-productQty">
-            {productQtyInCart(this.props.cart).displayValue}
+            {productQtyInCart(store.cart).displayValue}
           </span>
         )}
       </>
@@ -19,7 +21,7 @@ export default class CartButton extends Component {
   }
 }
 CartButton.propTypes = {
-  cart: PropTypes.array.isRequired,
   isShowBag: PropTypes.bool.isRequired,
   hideShowBag: PropTypes.func.isRequired,
 };
+export default observer(CartButton);

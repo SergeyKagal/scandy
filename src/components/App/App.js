@@ -12,7 +12,6 @@ import Cart from '../Cart/Cart';
 class App extends React.Component {
   state = {
     pdpId: '',
-    currentCurrency: 0,
     cart: [],
     navList: JSON.parse(localStorage.getItem('navList')) || [],
   };

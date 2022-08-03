@@ -9,7 +9,7 @@ import { queries } from '../../constants/queries';
 import { isProductInCart } from '../../utils/isProductInCart';
 import store from '../../store';
 import { observer } from 'mobx-react';
-
+import { toJS } from 'mobx';
 class Pdp extends Component {
   state = {
     pdpId: this.props.pdpId || localStorage.getItem('pdpId'),
@@ -20,29 +20,25 @@ class Pdp extends Component {
     currentProductWithAttributes: {},
   };
   addNewItemToCart = () => {
-    this.props.cartUpdate([
-      ...this.props.cart,
-      {
-        id: `${this.state.pdpId} ${new Date().toISOString()}`,
-        product: {
-          pdpId: this.state.pdpId,
-          brand: this.state.brand,
-          name: this.state.name,
-          images: this.state.images,
-          attributes: this.state.attributes,
-          prices: this.state.prices,
-          qty: 1,
-        },
+    const newCartItem = {
+      id: `${this.state.pdpId} ${new Date().toISOString()}`,
+      product: {
+        pdpId: this.state.pdpId,
+        brand: this.state.brand,
+        name: this.state.name,
+        images: this.state.images,
+        attributes: this.state.attributes,
+        prices: this.state.prices,
+        qty: 1,
       },
-    ]);
+    };
+    store.addNewCartItem(newCartItem);
   };
 
   addToCartHandler = () => {
-    if (
-      isProductInCart(this.props.cart, this.state.pdpId, this.state.attributes)
-    ) {
-      this.props.cartUpdate([
-        ...this.props.cart.map((cartItem) => {
+    if (isProductInCart(store.cart, this.state.pdpId, this.state.attributes)) {
+      store.cartUpdate([
+        ...toJS(store.cart).map((cartItem) => {
           if (this.state.pdpId === cartItem.product.pdpId) {
             return {
               id: cartItem.id,
@@ -67,8 +63,6 @@ class Pdp extends Component {
       }
     }
   };
-
-  setCurrentProductAttrebuters = () => this.setState();
 
   propButtonHandler = (id, attributeId) => {
     localStorage.setItem('cart', JSON.stringify({}));
@@ -139,10 +133,7 @@ class Pdp extends Component {
       <>
         <Header
           activeTitle={localStorage.getItem('categoryName')}
-          switchCurrency={this.props.setCurrentCurrency}
           navList={this.props.navList}
-          cart={this.props.cart}
-          cartUpdate={this.props.cartUpdate}
         />
         <section className="pdp__wrapper">
           <Images
@@ -189,9 +180,7 @@ class Pdp extends Component {
 }
 Pdp.propTypes = {
   pdpId: PropTypes.string.isRequired,
-  setCurrentCurrency: PropTypes.func.isRequired,
+
   navList: PropTypes.array.isRequired,
-  cart: PropTypes.array.isRequired,
-  cartUpdate: PropTypes.func.isRequired,
 };
 export default observer(Pdp);

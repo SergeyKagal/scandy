@@ -61,20 +61,13 @@ export default class Header extends React.Component {
             <div className="header__nav-controls">
               <CurrencySelect />
               <CartButton
-                cart={this.props.cart}
                 isShowBag={this.state.isShowBag}
                 hideShowBag={this.hideShowBag}
               />
             </div>{' '}
           </nav>{' '}
         </header>
-        {this.state.isShowBag && (
-          <Bag
-            cart={this.props.cart}
-            hideShowBag={this.hideShowBag}
-            cartUpdate={this.props.cartUpdate}
-          />
-        )}
+        {this.state.isShowBag && <Bag hideShowBag={this.hideShowBag} />}
       </>
     );
   }
@@ -83,7 +76,4 @@ Header.propTypes = {
   activeTitle: PropTypes.string.isRequired,
 
   navList: PropTypes.array.isRequired,
-  cart: PropTypes.array.isRequired,
-
-  cartUpdate: PropTypes.func.isRequired,
 };
