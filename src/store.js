@@ -1,4 +1,4 @@
-import { autorun, makeAutoObservable, toJS } from 'mobx';
+import { autorun, makeAutoObservable } from 'mobx';
 import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
@@ -83,6 +83,17 @@ class Store {
   set newCurrentCategory(newCurrentCategory) {
     this.currentCategory = newCurrentCategory;
   }
+
+  //---productList
+  productList = [];
+  set newProductList(list) {
+    this.productList = list;
+  }
+  getCategoryProductList(categoryName) {
+    const [res] = this.productList.filter((item) => item.name === categoryName);
+    return res.products;
+  }
+
   //---------------------------------------------------
   constructor() {
     makeAutoObservable(this);
@@ -99,8 +110,10 @@ autorun(async () => {
     return { ...item, id: `${i}${item.name}`, path: `/${item.name}` };
   });
   store.currentCategory = store.navList[0];
-  console.log(toJS(store.currentCategory));
-  console.log(store.newNavList);
+});
+autorun(async () => {
+  const { categories } = await getData(queries.categories);
+  store.newProductList = categories;
 });
 
 export default store;
