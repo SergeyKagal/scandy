@@ -85,21 +85,6 @@ class Store {
   }
   //---------------------------------------------------
   constructor() {
-    // makeObservable(this, {
-    //   cart: observable,
-    //   currentCurrency: observable,
-    //   currentCurrencySymbol: observable,
-    //   currencyList: observable,
-    //   navList: observable,
-    //   setCurrentCurrency: action,
-    //   setCurrentCurrencySymbol: action,
-    //   getCurrencies: action,
-    //   setCurrencyList: action,
-    //   cartUpdate: action,
-    //   addNewCartItem: action,
-    //   cartItemQtyChanger: action,
-
-    // });
     makeAutoObservable(this);
   }
   //-------------------------------------------------

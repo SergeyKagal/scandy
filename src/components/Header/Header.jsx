@@ -6,8 +6,9 @@ import CurrencySelect from './CurrencySelect';
 import './Header.css';
 import Bag from './Bag';
 import store from '../../store';
+import { observer } from 'mobx-react';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   state = {
     isShowBag: false,
   };
@@ -60,3 +61,4 @@ export default class Header extends React.Component {
     );
   }
 }
+export default observer(Header);
