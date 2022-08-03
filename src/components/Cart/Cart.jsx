@@ -13,7 +13,7 @@ class Cart extends Component {
   render() {
     return (
       <>
-        <Header activeTitle={localStorage.getItem('categoryName')} />
+        <Header />
         <div className="cart__wrapper">
           <h3 className="cart__title ">CART</h3>
           <ul className="cart__list">
