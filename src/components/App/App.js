@@ -56,11 +56,7 @@ class App extends React.Component {
                   <Category
                     categoryName={item.name}
                     setPdpId={this.setPdpId}
-                    currentCurrency={this.state.currentCurrency}
-                    setCurrentCurrency={this.setCurrentCurrency}
                     navList={this.state.navList}
-                    cart={this.state.cart}
-                    cartUpdate={this.cartUpdate}
                   />
                 }
               />
@@ -71,25 +67,13 @@ class App extends React.Component {
             element={
               <Pdp
                 pdpId={this.state.pdpId.toString()}
-                currentCurrency={this.state.currentCurrency}
-                setCurrentCurrency={this.setCurrentCurrency}
                 navList={this.state.navList}
-                cart={this.state.cart}
-                cartUpdate={this.cartUpdate}
               />
             }
           />
           <Route
             path={PATH.CART}
-            element={
-              <Cart
-                currentCurrency={this.state.currentCurrency}
-                setCurrentCurrency={this.setCurrentCurrency}
-                navList={this.state.navList}
-                cart={this.state.cart}
-                cartUpdate={this.cartUpdate}
-              />
-            }
+            element={<Cart navList={this.state.navList} />}
           />
         </Routes>
       </BrowserRouter>
