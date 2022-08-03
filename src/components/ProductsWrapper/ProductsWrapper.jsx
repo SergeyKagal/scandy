@@ -74,9 +74,6 @@ class ProductsWrapper extends Component {
 }
 ProductsWrapper.propTypes = {
   categoryName: PropTypes.string.isRequired,
-
   setPdpId: PropTypes.func.isRequired,
-  cart: PropTypes.array.isRequired,
-  cartUpdate: PropTypes.func.isRequired,
 };
 export default observer(ProductsWrapper);

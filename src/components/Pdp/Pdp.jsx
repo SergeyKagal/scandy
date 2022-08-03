@@ -180,7 +180,6 @@ class Pdp extends Component {
 }
 Pdp.propTypes = {
   pdpId: PropTypes.string.isRequired,
-
   navList: PropTypes.array.isRequired,
 };
 export default observer(Pdp);

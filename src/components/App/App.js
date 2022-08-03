@@ -12,11 +12,8 @@ import Cart from '../Cart/Cart';
 class App extends React.Component {
   state = {
     pdpId: '',
-    cart: [],
     navList: JSON.parse(localStorage.getItem('navList')) || [],
   };
-
-  cartUpdate = (cart) => this.setState({ cart: cart });
 
   getNavList = async () => {
     const { categories } = await getData(queries.navList);

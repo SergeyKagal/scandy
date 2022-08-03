@@ -69,7 +69,5 @@ class Cart extends Component {
 
 Cart.propTypes = {
   navList: PropTypes.array.isRequired,
-  cart: PropTypes.array.isRequired,
-  cartUpdate: PropTypes.func.isRequired,
 };
 export default observer(Cart);

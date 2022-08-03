@@ -19,17 +19,12 @@ export default class Category extends React.Component {
           activeTitle={this.props.categoryName}
           switchCurrency={this.props.setCurrentCurrency}
           navList={this.props.navList}
-          cart={this.props.cart}
-          currentCurrency={this.props.currentCurrency}
-          cartUpdate={this.props.cartUpdate}
         />
         <main className="category__wrapper">
           <h2 className="category__title">{this.props.categoryName} </h2>
           <ProductsWrapper
             categoryName={this.props.categoryName}
             setPdpId={this.props.setPdpId}
-            cart={this.props.cart}
-            cartUpdate={this.props.cartUpdate}
           />
         </main>
       </div>
@@ -38,10 +33,8 @@ export default class Category extends React.Component {
 }
 Category.propTypes = {
   categoryName: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.number,
+
   setPdpId: PropTypes.func.isRequired,
   setCurrentCurrency: PropTypes.func.isRequired,
   navList: PropTypes.array.isRequired,
-  cart: PropTypes.array.isRequired,
-  cartUpdate: PropTypes.func.isRequired,
 };

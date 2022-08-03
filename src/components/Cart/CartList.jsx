@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { makeButtonClass } from '../../utils/makeButtonClass';
-// import { qtyChanger } from '../../utils/qty-changer';
 import { actionPayload } from '../../constants/action-payload';
 import { plusBtn } from '../ButtonBgr/Plus';
 import { minusBtn } from '../ButtonBgr/Minus';
 import { imageChanger } from '../../utils/image-changer';
 import store from '../../store';
 import { observer } from 'mobx-react';
-// import { toJS } from 'mobx';
+
 class CartList extends Component {
   state = {
     imageNumber: 0,
@@ -141,7 +140,6 @@ class CartList extends Component {
 
 CartList.propTypes = {
   cartItem: PropTypes.object.isRequired,
-
   cartClass: PropTypes.string.isRequired,
 };
 export default observer(CartList);

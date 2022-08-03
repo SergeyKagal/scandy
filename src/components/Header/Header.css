@@ -159,9 +159,7 @@
   flex-direction: column;
   gap: 40px;
 }
-.bag__list button {
-  cursor: pointer;
-}
+
 .bag__title {
   margin-bottom: 32px;
 
