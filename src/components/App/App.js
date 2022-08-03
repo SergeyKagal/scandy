@@ -5,8 +5,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PATH } from '../../constants/path';
 import Category from '../Category/Category';
 import Pdp from '../Pdp/Pdp';
-import { getData } from '../../utils/getData';
-import { queries } from '../../constants/queries';
 import Cart from '../Cart/Cart';
 
 class App extends React.Component {
@@ -15,30 +13,8 @@ class App extends React.Component {
     navList: JSON.parse(localStorage.getItem('navList')) || [],
   };
 
-  getNavList = async () => {
-    const { categories } = await getData(queries.navList);
-    const res = categories.map((item, i) => {
-      return { ...item, id: `${i}${item.name}`, path: `/${item.name}` };
-    });
-
-    localStorage.setItem('navList', JSON.stringify(res));
-    this.setState({
-      navList: res,
-    });
-  };
-
   setPdpId = (id) => {
     this.setState({ pdpId: id });
-  };
-
-  setCurrentCurrency = (currency) => {
-    this.setState({ currentCurrency: currency });
-  };
-
-  componentDidMount = () => {
-    if (!this.state.navList.length) {
-      this.getNavList();
-    }
   };
 
   render() {
@@ -46,7 +22,6 @@ class App extends React.Component {
       <BrowserRouter>
         <Routes>
           <Route path={PATH.MAIN} element={<ProjectCover />} />
-
           {!!this.state.navList.length &&
             this.state.navList.map((item) => (
               <Route

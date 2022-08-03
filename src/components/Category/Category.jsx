@@ -15,10 +15,7 @@ export default class Category extends React.Component {
   render() {
     return (
       <div>
-        <Header
-          activeTitle={this.props.categoryName}
-          navList={this.props.navList}
-        />
+        <Header />
         <main className="category__wrapper">
           <h2 className="category__title">{this.props.categoryName} </h2>
           <ProductsWrapper
@@ -33,5 +30,4 @@ export default class Category extends React.Component {
 Category.propTypes = {
   categoryName: PropTypes.string.isRequired,
   setPdpId: PropTypes.func.isRequired,
-  navList: PropTypes.array.isRequired,
 };

@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, autorun } from 'mobx';
+import { autorun, makeAutoObservable, toJS } from 'mobx';
 import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
@@ -70,21 +70,37 @@ class Store {
       }),
     ];
   }
+
+  //---navList
+  navList = [];
+  currentCategory = '';
+  set newNavList(list) {
+    this.navList = list;
+  }
+  get newNavList() {
+    return this.navList;
+  }
+  set newCurrentCategory(newCurrentCategory) {
+    this.currentCategory = newCurrentCategory;
+  }
   //---------------------------------------------------
   constructor() {
-    makeObservable(this, {
-      cart: observable,
-      currentCurrency: observable,
-      currentCurrencySymbol: observable,
-      currencyList: observable,
-      setCurrentCurrency: action,
-      setCurrentCurrencySymbol: action,
-      getCurrencies: action,
-      setCurrencyList: action,
-      cartUpdate: action,
-      addNewCartItem: action,
-      cartItemQtyChanger: action,
-    });
+    // makeObservable(this, {
+    //   cart: observable,
+    //   currentCurrency: observable,
+    //   currentCurrencySymbol: observable,
+    //   currencyList: observable,
+    //   navList: observable,
+    //   setCurrentCurrency: action,
+    //   setCurrentCurrencySymbol: action,
+    //   getCurrencies: action,
+    //   setCurrencyList: action,
+    //   cartUpdate: action,
+    //   addNewCartItem: action,
+    //   cartItemQtyChanger: action,
+
+    // });
+    makeAutoObservable(this);
   }
   //-------------------------------------------------
 }
@@ -93,6 +109,13 @@ const store = new Store();
 
 autorun(async () => {
   await store.getCurrencies();
+  const { categories } = await getData(queries.navList);
+  store.newNavList = categories.map((item, i) => {
+    return { ...item, id: `${i}${item.name}`, path: `/${item.name}` };
+  });
+  store.currentCategory = store.navList[0];
+  console.log(toJS(store.currentCategory));
+  console.log(store.newNavList);
 });
 
 export default store;
