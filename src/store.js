@@ -89,9 +89,11 @@ class Store {
   set newProductList(list) {
     this.productList = list;
   }
-  getCategoryProductList(categoryName) {
-    const [res] = this.productList.filter((item) => item.name === categoryName);
-    return res.products;
+  get categoryProductList() {
+    const [res] = this.productList.filter(
+      (item) => item.name === this.currentCategory.name
+    );
+    return res ? res.products : [];
   }
 
   //---------------------------------------------------
@@ -109,7 +111,7 @@ autorun(async () => {
   store.newNavList = categories.map((item, i) => {
     return { ...item, id: `${i}${item.name}`, path: `/${item.name}` };
   });
-  store.currentCategory = store.navList[0];
+  store.newCurrentCategory = store.navList[0];
 });
 autorun(async () => {
   const { categories } = await getData(queries.categories);

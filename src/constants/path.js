@@ -1,6 +1,6 @@
 export const PATH = {
   MAIN: '/',
-  ALL: '/all',
+
   CATEGORY: '/category',
   PDP: '/pdp',
   CART: '/cart',

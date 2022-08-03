@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { ProjectCover } from '../ProjectCover/ProjectCover';
+// import { ProjectCover } from '../ProjectCover/ProjectCover';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PATH } from '../../constants/path';
 import Category from '../Category/Category';
@@ -10,7 +10,6 @@ import Cart from '../Cart/Cart';
 class App extends React.Component {
   state = {
     pdpId: '',
-    navList: JSON.parse(localStorage.getItem('navList')) || [],
   };
 
   setPdpId = (id) => {
@@ -21,21 +20,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path={PATH.MAIN} element={<ProjectCover />} />
-          {!!this.state.navList.length &&
-            this.state.navList.map((item) => (
-              <Route
-                key={item.id}
-                path={item.path}
-                element={
-                  <Category
-                    categoryName={item.name}
-                    setPdpId={this.setPdpId}
-                    navList={this.state.navList}
-                  />
-                }
-              />
-            ))}
+          <Route
+            path={PATH.MAIN}
+            element={<Category setPdpId={this.setPdpId} />}
+          />
 
           <Route
             path={PATH.PDP}

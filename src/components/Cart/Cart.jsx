@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
-import PropTypes from 'prop-types';
 import './Cart.css';
 import CartList from './CartList';
 import { totalCount } from '../../utils/total-count';
@@ -14,10 +13,7 @@ class Cart extends Component {
   render() {
     return (
       <>
-        <Header
-          activeTitle={localStorage.getItem('categoryName')}
-          navList={this.props.navList}
-        />
+        <Header activeTitle={localStorage.getItem('categoryName')} />
         <div className="cart__wrapper">
           <h3 className="cart__title ">CART</h3>
           <ul className="cart__list">
@@ -67,7 +63,4 @@ class Cart extends Component {
   }
 }
 
-Cart.propTypes = {
-  navList: PropTypes.array.isRequired,
-};
 export default observer(Cart);

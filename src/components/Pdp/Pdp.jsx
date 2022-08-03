@@ -131,10 +131,7 @@ class Pdp extends Component {
   render() {
     return (
       <>
-        <Header
-          activeTitle={localStorage.getItem('categoryName')}
-          navList={this.props.navList}
-        />
+        <Header activeTitle={localStorage.getItem('categoryName')} />
         <section className="pdp__wrapper">
           <Images
             images={this.state.images}
@@ -180,6 +177,5 @@ class Pdp extends Component {
 }
 Pdp.propTypes = {
   pdpId: PropTypes.string.isRequired,
-  navList: PropTypes.array.isRequired,
 };
 export default observer(Pdp);
