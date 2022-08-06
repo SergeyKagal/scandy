@@ -24,20 +24,11 @@ class App extends React.Component {
             path={PATH.MAIN}
             element={<Category setPdpId={this.setPdpId} />}
           />
-
           <Route
             path={PATH.PDP}
-            element={
-              <Pdp
-                pdpId={this.state.pdpId.toString()}
-                navList={this.state.navList}
-              />
-            }
+            element={<Pdp pdpId={this.state.pdpId.toString()} />}
           />
-          <Route
-            path={PATH.CART}
-            element={<Cart navList={this.state.navList} />}
-          />
+          <Route path={PATH.CART} element={<Cart />} />
         </Routes>
       </BrowserRouter>
     );

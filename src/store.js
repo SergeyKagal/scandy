@@ -1,4 +1,5 @@
 import { autorun, makeAutoObservable } from 'mobx';
+// import {toJS}from'mobx'
 import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
@@ -95,7 +96,63 @@ class Store {
     );
     return res ? res.products : [];
   }
+  //---product
 
+  currentProduct = {};
+
+  get currentProductImages() {
+    return this.currentProduct.gallery.map((image, i) => {
+      return { id: `${i}`, imageUrl: image, isCurrent: i ? false : true };
+    });
+  }
+
+  get currentProductAttributes() {
+    return this.currentProduct.attributes ? this.currentProduct.attributes : [];
+  }
+
+  updateCurrentProduct(product) {
+    this.currentProduct = product;
+  }
+  unmountProduct() {
+    store.updateCurrentProduct({});
+  }
+
+  productAttributesHandler(attribute, attributeItem) {
+    this.currentProduct = {
+      ...this.currentProduct,
+      attributes: [
+        ...this.currentProduct.attributes.map((element) => {
+          if (element.id !== attribute.id) {
+            return element;
+          } else {
+            return {
+              ...element,
+              items: [...element.items].map((item) => {
+                if (item.id !== attributeItem.id) {
+                  return { ...item, isChecked: false };
+                } else {
+                  return { ...item, isChecked: true };
+                }
+              }),
+            };
+          }
+        }),
+      ],
+    };
+  }
+
+  async getProductFromBE(productID) {
+    const { product } = await getData(queries.pdp(productID));
+    product.attributes = product.attributes.map((attribute) => {
+      return {
+        ...attribute,
+        items: attribute.items.map((item) => {
+          return { ...item, isChecked: false };
+        }),
+      };
+    });
+    this.updateCurrentProduct(product);
+  }
   //---------------------------------------------------
   constructor() {
     makeAutoObservable(this);

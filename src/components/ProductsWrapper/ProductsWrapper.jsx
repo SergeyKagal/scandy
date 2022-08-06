@@ -24,6 +24,8 @@ class ProductsWrapper extends Component {
                     to={PATH.PDP}
                     onClick={() => {
                       this.props.setPdpId(card.id);
+                      store.unmountProduct();
+                      store.getProductFromBE(card.id);
                     }}
                     className={card.inStock ? undefined : 'disabled-link'}
                   >

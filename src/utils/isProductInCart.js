@@ -1,15 +1,13 @@
-export const isProductInCart = (cart, pdpId, attributes) => {
-  let res1 = false;
+export const isProductInCart = (cart, product) => {
+  //   let res1 = false;
   let res2 = false;
   cart.forEach((cartItem) => {
-    if (cartItem.product.pdpId === pdpId) {
-      res1 = true;
-    }
-    if (
-      JSON.stringify(cartItem.product.attributes) === JSON.stringify(attributes)
-    ) {
+    // if (cartItem.product.pdpId === pdpId) {
+    //   res1 = true;
+    // }
+    if (JSON.stringify(cartItem.product) === JSON.stringify(product)) {
       res2 = true;
     }
   });
-  return attributes === null ? res1 : res1 && res2;
+  return res2;
 };
