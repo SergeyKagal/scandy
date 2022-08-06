@@ -10,7 +10,7 @@ import { toJS } from 'mobx';
 class Pdp extends Component {
   addNewItemToCart = () => {
     const newCartItem = {
-      id: `${store.productID} ${new Date().toISOString()}`,
+      id: `${store.currentProduct.id} ${new Date().toISOString()}`,
       product: {
         ...store.currentProduct,
         images: store.currentProductImages,
@@ -22,10 +22,10 @@ class Pdp extends Component {
   };
 
   addToCartHandler = () => {
-    if (isProductInCart(store.cart, store.productID, this.state.attributes)) {
+    if (isProductInCart(store.cart, store.currentProduct)) {
       store.cartUpdate([
         ...toJS(store.cart).map((cartItem) => {
-          if (this.state.pdpId === cartItem.product.pdpId) {
+          if (store.currentProduct.id === cartItem.product.id) {
             return {
               id: cartItem.id,
               product: { ...cartItem.product, qty: cartItem.product.qty + 1 },
@@ -37,14 +37,14 @@ class Pdp extends Component {
       ]);
     } else {
       let counter = 0;
-      this.state.attributes.forEach((attribute) => {
+      store.currentProduct.attributes.forEach((attribute) => {
         attribute.items.map((item) => {
           if (item.isChecked) {
             counter++;
           }
         });
       });
-      if (counter === this.state.attributes.length) {
+      if (counter === store.currentProduct.attributes.length) {
         this.addNewItemToCart();
       }
     }
