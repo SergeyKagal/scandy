@@ -113,9 +113,6 @@ class Store {
   updateCurrentProduct(product) {
     this.currentProduct = product;
   }
-  unmountProduct() {
-    store.updateCurrentProduct({});
-  }
 
   productAttributesHandler(attribute, attributeItem) {
     this.currentProduct = {
@@ -142,6 +139,7 @@ class Store {
   }
 
   async getProductFromBE(productID) {
+    this.updateCurrentProduct({});
     const { product } = await getData(queries.pdp(productID));
     product.attributes = product.attributes.map((attribute) => {
       return {

@@ -8,14 +8,6 @@ import store from '../../store';
 import { observer } from 'mobx-react';
 import { toJS } from 'mobx';
 class Pdp extends Component {
-  // state = {
-  //   images: [],
-  //   attributes: store.currentProductAttributes,
-  //   product: { attributes: [] },
-  //   prices: [],
-  //   currentProductWithAttributes: {},
-  // };
-
   addNewItemToCart = () => {
     const newCartItem = {
       id: `${store.productID} ${new Date().toISOString()}`,
@@ -57,33 +49,6 @@ class Pdp extends Component {
       }
     }
   };
-
-  // propButtonHandler = (id, attributeId) => {
-  //   this.setState({
-  //     attributes: this.state.attributes.map((attribute) => {
-  //       if (attributeId !== attribute.id) {
-  //         return attribute;
-  //       } else
-  //         return {
-  //           ...attribute,
-  //           items: attribute.items.map((item) => {
-  //             return {
-  //               ...item,
-  //               isChecked:
-  //                 id === item.id && attributeId === attribute.id ? true : false,
-  //             };
-  //           }),
-  //         };
-  //     }),
-  //   });
-  //   this.setState({
-  //     currentProductWithAttributes: {
-  //       product: this.state.pdpId,
-  //       attributes: this.state.attributes,
-  //       qty: 1,
-  //     },
-  //   });
-  // };
 
   render() {
     return (
