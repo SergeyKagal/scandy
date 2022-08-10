@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { makeButtonClass } from '../../utils/makeButtonClass';
+import store from '../../store';
+import { observer } from 'mobx-react';
+// import { toJS } from 'mobx';
 
-export default class PdpProperties extends Component {
-  buttonClickHandler = (attribute, item) => {
-    this.props.propButtonHandler(item.id, attribute.id);
-  };
+class PdpProperties extends Component {
   render() {
     return (
       <div className="pdp__props">
-        {this.props.attributes.map((attribute) => (
+        {store.currentProductAttributes.map((attribute) => (
           <div key={attribute.id} className="pdp__prop-wrapper">
             <span>{attribute.name}:</span>
             <div className="pdp__prop-buttons">
@@ -26,7 +25,9 @@ export default class PdpProperties extends Component {
                       ? { backgroundColor: item.value }
                       : null
                   }
-                  onClick={() => this.buttonClickHandler(attribute, item)}
+                  onClick={() => {
+                    store.productAttributesHandler(attribute, item);
+                  }}
                 >
                   {item.value}
                 </button>
@@ -39,7 +40,4 @@ export default class PdpProperties extends Component {
   }
 }
 
-PdpProperties.propTypes = {
-  attributes: PropTypes.array,
-  propButtonHandler: PropTypes.func,
-};
+export default observer(PdpProperties);

@@ -5,38 +5,32 @@ import { PATH } from '../../constants/path';
 import { Link } from 'react-router-dom';
 import { totalCount } from '../../utils/total-count';
 import CartList from '../Cart/CartList';
-export default class Bag extends Component {
+import store from '../../store';
+import { observer } from 'mobx-react';
+class Bag extends Component {
   render() {
     return (
       <>
         <div className="bag__background" onClick={this.props.hideShowBag}></div>
         <div className="bag__wrapper">
           <h4 className="bag__title">
-            My Bag. <span>{itemsInCart(this.props.cart)}</span>
+            My Bag. <span>{itemsInCart(store.cart)}</span>
           </h4>
           <ul className="bag__list">
-            {this.props.cart.map((cartItem) => (
-              <CartList
-                cartClass="bag"
-                key={cartItem.id}
-                cartItem={cartItem}
-                currentCurrency={this.props.currentCurrency}
-                cart={this.props.cart}
-                cartUpdate={this.props.cartUpdate}
-              />
+            {store.cart.map((cartItem) => (
+              <CartList cartClass="bag" key={cartItem.id} cartItem={cartItem} />
             ))}
           </ul>
           <div className="bag__total">
             <div className="bag__total-title">Total</div>
             <div className="bag__total-money">
               <span>
-                {totalCount(this.props.cart, this.props.currentCurrency).symbol}
+                {totalCount(store.cart, store.currentCurrency).symbol}
               </span>
               <span>
-                {totalCount(
-                  this.props.cart,
-                  this.props.currentCurrency
-                ).amount.toFixed(2)}
+                {totalCount(store.cart, store.currentCurrency).amount.toFixed(
+                  2
+                )}
               </span>
             </div>
           </div>
@@ -50,8 +44,6 @@ export default class Bag extends Component {
   }
 }
 Bag.propTypes = {
-  cart: PropTypes.array.isRequired,
   hideShowBag: PropTypes.func.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
-  cartUpdate: PropTypes.func.isRequired,
 };
+export default observer(Bag);

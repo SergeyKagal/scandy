@@ -3,33 +3,22 @@ import { Link } from 'react-router-dom';
 import { PATH } from '../../constants/path';
 import CartButton from './CartButton';
 import CurrencySelect from './CurrencySelect';
-import PropTypes from 'prop-types';
 import './Header.css';
 import Bag from './Bag';
+import store from '../../store';
+import { observer } from 'mobx-react';
+import { removeZeroQty } from '../../utils/remove-zero-qty';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   state = {
-    navList: this.props.navList,
     isShowBag: false,
   };
 
-  hideShowBag = () => this.setState({ isShowBag: !this.state.isShowBag });
-
-  setActiveNavListItem = (listItemTitle) => {
-    const resultList = [...this.state.navList];
-    resultList.forEach((listItem) => {
-      if (listItemTitle === listItem.name) {
-        listItem.navClassName = 'header__nav-link active';
-      } else {
-        listItem.navClassName = 'header__nav-link';
-      }
-    });
-    this.setState({ navList: resultList });
+  hideShowBag = () => {
+    this.setState({ isShowBag: !this.state.isShowBag });
+    removeZeroQty();
   };
 
-  componentDidMount = () => {
-    this.setActiveNavListItem(this.props.activeTitle);
-  };
   render() {
     return (
       <>
@@ -37,17 +26,21 @@ export default class Header extends React.Component {
         <header className="header">
           <nav className="header__nav">
             <ul className="header__nav-list">
-              {!!this.state.navList.length &&
-                this.state.navList.map((listItem) => {
+              {!!store.navList.length &&
+                store.navList.map((listItem) => {
                   return (
                     <li
                       key={listItem.id}
                       className="header__nav-list-item"
-                      onClick={() => this.setActiveNavListItem(listItem.name)}
+                      onClick={() => (store.newCurrentCategory = listItem)}
                     >
                       <Link
-                        to={listItem.path}
-                        className={listItem.navClassName}
+                        to={PATH.MAIN}
+                        className={
+                          listItem.id === store.currentCategory.id
+                            ? 'header__nav-link active'
+                            : 'header__nav-link'
+                        }
                       >
                         <span>{listItem.name}</span>
                       </Link>
@@ -59,32 +52,17 @@ export default class Header extends React.Component {
               <img src="./images/a-logo.svg" alt="a-logo" />
             </Link>
             <div className="header__nav-controls">
-              <CurrencySelect switchCurrency={this.props.switchCurrency} />
+              <CurrencySelect />
               <CartButton
-                cart={this.props.cart}
                 isShowBag={this.state.isShowBag}
                 hideShowBag={this.hideShowBag}
               />
             </div>{' '}
           </nav>{' '}
         </header>
-        {this.state.isShowBag && (
-          <Bag
-            cart={this.props.cart}
-            hideShowBag={this.hideShowBag}
-            currentCurrency={this.props.currentCurrency}
-            cartUpdate={this.props.cartUpdate}
-          />
-        )}
+        {this.state.isShowBag && <Bag hideShowBag={this.hideShowBag} />}
       </>
     );
   }
 }
-Header.propTypes = {
-  activeTitle: PropTypes.string.isRequired,
-  switchCurrency: PropTypes.func.isRequired,
-  navList: PropTypes.array.isRequired,
-  cart: PropTypes.array.isRequired,
-  currentCurrency: PropTypes.number.isRequired,
-  cartUpdate: PropTypes.func.isRequired,
-};
+export default observer(Header);
