@@ -60,7 +60,7 @@ class Store {
             product: {
               ...cartItem.product,
               qty:
-                cartItem.product.qty === 1 && actionPayload === -1
+                cartItem.product.qty === 0 && actionPayload === -1
                   ? cartItem.product.qty
                   : cartItem.product.qty + actionPayload,
             },

@@ -7,13 +7,17 @@ import './Header.css';
 import Bag from './Bag';
 import store from '../../store';
 import { observer } from 'mobx-react';
+import { removeZeroQty } from '../../utils/remove-zero-qty';
 
 class Header extends React.Component {
   state = {
     isShowBag: false,
   };
 
-  hideShowBag = () => this.setState({ isShowBag: !this.state.isShowBag });
+  hideShowBag = () => {
+    this.setState({ isShowBag: !this.state.isShowBag });
+    removeZeroQty();
+  };
 
   render() {
     return (
