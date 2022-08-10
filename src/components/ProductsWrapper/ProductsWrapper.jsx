@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './ProductsWrapper.css';
 import { PATH } from '../../constants/path';
 import store from '../../store';
+import { addToCartHandler } from '../../utils/add-to-cart';
+import { isProductInCart } from '../../utils/isProductInCart';
+import { removeCartItem } from '../../utils/remove-from-cart';
 
 class ProductsWrapper extends Component {
-  cartButtonHandler = (e, id) => {
+  cartButtonHandler = async (e, id) => {
     e.preventDefault();
-    return id;
+    await store.getProductFromBE(id);
+    store.addProductFromPLP();
+    if (isProductInCart(store.cart, { ...store.currentProduct })) {
+      removeCartItem({ ...store.currentProduct });
+    } else {
+      addToCartHandler();
+    }
   };
 
   render() {
@@ -52,7 +60,5 @@ class ProductsWrapper extends Component {
     );
   }
 }
-ProductsWrapper.propTypes = {
-  setPdpId: PropTypes.func.isRequired,
-};
+
 export default observer(ProductsWrapper);

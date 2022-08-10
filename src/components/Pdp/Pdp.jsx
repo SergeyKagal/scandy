@@ -3,53 +3,11 @@ import Header from '../Header/Header';
 import Images from './Images';
 import './Pdp.css';
 import PdpProperties from './PdpProperties';
-import { isProductInCart } from '../../utils/isProductInCart';
 import store from '../../store';
 import { observer } from 'mobx-react';
-import { toJS } from 'mobx';
+import { addToCartHandler } from '../../utils/add-to-cart';
+
 class Pdp extends Component {
-  addNewItemToCart = () => {
-    const newCartItem = {
-      id: `${store.currentProduct.id} ${new Date().toISOString()}`,
-      product: {
-        ...store.currentProduct,
-        images: store.currentProductImages,
-        attributes: store.currentProductAttributes,
-        qty: 1,
-      },
-    };
-    store.addNewCartItem(newCartItem);
-  };
-
-  addToCartHandler = () => {
-    if (isProductInCart(store.cart, store.currentProduct)) {
-      store.cartUpdate([
-        ...toJS(store.cart).map((cartItem) => {
-          if (store.currentProduct.id === cartItem.product.id) {
-            return {
-              id: cartItem.id,
-              product: { ...cartItem.product, qty: cartItem.product.qty + 1 },
-            };
-          } else {
-            return cartItem;
-          }
-        }),
-      ]);
-    } else {
-      let counter = 0;
-      store.currentProduct.attributes.forEach((attribute) => {
-        attribute.items.map((item) => {
-          if (item.isChecked) {
-            counter++;
-          }
-        });
-      });
-      if (counter === store.currentProduct.attributes.length) {
-        this.addNewItemToCart();
-      }
-    }
-  };
-
   render() {
     return (
       <>
@@ -83,7 +41,7 @@ class Pdp extends Component {
               </div>
             )}
 
-            <button className="add-cart" onClick={this.addToCartHandler}>
+            <button className="add-cart" onClick={addToCartHandler}>
               ADD TO CART
             </button>
             {store.currentProduct.description && (

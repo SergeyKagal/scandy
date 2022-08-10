@@ -53,6 +53,9 @@
   top: 146px;
   left: calc(50% - 86px);
 }
+.product__card:hover .in-cart-icon {
+  display: block;
+}
 .in-cart-icon {
   width: 52px;
   height: 52px;
@@ -66,6 +69,7 @@
   background-position-y: -7px;
   background-repeat: no-repeat;
   cursor: pointer;
+  display: none;
 }
 .in-cart-icon:hover {
   box-shadow: 0 0 10px 2px #aaaaaa;

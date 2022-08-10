@@ -1,5 +1,5 @@
 import { autorun, makeAutoObservable } from 'mobx';
-// import {toJS}from'mobx'
+// import { toJS } from 'mobx';
 import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
@@ -151,6 +151,22 @@ class Store {
     });
     this.updateCurrentProduct(product);
   }
+
+  addProductFromPLP() {
+    if (this.currentProduct) {
+      this.currentProduct.isFromPLP = true;
+    }
+    if (this.currentProduct.attributes) {
+      this.currentProduct.attributes.forEach((attribute) => {
+        attribute.items.forEach((item, i) => {
+          if (!i) {
+            item.isChecked = true;
+          }
+        });
+      });
+    }
+  }
+
   //---------------------------------------------------
   constructor() {
     makeAutoObservable(this);
