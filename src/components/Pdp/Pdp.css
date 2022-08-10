@@ -61,6 +61,10 @@
 .add-cart:active {
   background-color: #4ba864;
 }
+.add-cart:disabled {
+  background-color: #cfdbd2;
+  cursor: auto;
+}
 .pdp__about {
   font-family: 'Roboto';
   padding-top: 40px;

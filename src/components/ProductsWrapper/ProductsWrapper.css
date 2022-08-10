@@ -38,10 +38,9 @@
   font-weight: 500;
 }
 .disabled-link {
-  pointer-events: none;
+  cursor: pointer;
   opacity: 0.45;
   position: relative;
-  z-index: -1;
 }
 .disabled-link::after {
   content: 'OUT OF STOCK';

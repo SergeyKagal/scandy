@@ -7,6 +7,7 @@ export const queries = {
       product(id:"${id}"){brand
         name
         id
+        inStock
         gallery
         description
         attributes{id,name,type,items{value,id,displayValue}}
