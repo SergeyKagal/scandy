@@ -41,7 +41,11 @@ class Pdp extends Component {
               </div>
             )}
 
-            <button className="add-cart" onClick={addToCartHandler}>
+            <button
+              className="add-cart"
+              onClick={addToCartHandler}
+              disabled={!store.currentProduct.inStock}
+            >
               ADD TO CART
             </button>
             {store.currentProduct.description && (

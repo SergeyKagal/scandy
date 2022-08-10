@@ -28,6 +28,7 @@ class PdpProperties extends Component {
                   onClick={() => {
                     store.productAttributesHandler(attribute, item);
                   }}
+                  disabled={!store.currentProduct.inStock}
                 >
                   {item.value}
                 </button>
