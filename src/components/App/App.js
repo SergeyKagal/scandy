@@ -1,13 +1,20 @@
 import './App.css';
 import React from 'react';
-// import { ProjectCover } from '../ProjectCover/ProjectCover';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PATH } from '../../constants/path';
 import Category from '../Category/Category';
 import Pdp from '../Pdp/Pdp';
 import Cart from '../Cart/Cart';
+import { getData } from '../../utils/getData';
+import { queries } from '../../constants/queries';
+import store from '../../store';
+import { observer } from 'mobx-react';
 
 class App extends React.Component {
+  componentDidMount = async () => {
+    const { categories } = await getData(queries.categories);
+    store.newProductList = categories;
+  };
   render() {
     return (
       <BrowserRouter>
@@ -21,4 +28,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default observer(App);

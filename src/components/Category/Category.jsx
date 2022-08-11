@@ -4,8 +4,12 @@ import ProductsWrapper from '../ProductsWrapper/ProductsWrapper';
 import './Category.css';
 import { observer } from 'mobx-react';
 import store from '../../store';
+import { removeZeroQty } from '../../utils/remove-zero-qty';
 
 class Category extends React.Component {
+  componentDidMount = () => {
+    removeZeroQty();
+  };
   render() {
     return (
       <div>

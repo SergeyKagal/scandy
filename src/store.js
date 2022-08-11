@@ -43,7 +43,7 @@ class Store {
 
   //--cart
 
-  cart = [];
+  cart = JSON.parse(localStorage.getItem('cart')) || [];
   cartUpdate(newCart) {
     this.cart = newCart;
   }
@@ -70,6 +70,13 @@ class Store {
         }
       }),
     ];
+  }
+
+  zeroQtyRemove() {
+    console.log(toJS(this.cart));
+    this.cart = this.cart.filter((item) => {
+      return item.product.qty;
+    });
   }
 
   //---navList
@@ -188,9 +195,9 @@ autorun(async () => {
   });
   store.newCurrentCategory = store.navList[0];
 });
-autorun(async () => {
-  const { categories } = await getData(queries.categories);
-  store.newProductList = categories;
-});
+// autorun(async () => {
+//   const { categories } = await getData(queries.categories);
+//   store.newProductList = categories;
+// });
 
 export default store;
