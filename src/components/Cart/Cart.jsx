@@ -8,8 +8,12 @@ import { taxCount } from '../../utils/tax';
 import { productQtyInCart } from '../../utils/productQty';
 import store from '../../store';
 import { observer } from 'mobx-react';
+import { removeZeroQty } from '../../utils/remove-zero-qty';
 
 class Cart extends Component {
+  componentWillUnmount = () => {
+    removeZeroQty();
+  };
   render() {
     return (
       <>

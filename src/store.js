@@ -1,5 +1,5 @@
 import { autorun, makeAutoObservable } from 'mobx';
-// import { toJS } from 'mobx';
+import { toJS } from 'mobx';
 import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
@@ -98,7 +98,7 @@ class Store {
   }
   //---product
 
-  currentProduct = {};
+  currentProduct = JSON.parse(localStorage.getItem('currentProduct')) || {};
 
   get currentProductImages() {
     return this.currentProduct.gallery.map((image, i) => {
@@ -150,6 +150,10 @@ class Store {
       };
     });
     this.updateCurrentProduct(product);
+    localStorage.setItem(
+      'currentProduct',
+      JSON.stringify(toJS(store.currentProduct))
+    );
   }
 
   addProductFromPLP() {
