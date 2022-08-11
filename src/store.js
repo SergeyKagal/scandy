@@ -5,9 +5,11 @@ import { getData } from './utils/getData';
 
 class Store {
   //--currencies
-  currentCurrency = 0;
-  currentCurrencySymbol = '$';
-  currencyList = [];
+  currentCurrency =
+    JSON.parse(localStorage.getItem('store')).currentCurrency || 0;
+  currentCurrencySymbol =
+    JSON.parse(localStorage.getItem('store')).currentCurrencySymbol || '$';
+  currencyList = JSON.parse(localStorage.getItem('store')).currencyList || [];
 
   setCurrentCurrency(num) {
     this.currentCurrency = num;
@@ -21,7 +23,7 @@ class Store {
   async getCurrencies() {
     const { currencies } = await getData(queries.currensy);
     this.currencyList = currencies.map((currency, i) => {
-      if (i) {
+      if (i !== store.currentCurrency) {
         return {
           id: `currency-${currency.label}`,
           title: `${currency.symbol} ${currency.label}`,
@@ -43,7 +45,7 @@ class Store {
 
   //--cart
 
-  cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = JSON.parse(localStorage.getItem('store')).cart || [];
   cartUpdate(newCart) {
     this.cart = newCart;
   }
@@ -73,7 +75,6 @@ class Store {
   }
 
   zeroQtyRemove() {
-    console.log(toJS(this.cart));
     this.cart = this.cart.filter((item) => {
       return item.product.qty;
     });
@@ -105,7 +106,8 @@ class Store {
   }
   //---product
 
-  currentProduct = JSON.parse(localStorage.getItem('currentProduct')) || {};
+  currentProduct =
+    JSON.parse(localStorage.getItem('store')).currentProduct || {};
 
   get currentProductImages() {
     return this.currentProduct.gallery.map((image, i) => {
@@ -193,7 +195,9 @@ autorun(async () => {
   store.newNavList = categories.map((item, i) => {
     return { ...item, id: `${i}${item.name}`, path: `/${item.name}` };
   });
-  store.newCurrentCategory = store.navList[0];
+  store.newCurrentCategory =
+    JSON.parse(localStorage.getItem('store')).currentCategory ||
+    store.navList[0];
 });
 // autorun(async () => {
 //   const { categories } = await getData(queries.categories);

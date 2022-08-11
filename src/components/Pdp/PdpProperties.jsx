@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { makeButtonClass } from '../../utils/makeButtonClass';
 import store from '../../store';
 import { observer } from 'mobx-react';
-// import { toJS } from 'mobx';
 
 class PdpProperties extends Component {
   render() {
