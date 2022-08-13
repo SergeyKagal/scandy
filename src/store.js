@@ -4,22 +4,34 @@ import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
 class Store {
-  //--currencies
+  //--currencies------------------
+
   currentCurrency =
     JSON.parse(localStorage.getItem('store')).currentCurrency || 0;
+
   currentCurrencySymbol =
     JSON.parse(localStorage.getItem('store')).currentCurrencySymbol || '$';
+
   currencyList = JSON.parse(localStorage.getItem('store')).currencyList || [];
+
+  isShowCurrencyList = false;
+
+  showHideCurrencyList() {
+    this.isShowCurrencyList = !this.isShowCurrencyList;
+  }
 
   setCurrentCurrency(num) {
     this.currentCurrency = num;
   }
+
   setCurrentCurrencySymbol(symbol) {
     this.currentCurrencySymbol = symbol;
   }
+
   setCurrencyList(list) {
     this.currencyList = list;
   }
+
   async getCurrencies() {
     const { currencies } = await getData(queries.currensy);
     this.currencyList = currencies.map((currency, i) => {
@@ -43,7 +55,7 @@ class Store {
     });
   }
 
-  //--cart
+  //--cart-------------------------
 
   cart = JSON.parse(localStorage.getItem('store')).cart || [];
   cartUpdate(newCart) {
@@ -80,7 +92,8 @@ class Store {
     });
   }
 
-  //---navList
+  //---navList-----------------------
+
   navList = [];
   currentCategory = '';
   set newNavList(list) {
@@ -93,7 +106,8 @@ class Store {
     this.currentCategory = newCurrentCategory;
   }
 
-  //---productList
+  //---productList-----------------------
+
   productList = [];
   set newProductList(list) {
     this.productList = list;
@@ -104,7 +118,8 @@ class Store {
     );
     return res ? res.products : [];
   }
-  //---product
+
+  //---product-----------------------
 
   currentProduct =
     JSON.parse(localStorage.getItem('store')).currentProduct || {};

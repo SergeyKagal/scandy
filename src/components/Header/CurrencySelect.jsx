@@ -10,8 +10,9 @@ class CurrencySelect extends Component {
   };
 
   clickHandler = () => {
-    this.setState({ isShowCurrencyList: !this.state.isShowCurrencyList });
-    this.state.isShowCurrencyList
+    // console.log('click');
+    store.showHideCurrencyList();
+    store.isShowCurrencyList
       ? this.setState({
           buttonClass: 'header__nav-currensy-select currency-arrow-down',
         })
@@ -19,21 +20,28 @@ class CurrencySelect extends Component {
           buttonClass: 'header__nav-currensy-select currency-arrow-up',
         });
   };
-  changeHandler = (id) => {
-    let resultList = [...toJS(store.currencyList)];
-    resultList.forEach((currency, i) => {
-      if (id === currency.id) {
-        currency.isChecked = true;
-        currency.labelClass = 'header__nav-currensy-option label-checked';
-        store.setCurrentCurrency(i);
-        store.setCurrentCurrencySymbol(currency.symbol);
-      } else {
-        currency.isChecked = false;
-        currency.labelClass = 'header__nav-currensy-option';
-      }
-      store.setCurrencyList(resultList);
-      this.clickHandler();
-    });
+
+  wrapperClickHandler = (e, id) => {
+    e.stopPropagation();
+    if (id === 'wrapper') {
+      setTimeout(() => {
+        store.showHideCurrencyList();
+      }, 0);
+    } else {
+      let resultList = [...toJS(store.currencyList)];
+      resultList.forEach((currency, i) => {
+        if (id === currency.id) {
+          currency.isChecked = true;
+          currency.labelClass = 'header__nav-currensy-option label-checked';
+          store.setCurrentCurrency(i);
+          store.setCurrentCurrencySymbol(currency.symbol);
+        } else {
+          currency.isChecked = false;
+          currency.labelClass = 'header__nav-currensy-option';
+        }
+        store.setCurrencyList(resultList);
+      });
+    }
   };
 
   render() {
@@ -42,29 +50,32 @@ class CurrencySelect extends Component {
         <button onClick={this.clickHandler} className={this.state.buttonClass}>
           {store.currentCurrencySymbol}
         </button>
-        {this.state.isShowCurrencyList && (
-          <form className="header__nav-currensy-list">
-            {store.currencyList.map((currency) => {
-              return (
-                <label
-                  key={currency.id}
-                  htmlFor={currency.id}
-                  className={currency.labelClass}
-                >
-                  <span>{currency.title}</span>
-                  <input
-                    className="currency-input"
-                    type="radio"
-                    name="currency"
-                    id={currency.id}
-                    defaultChecked={currency.isChecked}
-                    onChange={() => this.changeHandler(currency.id)}
-                    onClick={this.clickHandler}
-                  />
-                </label>
-              );
-            })}
-          </form>
+        {store.isShowCurrencyList && (
+          <div
+            className="currency-list-wrapper"
+            onClick={(e) => this.wrapperClickHandler(e, 'wrapper')}
+          >
+            <form className="header__nav-currensy-list">
+              {store.currencyList.map((currency) => {
+                return (
+                  <label
+                    key={currency.id}
+                    htmlFor={currency.id}
+                    className={currency.labelClass}
+                  >
+                    <span className="list-item-span">{currency.title}</span>
+                    <input
+                      className="currency-input"
+                      type="radio"
+                      name="currency"
+                      id={currency.id}
+                      onClick={(e) => this.wrapperClickHandler(e, currency.id)}
+                    />
+                  </label>
+                );
+              })}
+            </form>
+          </div>
         )}
       </>
     );
