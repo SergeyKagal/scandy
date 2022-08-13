@@ -55,26 +55,30 @@ class CurrencySelect extends Component {
             className="currency-list-wrapper"
             onClick={(e) => this.wrapperClickHandler(e, 'wrapper')}
           >
-            <form className="header__nav-currensy-list">
-              {store.currencyList.map((currency) => {
-                return (
-                  <label
-                    key={currency.id}
-                    htmlFor={currency.id}
-                    className={currency.labelClass}
-                  >
-                    <span className="list-item-span">{currency.title}</span>
-                    <input
-                      className="currency-input"
-                      type="radio"
-                      name="currency"
-                      id={currency.id}
-                      onClick={(e) => this.wrapperClickHandler(e, currency.id)}
-                    />
-                  </label>
-                );
-              })}
-            </form>
+            <div>
+              <form className="header__nav-currensy-list">
+                {store.currencyList.map((currency) => {
+                  return (
+                    <label
+                      key={currency.id}
+                      htmlFor={currency.id}
+                      className={currency.labelClass}
+                    >
+                      <span className="list-item-span">{currency.title}</span>
+                      <input
+                        className="currency-input"
+                        type="radio"
+                        name="currency"
+                        id={currency.id}
+                        onClick={(e) =>
+                          this.wrapperClickHandler(e, currency.id)
+                        }
+                      />
+                    </label>
+                  );
+                })}
+              </form>
+            </div>
           </div>
         )}
       </>

@@ -59,8 +59,8 @@ class Header extends React.Component {
               />
             </div>{' '}
           </nav>{' '}
+          {this.state.isShowBag && <Bag hideShowBag={this.hideShowBag} />}
         </header>
-        {this.state.isShowBag && <Bag hideShowBag={this.hideShowBag} />}
       </>
     );
   }
