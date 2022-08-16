@@ -8,6 +8,10 @@ import CartList from '../Cart/CartList';
 import store from '../../store';
 import { observer } from 'mobx-react';
 class Bag extends Component {
+  checkOutButtonHndl = () => {
+    console.log('Check out');
+    store.cartUpdate([]);
+  };
   render() {
     return (
       <>
@@ -36,7 +40,7 @@ class Bag extends Component {
           </div>
           <div className="bag__controls">
             <Link to={PATH.CART}>VIEW BAG</Link>
-            <button>CHECK OUT</button>
+            <button onClick={this.checkOutButtonHndl}>CHECK OUT</button>
           </div>
         </div>
       </>

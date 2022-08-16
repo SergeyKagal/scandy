@@ -10,6 +10,10 @@ import store from '../../store';
 import { observer } from 'mobx-react';
 
 class Cart extends Component {
+  orderButtonHndl = () => {
+    console.log('Order');
+    store.cartUpdate([]);
+  };
   render() {
     return (
       <>
@@ -55,7 +59,7 @@ class Cart extends Component {
                 )}
               </span>
             </div>
-            <button>ORDER</button>
+            <button onClick={this.orderButtonHndl}>ORDER</button>
           </div>
         </div>
       </>
