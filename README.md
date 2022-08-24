@@ -13,7 +13,5 @@
 3. Run the command **npm install**
 4. Run the command **npm run start**
 ---
-- [video](https://youtu.be/IpUoVu_FkIk)
-
-
+[![image](https://user-images.githubusercontent.com/78958096/186488109-ac6a534b-6991-437c-8cb1-4b7e0343ce5a.png)](https://youtu.be/IpUoVu_FkIk)
 
