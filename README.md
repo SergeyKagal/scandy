@@ -13,6 +13,7 @@
 3. Run the command **npm install**
 4. Run the command **npm run start**
 ---
+- [video](https://youtu.be/IpUoVu_FkIk)
 
 
 
