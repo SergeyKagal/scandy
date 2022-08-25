@@ -9,17 +9,26 @@ import { getData } from '../../utils/getData';
 import { queries } from '../../constants/queries';
 import store from '../../store';
 import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
 
 class App extends React.Component {
   componentDidMount = async () => {
     const { categories } = await getData(queries.categories);
     store.newProductList = categories;
+    console.log(toJS(store.productList));
   };
   render() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path={PATH.MAIN} element={<Category />} />
+          {!!store.navList.length &&
+            store.navList.map((navListItem) => (
+              <Route
+                key={navListItem.id}
+                path={navListItem.path}
+                element={<Category />}
+              />
+            ))}
           <Route path={PATH.PDP} element={<Pdp />} />
           <Route path={PATH.CART} element={<Cart />} />
         </Routes>

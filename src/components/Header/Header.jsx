@@ -35,7 +35,7 @@ class Header extends React.Component {
                       onClick={() => (store.newCurrentCategory = listItem)}
                     >
                       <Link
-                        to={PATH.MAIN}
+                        to={listItem.path}
                         className={
                           listItem.id === store.currentCategory.id
                             ? 'header__nav-link active'

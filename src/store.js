@@ -1,5 +1,6 @@
 import { autorun, makeAutoObservable } from 'mobx';
 import { toJS } from 'mobx';
+import { PATH } from './constants/path';
 import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
@@ -208,7 +209,12 @@ autorun(async () => {
   await store.getCurrencies();
   const { categories } = await getData(queries.navList);
   store.newNavList = categories.map((item, i) => {
-    return { ...item, id: `${i}${item.name}`, path: `/${item.name}` };
+    console.log(item.name);
+    return {
+      ...item,
+      id: `${i}${item.name}`,
+      path: item.name === 'all' ? PATH.MAIN : `/${item.name}`,
+    };
   });
   store.newCurrentCategory =
     JSON.parse(localStorage.getItem('store')).currentCategory ||
