@@ -22,6 +22,10 @@
   width: 79px;
   height: 80px;
   object-fit: contain;
+  cursor: pointer;
+}
+.pdp__previews img:hover {
+  box-shadow: 0 4px 5px 0 rgb(171, 172, 176, 0.7);
 }
 .pdp__image {
   width: 611px;
@@ -109,6 +113,10 @@
   font-family: 'Source Sans Pro';
   font-weight: 400;
   font-size: 16px;
+  cursor: pointer;
+}
+.pdp__prop-button:disabled {
+  cursor: default;
 }
 .cheked {
   background-color: #000000;
@@ -127,6 +135,10 @@
   margin-right: 8px;
   position: relative;
   border: none;
+  cursor: pointer;
+}
+.pdp__color-button:disabled {
+  cursor: default;
 }
 .pdp__color-checked::after {
   position: absolute;
