@@ -5,19 +5,13 @@ import './ProductsWrapper.css';
 import { PATH } from '../../constants/path';
 import store from '../../store';
 import { addToCartHandler } from '../../utils/add-to-cart';
-import { isProductInCart } from '../../utils/isProductInCart';
-import { removeCartItem } from '../../utils/remove-from-cart';
 
 class ProductsWrapper extends Component {
   cartButtonHandler = async (e, id) => {
     e.preventDefault();
     await store.getProductFromBE(id);
     store.addProductFromPLP();
-    if (isProductInCart(store.cart, { ...store.currentProduct })) {
-      removeCartItem({ ...store.currentProduct });
-    } else {
-      addToCartHandler();
-    }
+    addToCartHandler();
   };
 
   componentDidMount = async () => {
