@@ -20,12 +20,19 @@ class ProductsWrapper extends Component {
     }
   };
 
+  componentDidMount = async () => {
+    await store.getProductListByCategory(store.currentCategory.name);
+  };
+  componentDidUpdate = async () => {
+    await store.getProductListByCategory(store.currentCategory.name);
+  };
+
   render() {
     return (
       <section className="products__wrapper">
         <ul className="products__list">
-          {!!store.categoryProductList.length &&
-            store.categoryProductList.map((card) => {
+          {!!store.productList.length &&
+            store.productList.map((card) => {
               return (
                 <li className="product__card" key={card.id}>
                   <Link

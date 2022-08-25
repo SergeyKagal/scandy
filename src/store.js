@@ -113,11 +113,10 @@ class Store {
   set newProductList(list) {
     this.productList = list;
   }
-  get categoryProductList() {
-    const [res] = this.productList.filter(
-      (item) => item.name === this.currentCategory.name
-    );
-    return res ? res.products : [];
+
+  async getProductListByCategory(categoryName) {
+    const response = await getData(queries.products(categoryName));
+    this.newProductList = response.category.products;
   }
 
   //---product-----------------------
@@ -209,7 +208,6 @@ autorun(async () => {
   await store.getCurrencies();
   const { categories } = await getData(queries.navList);
   store.newNavList = categories.map((item, i) => {
-    console.log(item.name);
     return {
       ...item,
       id: `${i}${item.name}`,
@@ -220,9 +218,5 @@ autorun(async () => {
     JSON.parse(localStorage.getItem('store')).currentCategory ||
     store.navList[0];
 });
-// autorun(async () => {
-//   const { categories } = await getData(queries.categories);
-//   store.newProductList = categories;
-// });
 
 export default store;

@@ -17,4 +17,14 @@ export const queries = {
     }`;
   },
   navList: 'query{categories{name}}',
+  products: (categoryName) => `query {
+    category(input:{title:"${categoryName}"}){   
+      products{
+        id
+        gallery
+        name
+        inStock
+        prices{amount,currency{symbol,label}}}
+    }
+  }`,
 };
