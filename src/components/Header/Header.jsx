@@ -48,7 +48,17 @@ class Header extends React.Component {
                   );
                 })}
             </ul>
-            <Link to={PATH.MAIN} className=" a-logo">
+            <Link
+              to={PATH.MAIN}
+              className=" a-logo"
+              onClick={() =>
+                (store.newCurrentCategory = {
+                  name: 'all',
+                  id: '0all',
+                  path: '/',
+                })
+              }
+            >
               <img src="./images/a-logo.svg" alt="a-logo" />
             </Link>
             <div className="header__nav-controls">
