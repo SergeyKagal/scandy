@@ -9,7 +9,6 @@ import store from '../../store';
 import { observer } from 'mobx-react';
 class Bag extends Component {
   checkOutButtonHndl = () => {
-    console.log('Check out');
     store.cartUpdate([]);
   };
   render() {

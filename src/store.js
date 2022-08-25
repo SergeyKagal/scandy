@@ -5,8 +5,6 @@ import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
 class Store {
-  //--currencies------------------
-
   currentCurrency =
     JSON.parse(localStorage.getItem('store')).currentCurrency || 0;
 
@@ -56,8 +54,6 @@ class Store {
     });
   }
 
-  //--cart-------------------------
-
   cart = JSON.parse(localStorage.getItem('store')).cart || [];
   cartUpdate(newCart) {
     this.cart = newCart;
@@ -93,8 +89,6 @@ class Store {
     });
   }
 
-  //---navList-----------------------
-
   navList = [];
   currentCategory = '';
   set newNavList(list) {
@@ -107,8 +101,6 @@ class Store {
     this.currentCategory = newCurrentCategory;
   }
 
-  //---productList-----------------------
-
   productList = [];
   set newProductList(list) {
     this.productList = list;
@@ -118,8 +110,6 @@ class Store {
     const response = await getData(queries.products(categoryName));
     this.newProductList = response.category.products;
   }
-
-  //---product-----------------------
 
   currentProduct =
     JSON.parse(localStorage.getItem('store')).currentProduct || {};
@@ -195,11 +185,9 @@ class Store {
     }
   }
 
-  //---------------------------------------------------
   constructor() {
     makeAutoObservable(this);
   }
-  //-------------------------------------------------
 }
 
 const store = new Store();
