@@ -1,19 +1,20 @@
 .products__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  max-width: 1240px;
+  gap: 40px;
 }
 
 .product__card {
   display: flex;
   flex-direction: column;
   padding: 16px;
-  margin-top: 103px;
+  margin-top: 63px;
   position: relative;
 }
 .product__card img {
   height: 330px;
-  width: 330px;
+  width: 354px;
   object-fit: contain;
 }
 .product__card a {
