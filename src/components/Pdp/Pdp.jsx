@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Header from '../Header/Header';
 import Images from './Images';
 import './Pdp.css';
@@ -7,7 +7,7 @@ import store from '../../store';
 import { observer } from 'mobx-react';
 import { addToCartHandler } from '../../utils/add-to-cart';
 
-class Pdp extends Component {
+class Pdp extends PureComponent {
   render() {
     return (
       <>

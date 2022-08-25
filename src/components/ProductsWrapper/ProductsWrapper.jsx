@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import './ProductsWrapper.css';
@@ -6,7 +6,7 @@ import { PATH } from '../../constants/path';
 import store from '../../store';
 import { addToCartHandler } from '../../utils/add-to-cart';
 
-class ProductsWrapper extends Component {
+class ProductsWrapper extends PureComponent {
   cartButtonHandler = async (e, id) => {
     e.preventDefault();
     await store.getProductFromBE(id);

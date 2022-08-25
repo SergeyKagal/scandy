@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { makeButtonClass } from '../../utils/makeButtonClass';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
-class PdpProperties extends Component {
+class PdpProperties extends PureComponent {
   render() {
     return (
       <div className="pdp__props">

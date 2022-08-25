@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { toJS } from 'mobx';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
-class CurrencySelect extends Component {
+class CurrencySelect extends PureComponent {
   state = {
     isShowCurrencyList: false,
     buttonClass: 'header__nav-currensy-select currency-arrow-down',
   };
 
   clickHandler = () => {
-    // console.log('click');
     store.showHideCurrencyList();
     store.isShowCurrencyList
       ? this.setState({

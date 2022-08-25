@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Header from '../Header/Header';
 import './Cart.css';
 import CartList from './CartList';
@@ -9,9 +9,8 @@ import { productQtyInCart } from '../../utils/productQty';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
-class Cart extends Component {
+class Cart extends PureComponent {
   orderButtonHndl = () => {
-    console.log('Order');
     store.cartUpdate([]);
   };
   render() {

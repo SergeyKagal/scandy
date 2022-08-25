@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { itemsInCart } from '../../utils/itemsInCart';
 import { PATH } from '../../constants/path';
@@ -7,7 +7,7 @@ import { totalCount } from '../../utils/total-count';
 import CartList from '../Cart/CartList';
 import store from '../../store';
 import { observer } from 'mobx-react';
-class Bag extends Component {
+class Bag extends PureComponent {
   checkOutButtonHndl = () => {
     store.cartUpdate([]);
   };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { makeButtonClass } from '../../utils/makeButtonClass';
 import { actionPayload } from '../../constants/action-payload';
@@ -9,7 +9,7 @@ import store from '../../store';
 import { observer } from 'mobx-react';
 import { removeZeroQty } from '../../utils/remove-zero-qty';
 
-class CartList extends Component {
+class CartList extends PureComponent {
   state = {
     imageNumber: 0,
     maxImageNumber: this.props.cartItem.product.images.length - 1,
@@ -26,7 +26,9 @@ class CartList extends Component {
   };
 
   componentDidUpdate = () => {
-    removeZeroQty();
+    if (!this.props.cartItem.product.qty) {
+      removeZeroQty();
+    }
   };
 
   render() {

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Images extends Component {
+export default class Images extends PureComponent {
   state = {
     currentImageUrl: '',
   };

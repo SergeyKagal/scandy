@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { productQtyInCart } from '../../utils/productQty';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
-class CartButton extends Component {
+class CartButton extends PureComponent {
   render() {
     return (
       <>

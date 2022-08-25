@@ -5,7 +5,7 @@ import './Category.css';
 import { observer } from 'mobx-react';
 import store from '../../store';
 
-class Category extends React.Component {
+class Category extends React.PureComponent {
   render() {
     return (
       <div>

@@ -8,7 +8,7 @@ import Cart from '../Cart/Cart';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
-class App extends React.Component {
+class App extends React.PureComponent {
   render() {
     return (
       <BrowserRouter>

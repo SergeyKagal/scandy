@@ -8,7 +8,7 @@ import Bag from './Bag';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   state = {
     isShowBag: false,
   };
