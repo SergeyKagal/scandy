@@ -7,6 +7,7 @@ import { minusBtn } from '../ButtonBgr/Minus';
 import { imageChanger } from '../../utils/image-changer';
 import store from '../../store';
 import { observer } from 'mobx-react';
+import { removeZeroQty } from '../../utils/remove-zero-qty';
 
 class CartList extends Component {
   state = {
@@ -22,6 +23,10 @@ class CartList extends Component {
         action
       ),
     });
+  };
+
+  componentDidUpdate = () => {
+    removeZeroQty();
   };
 
   render() {
