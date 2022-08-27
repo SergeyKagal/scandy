@@ -1,7 +1,7 @@
 export const productQtyInCart = (cart) => {
-  let res = 0;
+  let result = 0;
   cart.forEach((cartItem) => {
-    res += cartItem.product.qty;
+    result += cartItem.product.qty;
   });
-  return { value: res, displayValue: res > 9 ? '9+' : `${res}` };
+  return { value: result, displayValue: result > 9 ? '9+' : `${result}` };
 };

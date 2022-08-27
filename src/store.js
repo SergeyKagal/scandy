@@ -5,6 +5,8 @@ import { queries } from './constants/queries';
 import { getData } from './utils/getData';
 
 class Store {
+  // currency
+
   currentCurrency =
     JSON.parse(localStorage.getItem('store')).currentCurrency || 0;
 
@@ -54,6 +56,8 @@ class Store {
     });
   }
 
+  // cart
+
   cart = JSON.parse(localStorage.getItem('store')).cart || [];
   cartUpdate(newCart) {
     this.cart = newCart;
@@ -89,6 +93,8 @@ class Store {
     });
   }
 
+  // nav list
+
   navList = [];
   currentCategory = '';
   set newNavList(list) {
@@ -101,14 +107,16 @@ class Store {
     this.currentCategory = newCurrentCategory;
   }
 
+  // product
+
   productList = [];
   set newProductList(list) {
     this.productList = list;
   }
 
   async getProductListByCategory(categoryName) {
-    const response = await getData(queries.products(categoryName));
-    this.newProductList = response.category.products;
+    const { category } = await getData(queries.products(categoryName));
+    this.newProductList = category.products;
   }
 
   currentProduct =

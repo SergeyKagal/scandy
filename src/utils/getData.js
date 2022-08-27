@@ -1,5 +1,7 @@
+const URL = 'http://localhost:4000/';
+
 export const getData = async (query) => {
-  const response = await fetch('http://localhost:4000/', {
+  const response = await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

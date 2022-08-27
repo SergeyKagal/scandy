@@ -1,12 +1,12 @@
 import { productQtyInCart } from './productQty';
 
 export const itemsInCart = (cart) => {
-  const res = productQtyInCart(cart).value;
-  if (res > 1) {
-    return `${res} items`;
+  const { value } = productQtyInCart(cart);
+  if (value > 1) {
+    return `${value} items`;
   }
-  if (res === 1) {
-    return `${res} item`;
+  if (value === 1) {
+    return `${value} item`;
   } else {
     return '';
   }
