@@ -8,38 +8,53 @@ import { observer } from 'mobx-react';
 import { addToCartHandler } from '../../utils/add-to-cart';
 
 class Pdp extends PureComponent {
+  renderImages(gallery) {
+    return gallery ? (
+      <Images
+        images={store.currentProductImages}
+        defaultImageUrl={store.currentProduct.gallery[0]}
+      />
+    ) : null;
+  }
+
+  renderPrice(prices) {
+    return prices ? (
+      <div className="pdp__price-wrapper">
+        <span>PRICE:</span>
+        <div className="pdp__price">
+          <span className="price-symbol">{store.currentCurrencySymbol}</span>
+          <span className="price-amount">
+            {prices[store.currentCurrency].amount.toFixed(2)}
+          </span>
+        </div>
+      </div>
+    ) : null;
+  }
+
+  renderDescription(description) {
+    return description ? (
+      <p
+        className="pdp__about"
+        dangerouslySetInnerHTML={{
+          __html: description,
+        }}
+      ></p>
+    ) : null;
+  }
+
   render() {
+    const { gallery, brand, name, prices, description } = store.currentProduct;
     return (
       <>
         <Header />
         <section className="pdp__wrapper">
-          {store.currentProduct.gallery && (
-            <Images
-              images={store.currentProductImages}
-              defaultImageUrl={store.currentProduct.gallery[0]}
-            />
-          )}
+          {this.renderImages(gallery)}
           <div className="pdp__main">
-            <h3 className="pdp__brand-name">{store.currentProduct.brand}</h3>
-            <h4 className="pdp__product-name">{store.currentProduct.name}</h4>
-
+            <h3 className="pdp__brand-name">{brand}</h3>
+            <h4 className="pdp__product-name">{name}</h4>
             {store.currentProductAttributes && <PdpProperties />}
 
-            {store.currentProduct.prices && (
-              <div className="pdp__price-wrapper">
-                <span>PRICE:</span>
-                <div className="pdp__price">
-                  <span className="price-symbol">
-                    {store.currentCurrencySymbol}
-                  </span>
-                  <span className="price-amount">
-                    {store.currentProduct.prices[
-                      store.currentCurrency
-                    ].amount.toFixed(2)}
-                  </span>
-                </div>
-              </div>
-            )}
+            {this.renderPrice(prices)}
 
             <button
               className="add-cart"
@@ -48,14 +63,7 @@ class Pdp extends PureComponent {
             >
               ADD TO CART
             </button>
-            {store.currentProduct.description && (
-              <p
-                className="pdp__about"
-                dangerouslySetInnerHTML={{
-                  __html: store.currentProduct.description,
-                }}
-              ></p>
-            )}
+            {this.renderDescription(description)}
           </div>
         </section>
       </>

@@ -6,15 +6,15 @@ import { observer } from 'mobx-react';
 
 class CartButton extends PureComponent {
   render() {
+    const { hideShowBag } = this.props;
+    const { displayValue } = productQtyInCart(store.cart);
     return (
       <>
-        <button className="header__nav-cart" onClick={this.props.hideShowBag}>
+        <button className="header__nav-cart" onClick={hideShowBag}>
           <img src="./images/cart-icon.svg" alt="cart-icon" />
         </button>
         {!!store.cart.length && (
-          <span className="header__nav-productQty">
-            {productQtyInCart(store.cart).displayValue}
-          </span>
+          <span className="header__nav-productQty">{displayValue}</span>
         )}
       </>
     );

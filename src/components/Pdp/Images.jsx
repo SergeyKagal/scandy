@@ -10,10 +10,12 @@ export default class Images extends PureComponent {
   };
 
   render() {
+    const { images, defaultImageUrl } = this.props;
+    const { currentImageUrl } = this.state;
     return (
       <div className="pdp__images">
         <div className="pdp__previews">
-          {this.props.images.map((image) => (
+          {images.map((image) => (
             <img
               key={image.id}
               src={image.imageUrl}
@@ -25,7 +27,7 @@ export default class Images extends PureComponent {
           ))}
         </div>
         <img
-          src={this.state.currentImageUrl || this.props.defaultImageUrl}
+          src={currentImageUrl || defaultImageUrl}
           alt="product image"
           className="pdp__image"
         />

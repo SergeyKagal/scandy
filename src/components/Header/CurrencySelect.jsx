@@ -44,19 +44,22 @@ class CurrencySelect extends PureComponent {
   };
 
   render() {
+    const { buttonClass } = this.state;
+    const { currentCurrencySymbol, isShowCurrencyList, currencyList } = store;
+
     return (
       <>
-        <button onClick={this.clickHandler} className={this.state.buttonClass}>
-          {store.currentCurrencySymbol}
+        <button onClick={this.clickHandler} className={buttonClass}>
+          {currentCurrencySymbol}
         </button>
-        {store.isShowCurrencyList && (
+        {isShowCurrencyList && (
           <div
             className="currency-list-wrapper"
             onClick={(e) => this.wrapperClickHandler(e, 'wrapper')}
           >
             <div>
               <form className="header__nav-currensy-list">
-                {store.currencyList.map((currency) => {
+                {currencyList.map((currency) => {
                   return (
                     <label
                       key={currency.id}

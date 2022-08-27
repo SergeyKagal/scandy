@@ -12,7 +12,7 @@ import {
   renderTitle,
 } from './CartListRenders';
 
-class CartList extends PureComponent {
+class CartListItem extends PureComponent {
   state = {
     imageNumber: 0,
     maxImageNumber: this.props.cartItem.product.images.length - 1,
@@ -55,8 +55,8 @@ class CartList extends PureComponent {
   }
 }
 
-CartList.propTypes = {
+CartListItem.propTypes = {
   cartItem: PropTypes.object.isRequired,
   cartClass: PropTypes.string.isRequired,
 };
-export default observer(CartList);
+export default observer(CartListItem);

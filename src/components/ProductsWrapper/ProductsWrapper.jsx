@@ -21,12 +21,42 @@ class ProductsWrapper extends PureComponent {
     await store.getProductListByCategory(store.currentCategory.name);
   };
 
+  renderAddToCartButton(card) {
+    return card.inStock ? (
+      <button
+        className="in-cart-icon"
+        onClick={(e) => this.cartButtonHandler(e, card.id)}
+      ></button>
+    ) : null;
+  }
+
+  renderCardImage(card) {
+    return <img src={card.gallery[0]} alt={card.id} />;
+  }
+
+  renderCardInfo(card) {
+    return (
+      <>
+        <h3 className="product__title">{card.name}</h3>
+        <div className="product__price">
+          <span className="product__price-currency">
+            {store.currentCurrencySymbol}
+          </span>
+          <span className="product__price-amont">
+            {card.prices[store.currentCurrency].amount.toFixed(2)}
+          </span>
+        </div>
+      </>
+    );
+  }
+
   render() {
+    const { productList } = store;
     return (
       <section className="products__wrapper">
         <ul className="products__list">
-          {!!store.productList.length &&
-            store.productList.map((card) => {
+          {!!productList.length &&
+            productList.map((card) => {
               return (
                 <li className="product__card" key={card.id}>
                   <Link
@@ -36,22 +66,9 @@ class ProductsWrapper extends PureComponent {
                     }}
                     className={card.inStock ? undefined : 'disabled-link'}
                   >
-                    <img src={card.gallery[0]} alt={card.id} />{' '}
-                    {card.inStock && (
-                      <button
-                        className="in-cart-icon"
-                        onClick={(e) => this.cartButtonHandler(e, card.id)}
-                      ></button>
-                    )}
-                    <h3 className="product__title">{card.name}</h3>
-                    <div className="product__price">
-                      <span className="product__price-currency">
-                        {store.currentCurrencySymbol}
-                      </span>
-                      <span className="product__price-amont">
-                        {card.prices[store.currentCurrency].amount.toFixed(2)}
-                      </span>
-                    </div>
+                    {this.renderCardImage(card)}
+                    {this.renderAddToCartButton(card)}
+                    {this.renderCardInfo(card)}
                   </Link>
                 </li>
               );
