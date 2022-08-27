@@ -29,7 +29,8 @@ class CartList extends PureComponent {
   };
 
   componentDidUpdate = () => {
-    if (!this.props.cartItem.product.qty) {
+    const { qty } = this.props.cartItem.product;
+    if (!qty) {
       removeZeroQty();
     }
   };
@@ -48,7 +49,7 @@ class CartList extends PureComponent {
         {renderImage(cartClass, cartItem, this.state.imageNumber)}
         {cartClass === 'cart' &&
           cartItem.product.images.length > 1 &&
-          renderImageChanger()}
+          renderImageChanger(this.imageButtonHandler)}
       </li>
     );
   }

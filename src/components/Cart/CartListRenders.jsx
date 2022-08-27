@@ -95,16 +95,16 @@ export function renderImage(cartClass, cartItem, imageNumber) {
     />
   );
 }
-export function renderImageChanger() {
+export function renderImageChanger(imageButtonHandler) {
   return (
     <div className="image-changer">
       <button
         className="image-changer-left"
-        onClick={() => this.imageButtonHandler(actionPayload.decrement)}
+        onClick={() => imageButtonHandler(actionPayload.decrement)}
       ></button>
       <button
         className="image-changer-right"
-        onClick={() => this.imageButtonHandler(actionPayload.increment)}
+        onClick={() => imageButtonHandler(actionPayload.increment)}
       ></button>
     </div>
   );
