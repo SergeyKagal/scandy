@@ -6,6 +6,7 @@ import PdpProperties from './PdpProperties';
 import store from '../../store';
 import { observer } from 'mobx-react';
 import { addToCartHandler } from '../../utils/add-to-cart';
+import { isAllAttributesChecked } from '../../utils/attrchecker';
 
 class Pdp extends PureComponent {
   renderImages(gallery) {
@@ -56,13 +57,17 @@ class Pdp extends PureComponent {
 
             {this.renderPrice(prices)}
 
-            <button
-              className="add-cart"
-              onClick={addToCartHandler}
-              disabled={!store.currentProduct.inStock}
-            >
-              ADD TO CART
-            </button>
+            {store.currentProduct && (
+              <button
+                className="add-cart"
+                onClick={addToCartHandler}
+                disabled={
+                  !store.currentProduct.inStock || !isAllAttributesChecked()
+                }
+              >
+                ADD TO CART
+              </button>
+            )}
             {this.renderDescription(description)}
           </div>
         </section>

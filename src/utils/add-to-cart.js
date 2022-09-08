@@ -30,16 +30,6 @@ export const addToCartHandler = () => {
       }),
     ]);
   } else {
-    let counter = 0;
-    store.currentProduct.attributes.forEach((attribute) => {
-      attribute.items.map((item) => {
-        if (item.isChecked) {
-          counter++;
-        }
-      });
-    });
-    if (counter === store.currentProduct.attributes.length) {
-      addNewItemToCart();
-    }
+    addNewItemToCart();
   }
 };
