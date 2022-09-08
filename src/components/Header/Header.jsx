@@ -26,7 +26,10 @@ class Header extends React.PureComponent {
               <li
                 key={listItem.id}
                 className="header__nav-list-item"
-                onClick={() => (store.newCurrentCategory = listItem)}
+                onClick={() => {
+                  store.newCurrentCategory = listItem;
+                  store.getProductListByCategory(listItem.name);
+                }}
               >
                 <Link
                   to={listItem.path}
@@ -50,13 +53,14 @@ class Header extends React.PureComponent {
       <Link
         to={PATH.MAIN}
         className=" a-logo"
-        onClick={() =>
-          (store.newCurrentCategory = {
+        onClick={() => {
+          store.newCurrentCategory = {
             name: 'all',
             id: '0all',
             path: '/',
-          })
-        }
+          };
+          store.getProductListByCategory('all');
+        }}
       >
         <img src="./images/a-logo.svg" alt="a-logo" />
       </Link>

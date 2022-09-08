@@ -17,9 +17,6 @@ class ProductsWrapper extends PureComponent {
   componentDidMount = async () => {
     await store.getProductListByCategory(store.currentCategory.name);
   };
-  componentDidUpdate = async () => {
-    await store.getProductListByCategory(store.currentCategory.name);
-  };
 
   renderAddToCartButton(card) {
     return card.inStock ? (
