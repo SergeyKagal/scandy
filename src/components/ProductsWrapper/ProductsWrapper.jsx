@@ -1,17 +1,25 @@
 import React, { PureComponent } from 'react';
 import { observer } from 'mobx-react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import './ProductsWrapper.css';
 import { PATH } from '../../constants/path';
 import store from '../../store';
 import { addToCartHandler } from '../../utils/add-to-cart';
 
 class ProductsWrapper extends PureComponent {
+  state = {
+    redirect: false,
+  };
+
   cartButtonHandler = async (e, id) => {
     e.preventDefault();
     await store.getProductFromBE(id);
-    store.addProductFromPLP();
-    addToCartHandler();
+    if (!store.currentProduct.attributes.length) {
+      store.addProductFromPLP();
+      addToCartHandler();
+    } else {
+      this.setState({ redirect: true });
+    }
   };
 
   componentDidMount = async () => {
@@ -23,7 +31,9 @@ class ProductsWrapper extends PureComponent {
       <button
         className="in-cart-icon"
         onClick={(e) => this.cartButtonHandler(e, card.id)}
-      ></button>
+      >
+        {this.state.redirect && <Navigate to={PATH.PDP} replace={true} />}
+      </button>
     ) : null;
   }
 
