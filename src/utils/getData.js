@@ -1,7 +1,7 @@
 const URL = 'http://localhost:4000/';
 
 export const getData = async (query) => {
-  const response = await fetch(URL, {
+  return await fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -13,6 +13,4 @@ export const getData = async (query) => {
   })
     .then((res) => res.json())
     .then((res) => res.data);
-
-  return response;
 };
