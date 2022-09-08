@@ -161,6 +161,7 @@
   color: #ffffff;
   background-repeat: no-repeat;
   border: none;
+  cursor: pointer;
 }
 .image-changer-left {
   background-image: url('../../../public/images/arrow-left.svg.svg');
