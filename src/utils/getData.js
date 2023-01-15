@@ -1,4 +1,4 @@
-const URL = 'http://localhost:4000/';
+const URL = 'https://scandy-back.onrender.com/';
 
 export const getData = async (query) => {
   return await fetch(URL, {
