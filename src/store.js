@@ -7,13 +7,11 @@ import { getData } from './utils/getData';
 class Store {
   // currency
 
-  currentCurrency =
-    JSON.parse(localStorage.getItem('store')).currentCurrency || 0;
+  currentCurrency = 0;
 
-  currentCurrencySymbol =
-    JSON.parse(localStorage.getItem('store')).currentCurrencySymbol || '$';
+  currentCurrencySymbol = '$';
 
-  currencyList = JSON.parse(localStorage.getItem('store')).currencyList || [];
+  currencyList = [];
 
   isShowCurrencyList = false;
 
@@ -58,7 +56,7 @@ class Store {
 
   // cart
 
-  cart = JSON.parse(localStorage.getItem('store')).cart || [];
+  cart = [];
   cartUpdate(newCart) {
     this.cart = newCart;
   }
@@ -115,12 +113,16 @@ class Store {
   }
 
   async getProductListByCategory(categoryName) {
-    const { category } = await getData(queries.products(categoryName));
-    this.newProductList = category.products;
+    if (categoryName) {
+      const { category } = await getData(queries.products(categoryName));
+      this.newProductList = category.products;
+    } else {
+      const { category } = await getData(queries.products('all'));
+      this.newProductList = category.products;
+    }
   }
 
-  currentProduct =
-    JSON.parse(localStorage.getItem('store')).currentProduct || {};
+  currentProduct = {};
 
   get currentProductImages() {
     return this.currentProduct.gallery.map((image, i) => {
@@ -210,9 +212,6 @@ autorun(async () => {
       path: item.name === 'all' ? PATH.MAIN : `/${item.name}`,
     };
   });
-  store.newCurrentCategory =
-    JSON.parse(localStorage.getItem('store')).currentCategory ||
-    store.navList[0];
 });
 
 export default store;
