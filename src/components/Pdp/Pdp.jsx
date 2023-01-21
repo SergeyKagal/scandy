@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import Header from '../Header/Header';
 import Images from './Images';
 import './Pdp.css';
 import PdpProperties from './PdpProperties';
@@ -47,7 +46,6 @@ class Pdp extends PureComponent {
     const { gallery, brand, name, prices, description } = store.currentProduct;
     return (
       <>
-        <Header />
         <section className="pdp__wrapper">
           {this.renderImages(gallery)}
           <div className="pdp__main">

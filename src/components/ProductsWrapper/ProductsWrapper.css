@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   max-width: 1240px;
   gap: 40px;
+  justify-content: center;
 }
 
 .product__card {

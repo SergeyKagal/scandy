@@ -1,12 +1,13 @@
 .header {
-  max-width: 1240px;
   height: 80px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  width: 100%;
 }
 .header__nav {
   position: relative;
+  max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
   height: 100%;

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import Header from '../Header/Header';
 import './Cart.css';
 import CartListItem from './CartListItem';
 import { totalCount } from '../../utils/total-count';
@@ -17,7 +16,6 @@ class Cart extends PureComponent {
     const { cart, currentCurrency } = store;
     return (
       <>
-        <Header />
         <div className="cart__wrapper">
           <h3 className="cart__title ">CART</h3>
 
