@@ -33,7 +33,8 @@ class Store {
 
   async getCurrencies() {
     const { currencies } = await getData(queries.currensy);
-    this.currencyList = currencies.map((currency, i) => {
+
+    const list = currencies.map((currency, i) => {
       if (i !== store.currentCurrency) {
         return {
           id: `currency-${currency.label}`,
@@ -52,6 +53,7 @@ class Store {
         };
       }
     });
+    this.setCurrencyList(list);
   }
 
   // cart

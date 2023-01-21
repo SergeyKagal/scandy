@@ -6,6 +6,7 @@ import Category from '../Category/Category';
 import Pdp from '../Pdp/Pdp';
 import Cart from '../Cart/Cart';
 import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
@@ -13,8 +14,8 @@ class App extends React.PureComponent {
   render() {
     return (
       <>
-        {' '}
         <BrowserRouter>
+          <Header />
           <Routes>
             {!!store.navList.length &&
               store.navList.map((navListItem) => (
