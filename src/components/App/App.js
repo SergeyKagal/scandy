@@ -25,7 +25,7 @@ class App extends React.PureComponent {
                   element={<Category />}
                 />
               ))}
-            <Route path={PATH.MAIN} element={<Pdp />} />
+            <Route path={PATH.MAIN} element={<Category />} />
             <Route path={PATH.PDP} element={<Pdp />} />
             <Route path={PATH.CART} element={<Cart />} />
           </Routes>
