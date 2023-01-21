@@ -14,23 +14,24 @@ class App extends React.PureComponent {
   render() {
     return (
       <>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            {!!store.navList.length &&
-              store.navList.map((navListItem) => (
+        {!!store.navList.length && (
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              {store.navList.map((navListItem) => (
                 <Route
                   key={navListItem.id}
                   path={navListItem.path}
                   element={<Category />}
                 />
               ))}
-            <Route path={PATH.MAIN} element={<Category />} />
-            <Route path={PATH.PDP} element={<Pdp />} />
-            <Route path={PATH.CART} element={<Cart />} />
-          </Routes>
-        </BrowserRouter>
-        <Footer />
+              <Route path={PATH.MAIN} element={<Category />} />
+              <Route path={PATH.PDP} element={<Pdp />} />
+              <Route path={PATH.CART} element={<Cart />} />
+            </Routes>
+          </BrowserRouter>
+        )}
+        {!!store.navList.length && <Footer />}
       </>
     );
   }

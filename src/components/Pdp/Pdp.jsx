@@ -55,7 +55,7 @@ class Pdp extends PureComponent {
 
             {this.renderPrice(prices)}
 
-            {store.currentProduct && (
+            {!!store.currentProduct && (
               <button
                 className="add-cart"
                 onClick={addToCartHandler}
