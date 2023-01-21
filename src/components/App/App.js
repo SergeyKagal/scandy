@@ -5,27 +5,32 @@ import { PATH } from '../../constants/path';
 import Category from '../Category/Category';
 import Pdp from '../Pdp/Pdp';
 import Cart from '../Cart/Cart';
+import Footer from '../Footer/Footer';
 import store from '../../store';
 import { observer } from 'mobx-react';
 
 class App extends React.PureComponent {
   render() {
     return (
-      <BrowserRouter>
-        <Routes>
-          {!!store.navList.length &&
-            store.navList.map((navListItem) => (
-              <Route
-                key={navListItem.id}
-                path={navListItem.path}
-                element={<Category />}
-              />
-            ))}
-          <Route path={PATH.MAIN} element={<Pdp />} />
-          <Route path={PATH.PDP} element={<Pdp />} />
-          <Route path={PATH.CART} element={<Cart />} />
-        </Routes>
-      </BrowserRouter>
+      <>
+        {' '}
+        <BrowserRouter>
+          <Routes>
+            {!!store.navList.length &&
+              store.navList.map((navListItem) => (
+                <Route
+                  key={navListItem.id}
+                  path={navListItem.path}
+                  element={<Category />}
+                />
+              ))}
+            <Route path={PATH.MAIN} element={<Pdp />} />
+            <Route path={PATH.PDP} element={<Pdp />} />
+            <Route path={PATH.CART} element={<Cart />} />
+          </Routes>
+        </BrowserRouter>
+        <Footer />
+      </>
     );
   }
 }

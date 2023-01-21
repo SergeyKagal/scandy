@@ -1,0 +1,28 @@
+footer {
+  height: 50px;
+  font-family: 'Raleway';
+  margin-bottom: 15px;
+}
+.footer__link {
+  text-decoration: none;
+  color: #5e5e5e;
+  line-height: 40px;
+  padding: 0 20px;
+  border: #acacac 2px solid;
+  border-radius: 20px;
+  box-shadow: #545454 3px 3px 5px;
+  font-weight: 500;
+}
+.footer__link:hover {
+  text-shadow: #545454 1px 1px 5px;
+}
+.footer__link:active {
+  box-shadow: none;
+}
+.footer__links-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
