@@ -4,10 +4,11 @@
   margin-right: auto;
   position: relative;
   width: 100%;
+  max-width: 1240px;
 }
 .header__nav {
   position: relative;
-  max-width: 1240px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   height: 100%;
@@ -243,7 +244,6 @@
 .bag__prop-button {
   width: 24px;
   height: 24px;
-  background-color: #ffffff;
   font-family: Source Sans Pro;
   font-size: 14px;
   font-weight: 400;
