@@ -9,11 +9,13 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import store from '../../store';
 import { observer } from 'mobx-react';
+import Preloader from '../Preloader/Preloader';
 
 class App extends React.PureComponent {
   render() {
     return (
       <>
+        {!store.navList.length && <Preloader />}
         {!!store.navList.length && (
           <BrowserRouter>
             <Header />
