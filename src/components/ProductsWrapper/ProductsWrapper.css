@@ -1,0 +1,76 @@
+.products__list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1240px;
+  gap: 40px;
+}
+
+.product__card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin-top: 63px;
+  position: relative;
+}
+.product__card img {
+  height: 330px;
+  width: 354px;
+  object-fit: contain;
+}
+.product__card a {
+  text-decoration: none;
+}
+.product__card:hover {
+  box-shadow: 0 4px 35px 0 rgb(171, 172, 176, 0.4);
+}
+.product__title,
+.product__price {
+  font-family: 'Raleway';
+  font-size: 18px;
+  line-height: 28.8px;
+  color: #1d1f22;
+  text-decoration: none;
+}
+.product__title {
+  font-weight: 300;
+  margin-top: 24px;
+}
+.product__price {
+  font-weight: 500;
+}
+.disabled-link {
+  cursor: pointer;
+  opacity: 0.45;
+  position: relative;
+}
+.disabled-link::after {
+  content: 'OUT OF STOCK';
+  font-family: 'Raleway';
+  font-size: 24px;
+  font-weight: 400;
+  color: #070707;
+  position: absolute;
+  top: 146px;
+  left: calc(50% - 86px);
+}
+.product__card:hover .in-cart-icon {
+  display: block;
+}
+.in-cart-icon {
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  bottom: 72px;
+  right: 31px;
+  border-radius: 50%;
+  border: none;
+  background-image: url('../../../public/images/in-cart-icon.svg');
+  background-position-x: center;
+  background-position-y: -7px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: none;
+}
+.in-cart-icon:hover {
+  box-shadow: 0 0 10px 2px #aaaaaa;
+}

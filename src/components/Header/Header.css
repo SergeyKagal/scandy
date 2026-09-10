@@ -1,0 +1,308 @@
+.header {
+  max-width: 1240px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.header__nav {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.header__nav-list {
+  font-family: 'Raleway';
+  font-weight: 400;
+
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.header__nav-link {
+  text-decoration: none;
+  padding: 26px 16px;
+  border: none;
+  cursor: pointer;
+  color: #1d1f22;
+}
+.header__nav-link:hover,
+.active {
+  font-weight: 600;
+  color: #5ece7b;
+}
+.active {
+  border-bottom: 2px solid #5ece7b;
+}
+.a-logo {
+  margin-right: 13.2%;
+  padding-top: 10px;
+}
+
+.header__nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  position: relative;
+}
+
+.header__nav-currensy-select {
+  border: none;
+  font-family: 'Raleway';
+  font-weight: 500;
+  font-size: 18px;
+  text-transform: uppercase;
+  width: 38px;
+  height: 29px;
+  position: relative;
+  padding-right: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+.currency-arrow-down::after {
+  content: '^';
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  transform: rotate(180deg) scale(1.3, 0.7);
+}
+
+.currency-arrow-up::after {
+  content: '^';
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  transform: scale(1.3, 0.7);
+}
+.currency-list-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+.header__nav-currensy-list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 65px;
+  right: 50px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  background-color: #ffffff;
+  z-index: 10;
+}
+
+.currency-list-wrapper > div {
+  max-width: 1240px;
+  height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.header__nav-currensy-option {
+  text-transform: uppercase;
+  font-family: 'Raleway';
+  padding: 8px 38px 8px 20px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.header__nav-currensy-option:hover {
+  background-color: #eeeeee;
+}
+.label-checked {
+  background-color: #eeeeee;
+}
+.currency-input {
+  display: none;
+}
+.header__nav-cart {
+  border: none;
+  background: transparent;
+  width: 20px;
+  height: 18px;
+  cursor: pointer;
+}
+.header__nav-productQty {
+  position: absolute;
+  right: -12px;
+  top: -4px;
+  width: 20px;
+  height: 20px;
+  background-color: #1d1f22;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Roboto';
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+  z-index: -1;
+}
+.bag__background {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100vw;
+  height: calc(100% - 80px);
+  background-color: rgb(57, 55, 72, 0.22);
+  z-index: 1;
+}
+
+.bag__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 80px;
+  right: 0px;
+  z-index: 2;
+  padding: 32px 16px;
+  font-family: 'Raleway';
+}
+.bag__list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.bag__title {
+  margin-bottom: 32px;
+
+  font-weight: 700;
+  font-size: 16px;
+}
+.bag__title span {
+  font-weight: 500;
+}
+.bag__list-item {
+  display: flex;
+  justify-content: space-between;
+  min-height: 190px;
+}
+.bag__product {
+  width: 136px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bag__product h5 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25.6px;
+}
+.bag__product-price {
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 6px;
+}
+.bag__prop-wrapper span {
+  font-size: 14px;
+  font-weight: 400;
+}
+.bag__product-qty {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 8px;
+}
+.bag__product-qty button {
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.bag__product-qty p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bag__product-image {
+  width: 121px;
+  height: 190px;
+  object-fit: contain;
+}
+.bag__prop-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.bag__prop-button {
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff;
+  font-family: Source Sans Pro;
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  border: #1d1f22 1px solid;
+}
+.bag__color-button {
+  width: 18px;
+  height: 18px;
+  padding: 1px;
+  font-size: 0;
+  border: none;
+  position: relative;
+}
+.bag__prop-color-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.bag__color-checked {
+  box-shadow: 0 0 0px 1px #5ece7b;
+  border: #ffffff 1px solid;
+}
+.bag__total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+.bag__total-title {
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+.bag__total-money {
+  font-weight: 700;
+}
+
+.bag__controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 34px;
+}
+.bag__controls a,
+.bag__controls button {
+  width: 140px;
+  height: 43px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.bag__controls a {
+  text-decoration: none;
+  color: #1d1f22;
+  border: solid 1px #1d1f22;
+}
+.bag__controls button {
+  border: none;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #5ece7b;
+}

@@ -1,0 +1,152 @@
+.pdp__wrapper {
+  max-width: 1440px;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: 80px 219px 80px 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.pdp__images {
+  display: flex;
+  gap: 40px;
+}
+.pdp__previews {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.pdp__previews img {
+  width: 79px;
+  height: 80px;
+  object-fit: contain;
+  cursor: pointer;
+}
+.pdp__previews img:hover {
+  box-shadow: 0 4px 5px 0 rgb(171, 172, 176, 0.7);
+}
+.pdp__image {
+  width: 611px;
+  height: 511px;
+  object-fit: contain;
+}
+.pdp__main {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Raleway';
+  width: 292px;
+}
+.pdp__brand-name,
+.pdp__product-name {
+  font-size: 27px;
+}
+.pdp__brand-name {
+  font-weight: 600;
+}
+.pdp__product-name {
+  font-weight: 400;
+  padding-top: 11px;
+}
+.add-cart {
+  height: 52px;
+  color: #ffffff;
+  background-color: #5ece7b;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.add-cart:hover {
+  background-color: #71cf8a;
+  transition: 0.2s;
+}
+.add-cart:active {
+  background-color: #4ba864;
+}
+.add-cart:disabled {
+  background-color: #cfdbd2;
+  cursor: auto;
+}
+.pdp__about {
+  font-family: 'Roboto';
+  padding-top: 40px;
+}
+.pdp__props {
+  padding-top: 43px;
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.pdp__prop-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pdp__prop-wrapper span,
+.pdp__price-wrapper > span {
+  font-size: 18px;
+  font-family: 'RobotoBold';
+  text-transform: uppercase;
+}
+.pdp__price-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pdp__price {
+  height: 46px;
+  margin-bottom: 20px;
+}
+.pdp__prop-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.pdp__prop-button {
+  width: 63px;
+  height: 45px;
+  border: #000000 1px solid;
+  margin-right: 12px;
+  background: #ffffff;
+  font-family: 'Source Sans Pro';
+  font-weight: 400;
+  font-size: 16px;
+  cursor: pointer;
+}
+.pdp__prop-button:disabled {
+  cursor: default;
+}
+.cheked {
+  background-color: #000000;
+  color: #ffffff;
+}
+.price-symbol,
+.price-amount {
+  font-family: 'Raleway';
+  font-weight: 700;
+  font-size: 24px;
+}
+.pdp__color-button {
+  width: 32px;
+  height: 32px;
+  font-size: 0;
+  margin-right: 8px;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+.pdp__color-button:disabled {
+  cursor: default;
+}
+.pdp__color-checked::after {
+  position: absolute;
+  content: '';
+  width: 36px;
+  height: 36px;
+  border: #5ece7b 1px solid;
+
+  top: -3px;
+  left: -3px;
+}
