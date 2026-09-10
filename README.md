@@ -5,7 +5,7 @@ Test assignment for the Scandiweb Junior React Developer program: a single-page 
 🔗 **Live demo:** [scandy.onrender.com](https://scandy.onrender.com/tech)
 *(hosted on Render free tier — the app may take a few seconds to wake up on first load)*
 
-![Screenshot](public/preview.png)
+![Screenshot](public/images/vivideo-gif-maker.gif)
 <!-- заменить на реальный путь к скриншоту/GIF, лежащему в репозитории -->
 
 ## Features
